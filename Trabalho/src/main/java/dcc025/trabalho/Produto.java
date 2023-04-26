@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author joaov
  */
-public class Produto extends CarrinhoDeCompras{
+public class Produto{
     private double preco;
     private int quantidade;
 

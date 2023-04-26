@@ -3,17 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dcc025.trabalho;
+
 import java.util.*;
 
 /**
  *
- * @author joaov
+ * @author gabri
  */
-public class Vendedor extends Pessoa{
-    ListaProdutos loja;
-
-    public Vendedor(String nome, String login, String senha) {
-        super(nome, login, senha);
-    }
-    
+public class ListaProdutos {
+    HashSet<Produto> list;
 }

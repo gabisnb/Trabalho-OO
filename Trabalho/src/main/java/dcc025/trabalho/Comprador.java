@@ -10,12 +10,11 @@ package dcc025.trabalho;
  */
 public class Comprador extends Pessoa{
     private double saldo;
-    private CarrinhoDeCompras carrinho;
+    private ListaProdutos carrinho;
 
-    public Comprador(double saldo, CarrinhoDeCompras carrinho, String nome, String login, String senha) {
+    public Comprador(double saldo, String nome, String login, String senha) {
         super(nome, login, senha);
         this.saldo = saldo;
-        this.carrinho = carrinho;
     }
     
 }
