@@ -4,6 +4,7 @@
  */
 package dcc025.trabalho;
 import java.util.*;
+import dcc025.trabalho.ListaQuantidadeCor.Cor;
 
 /**
  *
@@ -11,19 +12,53 @@ import java.util.*;
  */
 public class Produto{
     private double preco;
-    private int quantidade;
+    private int quantidadeTotal;
+    ListaQuantidadeCor quantidadeCor;
 
-    public Produto(double preco, int quantidade) {
-        this.preco = preco;
-        this.quantidade = quantidade;
+    public Produto(double preco, int quantidade, Cor cor) {
+        
+        quantidadeCor = new ListaQuantidadeCor();
+        if(cor==null)
+            cor = Cor.BRANCO;
+        //Gabriela: a cor que será "default" para os produtos será a cor branca
+        
+        if(preco>=0)
+            this.preco = preco;
+        else
+            this.preco = 0;
+        
+        if(quantidade>=0)
+            this.quantidadeTotal = quantidade;
+        else
+            this.quantidadeTotal = 0;
+        
+        quantidadeCor.setQuantidade(this.quantidadeTotal, cor);
     }
 
     public double getPreco() {
         return preco;
     }
+    
+    public void setPreco(double preco){
+        if(preco>=0)
+            this.preco = preco;
+    }
 
     public int getQuantidade() {
-        return quantidade;
+        return quantidadeTotal;
     }
     
+    public void setQuantidade(int quantidade){
+        if(quantidade>=0)
+            this.quantidadeTotal = quantidade;
+    }
+    
+    public void addCorProduto(int quantidade, Cor cor){
+        if(quantidade>=0)
+            this.quantidadeTotal += quantidade;
+        else
+            quantidade = 0;
+        
+        this.quantidadeCor.setQuantidade(quantidade, cor);
+    }
 }

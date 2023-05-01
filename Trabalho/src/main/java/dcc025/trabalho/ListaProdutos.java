@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author gabri
+ * @author Gabi
  */
 public class ListaProdutos {
     HashSet<Produto> list;
