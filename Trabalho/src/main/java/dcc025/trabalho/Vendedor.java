@@ -10,10 +10,11 @@ import java.util.*;
  * @author joaov
  */
 public class Vendedor extends Pessoa{
-    ListaProdutos loja;
+    private Produto [] loja;
 
     public Vendedor(String nome, String login, String senha) {
         super(nome, login, senha);
+        loja = new Produto[10];
     }
     
 }
