@@ -10,7 +10,7 @@ import dcc025.trabalho.ListaQuantidadeCor.Cor;
  *
  * @author joaov
  */
-public class Produto{
+public class Produto implements TiposProdutos{
     private double preco;
     private int quantidadeTotal;
     ListaQuantidadeCor quantidadeCor;

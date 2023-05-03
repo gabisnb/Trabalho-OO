@@ -7,24 +7,18 @@ import dcc025.trabalho.ListaQuantidadeCor.Cor;
  *
  * @author joaov
  */
-public class Roupa extends Produto {
-    public static enum TipoRoupa{
-        SAPATO, CALCA, BLUSA, CONJUNTO, ACESSORIOS
-    }
-    private TipoRoupa tipo;
+public class Roupa extends Produto{
     
-    //Gabriela: não sei como associar quantidade por tamanho com quantidade por cor
-    private enum TamanhoRoupa{
-        XP, PP, P, M, G, GG, XG, UNICO
-    }
-    private TamanhoRoupa [] tamanho;
-    private HashMap<String, Integer> quantidadeTamanho;
+    private TipoRoupa tipo;
 
-    public Roupa(double preco, int quantidade, TipoRoupa tipo, Cor cor) {
+    public Roupa(double preco, int quantidade, Cor cor, TipoRoupa tipo) {
         super(preco, quantidade, cor);
         
-        if(tipo==null)
-            tipo = TipoRoupa.CONJUNTO;
+        this.tipo = TipoRoupa.N_A;
+        for(TipoRoupa aux : TipoRoupa.values())
+            if(aux.equals(tipo))
+                this.tipo = tipo;
         this.tipo = tipo;
+        
     }
 }

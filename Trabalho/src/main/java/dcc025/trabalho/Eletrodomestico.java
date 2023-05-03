@@ -8,12 +8,15 @@ import dcc025.trabalho.ListaQuantidadeCor.Cor;
  * @author joaov
  */
 public class Eletrodomestico extends Produto{
-    public static enum TipoEletrodomestico{
-        GELADEIRA, FOGAO, COMPUTADOR, TV, MAQUINA_DE_LAVAR
-    }
-
-    public Eletrodomestico(double preco, int quantidade, Cor cor) {
+    
+    private TipoEletrodomestico tipo;
+    
+    public Eletrodomestico(double preco, int quantidade, Cor cor, TipoEletrodomestico tipo) {
         super(preco, quantidade, cor);
+        this.tipo = TipoEletrodomestico.N_A;
+        for(TipoEletrodomestico aux : TipoEletrodomestico.values())
+            if(aux.equals(tipo))
+                this.tipo = tipo;
     }
     
 }
