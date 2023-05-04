@@ -61,4 +61,6 @@ public class Produto implements TiposProdutos{
         
         this.quantidadeCor.setQuantidade(quantidade, cor);
     }
+    
+    public void exibirCatalogo(){}
 }
