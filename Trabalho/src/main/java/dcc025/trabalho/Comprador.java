@@ -11,12 +11,12 @@ import dcc025.trabalho.ListaQuantidadeCor.Cor;
  */
 public class Comprador extends Pessoa implements TiposProdutos{
     private double saldo;
-    private Produto [] carrinho;
+    private CarrinhoCompras carrinho;
 
     public Comprador(double saldo, String nome, String login, String senha) {
         super(nome, login, senha);
         this.saldo = saldo;
-        carrinho = new Produto[10];
+        this.carrinho = new CarrinhoCompras();
     }
     
 }

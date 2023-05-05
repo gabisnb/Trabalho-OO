@@ -29,4 +29,10 @@ public class Eletrodomestico extends Produto{
         quantidadeCor.listaCoresQuantidade();
     }
     
+    @Override
+    public void exibirResumoProduto()
+    {
+        System.out.println("Eletrodomestico: " + this.tipo + "Preco: " + getPreco());
+    }
+    
 }

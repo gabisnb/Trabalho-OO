@@ -17,6 +17,14 @@ public class Vendedor extends Pessoa{
         loja = new Produto[10];
     }
     
+    public Produto venderProduto(TiposProdutos produtoVenda)
+    {
+        for(Produto aux : loja)
+        {
+            if(aux.)
+        }
+    }
+    
     public void exibirEstoque()
     {
         for(Produto aux : loja)
