@@ -27,7 +27,7 @@ public class CarrinhoCompras {
 
     public void removeProduto(Produto produto, int quantidadeRemover)
     {
-        if(carrinho.get(produto) - quantidadeRemover >= 0)
+        if(carrinho.get(produto) - quantidadeRemover > 0)
         {
         int quantidadeNoCarrinhoAposRemocao = carrinho.get(produto) - quantidadeRemover;
             carrinho.put(produto, quantidadeNoCarrinhoAposRemocao);
