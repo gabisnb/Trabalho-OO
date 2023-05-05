@@ -21,7 +21,9 @@ public class Roupa extends Produto{
         this.tipo = tipo;
         
     }
-    
+    public TipoRoupa getTipo(){
+       return tipo; 
+    }
     @Override
     public void exibirCatalogo()
     {
@@ -30,5 +32,10 @@ public class Roupa extends Produto{
         System.out.println("Quantidade em Estoque: " + getQuantidade());
         System.out.println("Cores disponiveis: ");
         quantidadeCor.listaCoresQuantidade();
+    }
+     @Override
+    public void exibirResumoProduto()
+    {
+        System.out.println("Roupa: " + this.tipo + "Preco: " + getPreco());
     }
 }

@@ -26,4 +26,10 @@ public class MaterialEscritorio extends Produto{
         System.out.println("Cores disponiveis: ");
         quantidadeCor.listaCoresQuantidade();
     }
+    
+    @Override
+    public void exibirResumoProduto()
+    {
+        System.out.println("Material de Escritorio: " + this.tipo + "Preco: " + getPreco());
+    }
 }

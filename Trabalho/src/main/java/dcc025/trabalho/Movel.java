@@ -29,4 +29,10 @@ public class Movel extends Produto{
         quantidadeCor.listaCoresQuantidade();
     }
     
+    @Override
+    public void exibirResumoProduto()
+    {
+        System.out.println("Movel: " + this.tipo + "Preco: " + getPreco());
+    }
+    
 }

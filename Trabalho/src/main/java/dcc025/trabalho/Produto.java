@@ -63,4 +63,5 @@ public class Produto implements TiposProdutos{
     }
     
     public void exibirCatalogo(){}
+    public void exibirResumoProduto(){}
 }
