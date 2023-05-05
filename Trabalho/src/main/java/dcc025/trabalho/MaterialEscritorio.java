@@ -17,4 +17,13 @@ public class MaterialEscritorio extends Produto{
                 this.tipo = tipo;
     }
     
+    @Override
+    public void exibirCatalogo()
+    {
+        System.out.println("Tipo de Material de Escritorio: " + this.tipo);
+        System.out.println("Preco do Produto: " + getPreco());
+        System.out.println("Quantidade em Estoque: " + getQuantidade());
+        System.out.println("Cores disponiveis: ");
+        quantidadeCor.listaCoresQuantidade();
+    }
 }

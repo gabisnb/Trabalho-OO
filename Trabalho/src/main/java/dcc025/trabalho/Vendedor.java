@@ -17,4 +17,11 @@ public class Vendedor extends Pessoa{
         loja = new Produto[10];
     }
     
+    public void exibirEstoque()
+    {
+        for(Produto aux : loja)
+        {
+        aux.exibirCatalogo();
+        }
+    }
 }
