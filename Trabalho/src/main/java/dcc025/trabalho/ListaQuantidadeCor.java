@@ -32,4 +32,11 @@ public class ListaQuantidadeCor {
     public void setQuantidade(int quantidade, Cor cor){
         this.quantidade.put(cor, quantidade);
     }
+    
+    public void listaCoresQuantidade(){
+        for(Map.Entry<Cor,Integer> aux : quantidade.entrySet())
+        {
+            System.out.println("Cor: " + aux.getKey() + " -> Quantidade em estoque: " + aux.getValue());
+        }
+    }
 }
