@@ -6,10 +6,6 @@ package dcc025.trabalho;
 
 import java.util.*;
 
-/**
- *
- * @author Gabi
- */
 public class ListaQuantidadeCor {
     public static enum Cor{
         ROSA, VERMELHO, LARANJA, AMARELO, VERDE_CLARO, VERDE, CIANO, AZUL_CLARO, AZUL,
@@ -18,6 +14,7 @@ public class ListaQuantidadeCor {
     private HashMap<Cor,Integer> quantidade;
     
     public ListaQuantidadeCor(){
+        this.quantidade = new HashMap<>();
         for(Cor aux : Cor.values())
             quantidade.put(aux, 0);
     }
@@ -36,7 +33,7 @@ public class ListaQuantidadeCor {
     public void listaCoresQuantidade(){
         for(Map.Entry<Cor,Integer> aux : quantidade.entrySet())
         {
-            System.out.println("Cor: " + aux.getKey() + " -> Quantidade em estoque: " + aux.getValue());
+            System.out.println("Cor: " + aux.getKey() + "\nQuantidade em estoque: " + aux.getValue());
         }
     }
 }
