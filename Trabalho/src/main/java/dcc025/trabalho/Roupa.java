@@ -3,10 +3,6 @@ package dcc025.trabalho;
 import java.util.*;
 import dcc025.trabalho.ListaQuantidadeCor.Cor;
 
-/**
- *
- * @author joaov
- */
 public class Roupa extends Produto{
     
     private TipoRoupa tipo;
@@ -27,7 +23,7 @@ public class Roupa extends Produto{
     @Override
     public void exibirCatalogo()
     {
-        System.out.println("Tipo de Roupa: " + this.tipo);
+        System.out.println("\n\nTipo de Roupa: " + this.tipo);
         System.out.println("Preco do Produto: " + getPreco());
         System.out.println("Quantidade em Estoque: " + getQuantidade());
         System.out.println("Cores disponiveis: ");
@@ -36,6 +32,6 @@ public class Roupa extends Produto{
      @Override
     public void exibirResumoProduto()
     {
-        System.out.println("Roupa: " + this.tipo + "Preco: " + getPreco());
+        System.out.println("\n\nRoupa: " + this.tipo + "\nPreco: " + getPreco());
     }
 }
