@@ -1,18 +1,13 @@
 package dcc025.trabalho;
 
-/**
- *
- * @author joaov
- */
 public abstract class Pessoa {
     private String nome;
-    private String login;
+    private String email;
     private String senha;
-    private static int N_CONTAS;
 
-    public Pessoa(String nome, String login, String senha) {
+    public Pessoa(String nome, String email, String senha) {
         this.nome = nome;
-        this.login = login;
+        this.email = email;
         this.senha = senha;
     }
 
@@ -20,12 +15,23 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public String getLogin() {
-        return login;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public static int getN_CONTAS() {
-        return N_CONTAS;
+    public String getEmail() {
+        return email;
     }
-    
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }
