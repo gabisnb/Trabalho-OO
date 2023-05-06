@@ -3,10 +3,6 @@ package dcc025.trabalho;
 import java.util.*;
 import dcc025.trabalho.ListaQuantidadeCor.Cor;
 
-/**
- *
- * @author joaov
- */
 public class Eletrodomestico extends Produto{
     
     private TipoEletrodomestico tipo;
@@ -22,7 +18,7 @@ public class Eletrodomestico extends Produto{
     @Override
     public void exibirCatalogo()
     {
-        System.out.println("Tipo de Eletrodomestico: " + this.tipo);
+        System.out.println("\n\nTipo de Eletrodomestico: " + this.tipo);
         System.out.println("Preco do Produto: " + getPreco());
         System.out.println("Quantidade em Estoque: " + getQuantidade());
         System.out.println("Cores disponiveis: ");
@@ -32,7 +28,6 @@ public class Eletrodomestico extends Produto{
     @Override
     public void exibirResumoProduto()
     {
-        System.out.println("Eletrodomestico: " + this.tipo + "Preco: " + getPreco());
-    }
-    
+        System.out.println("\n\nEletrodomestico: " + this.tipo + "\nPreco: " + getPreco());
+    } 
 }
