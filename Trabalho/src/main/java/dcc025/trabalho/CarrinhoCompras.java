@@ -6,10 +6,6 @@ package dcc025.trabalho;
 
 import java.util.*;
 
-/**
- *
- * @author Gabriel
- */
 public class CarrinhoCompras {
     private HashMap<Produto, Integer> carrinho; //Gabriel: Armazena o produto junto com sua quantidade
     private double totalPagar;
@@ -21,7 +17,7 @@ public class CarrinhoCompras {
     }
 
     public void insereProduto(Produto produto, int quantidade){
-        this.totalPagar = produto.getPreco() * quantidade;
+        this.totalPagar += produto.getPreco() * quantidade;
         this.carrinho.put(produto, quantidade);
     }
 
@@ -29,11 +25,14 @@ public class CarrinhoCompras {
     {
         if(carrinho.get(produto) - quantidadeRemover > 0)
         {
+        this.totalPagar -= produto.getPreco()*quantidadeRemover;
         int quantidadeNoCarrinhoAposRemocao = carrinho.get(produto) - quantidadeRemover;
             carrinho.put(produto, quantidadeNoCarrinhoAposRemocao);
         }
-        else
+        else{
+            this.totalPagar -= carrinho.get(produto)*produto.getPreco();
             carrinho.remove(produto);
+        }
     }
     
     public double getTotalPagar(){
@@ -42,7 +41,7 @@ public class CarrinhoCompras {
 
     public void itensNoCarrinho()
     {
-        System.out.println("Itens no Carrinho:");
+        System.out.println("\nItens no Carrinho:");
         for(Map.Entry<Produto,Integer> aux : carrinho.entrySet())
         {
             Produto produto = aux.getKey();
