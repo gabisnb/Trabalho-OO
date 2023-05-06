@@ -3,33 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dcc025.trabalho;
+
 import java.util.*;
 
-/**
- *
- * @author joaov
- */
-public class Vendedor extends Pessoa{
-    private Produto [] loja;
+public class Vendedor extends Pessoa {
 
-    public Vendedor(String nome, String login, String senha) {
-        super(nome, login, senha);
-        loja = new Produto[10];
+    private ArrayList <Produto> loja ;
+
+    public Vendedor(String nome, String email, String senha) {
+        super(nome, email, senha);
+        loja = new ArrayList();
     }
     
-    public Produto venderProduto(TiposProdutos produtoVenda)
-    {
-        for(Produto aux : loja)
-        {
-            if(aux.)
+    public void adicionarProduto(Produto produto){
+        loja.add(produto);
+    }
+
+    public void exibirEstoque() {
+        for (Produto aux : loja) {
+            aux.exibirCatalogo();
         }
     }
-    
-    public void exibirEstoque()
-    {
-        for(Produto aux : loja)
-        {
-        aux.exibirCatalogo();
-        }
+
+    public void DadosVendedor() {
+        System.out.println("");
+        System.out.println("--Vendedor--");
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Email: " + this.getEmail());
     }
 }
