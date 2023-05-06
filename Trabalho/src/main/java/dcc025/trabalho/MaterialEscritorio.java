@@ -2,10 +2,6 @@ package dcc025.trabalho;
 
 import dcc025.trabalho.ListaQuantidadeCor.Cor;
 
-/**
- *
- * @author joaov
- */
 public class MaterialEscritorio extends Produto{
     private TipoMatEscritorio tipo;
 
@@ -20,7 +16,7 @@ public class MaterialEscritorio extends Produto{
     @Override
     public void exibirCatalogo()
     {
-        System.out.println("Tipo de Material de Escritorio: " + this.tipo);
+        System.out.println("\nTipo de Material de Escritorio: " + this.tipo);
         System.out.println("Preco do Produto: " + getPreco());
         System.out.println("Quantidade em Estoque: " + getQuantidade());
         System.out.println("Cores disponiveis: ");
@@ -30,6 +26,6 @@ public class MaterialEscritorio extends Produto{
     @Override
     public void exibirResumoProduto()
     {
-        System.out.println("Material de Escritorio: " + this.tipo + "Preco: " + getPreco());
+        System.out.println("\n\nMaterial de Escritorio: " + this.tipo + "\nPreco: " + getPreco());
     }
 }
