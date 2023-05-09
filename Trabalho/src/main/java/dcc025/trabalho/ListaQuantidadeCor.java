@@ -11,7 +11,7 @@ public class ListaQuantidadeCor {
         ROSA, VERMELHO, LARANJA, AMARELO, VERDE_CLARO, VERDE, CIANO, AZUL_CLARO, AZUL,
         ROXO, MAJENTA, PRETO, CINZA, BRANCO
     }
-    private HashMap<Cor,Integer> quantidade;
+    private Map<Cor,Integer> quantidade;
     
     public ListaQuantidadeCor(){
         this.quantidade = new HashMap<>();

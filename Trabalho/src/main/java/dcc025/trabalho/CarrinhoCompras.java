@@ -7,13 +7,13 @@ package dcc025.trabalho;
 import java.util.*;
 
 public class CarrinhoCompras {
-    private HashMap<Produto, Integer> carrinho; //Gabriel: Armazena o produto junto com sua quantidade
+    private Map<Produto, Integer> carrinho; //Gabriel: Armazena o produto junto com sua quantidade
     private double totalPagar;
     
     public CarrinhoCompras()
     {
         this.totalPagar = 0.0;
-        carrinho =  new HashMap<Produto, Integer>();
+        carrinho =  new HashMap<>();
     }
 
     public void insereProduto(Produto produto, int quantidade){

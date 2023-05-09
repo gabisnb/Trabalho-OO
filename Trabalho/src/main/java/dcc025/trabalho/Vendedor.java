@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Vendedor extends Pessoa {
 
-    private ArrayList <Produto> loja ;
+    private List <Produto> loja ;
 
     public Vendedor(String nome, String email, String senha) {
         super(nome, email, senha);
