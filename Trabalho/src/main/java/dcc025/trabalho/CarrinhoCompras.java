@@ -21,12 +21,12 @@ public class CarrinhoCompras {
         this.carrinho.put(produto, quantidade);
     }
 
-    public void removeProduto(Produto produto, int quantidadeRemover)
+    public void removeProduto(Produto produto, int quantidade)
     {
-        if(carrinho.get(produto) - quantidadeRemover > 0)
+        if(carrinho.get(produto) - quantidade > 0)
         {
-        this.totalPagar -= produto.getPreco()*quantidadeRemover;
-        int quantidadeNoCarrinhoAposRemocao = carrinho.get(produto) - quantidadeRemover;
+        this.totalPagar -= produto.getPreco()*quantidade;
+        int quantidadeNoCarrinhoAposRemocao = carrinho.get(produto) - quantidade;
             carrinho.put(produto, quantidadeNoCarrinhoAposRemocao);
         }
         else{

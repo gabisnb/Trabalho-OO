@@ -8,7 +8,7 @@ import dcc025.trabalho.ListaQuantidadeCor.Cor;
 public class Comprador extends Pessoa implements TiposProdutos{
     private double saldo;
     private CarrinhoCompras carrinho;
-    static int qtdContas = 0;
+    private static int qtdContas = 0;
 
     public Comprador(String nome, String email, String senha) {
         super(nome, email, senha);

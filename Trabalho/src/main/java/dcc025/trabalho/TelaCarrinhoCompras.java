@@ -37,6 +37,8 @@ public class TelaCarrinhoCompras extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        setName("Carrinho de compras"); // NOI18N
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Carrinho de compras");
 
@@ -58,10 +60,21 @@ public class TelaCarrinhoCompras extends javax.swing.JPanel {
         jLabel5.setText("Valor total: R$1500,00");
 
         jButton1.setText("Comprar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
 
         jButton3.setText("Sair");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,6 +132,17 @@ public class TelaCarrinhoCompras extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        jList1.removeAll();
+        jScrollPane1.setViewportView(jList1);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,7 +15,7 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -23,15 +23,15 @@ public abstract class Pessoa {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
-    public String getSenha() {
+    private String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    private void setSenha(String senha) {
         this.senha = senha;
     }
 }
