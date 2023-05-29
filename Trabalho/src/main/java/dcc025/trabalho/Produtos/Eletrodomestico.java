@@ -1,7 +1,7 @@
-package dcc025.trabalho;
+package dcc025.trabalho.Produtos;
 
 import java.util.*;
-import dcc025.trabalho.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
 
 public class Eletrodomestico extends Produto{
     

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dcc025.trabalho;
+package dcc025.trabalho.Usuario;
 
+import dcc025.trabalho.Usuario.Pessoa;
+import dcc025.trabalho.Produtos.Produto;
 import java.util.*;
 
 public class Vendedor extends Pessoa {

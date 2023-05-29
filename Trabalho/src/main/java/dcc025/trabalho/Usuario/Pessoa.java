@@ -1,4 +1,4 @@
-package dcc025.trabalho;
+package dcc025.trabalho.Usuario;
 
 public abstract class Pessoa {
     private String nome;

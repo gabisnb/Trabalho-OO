@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dcc025.trabalho;
-import dcc025.trabalho.ListaQuantidadeCor.Cor;
+package dcc025.trabalho.Usuario;
+import dcc025.trabalho.Usuario.Pessoa;
+import dcc025.trabalho.Produtos.Produto;
+import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.Produtos.TiposProdutos;
 
 public class Comprador extends Pessoa implements TiposProdutos{
     private double saldo;
