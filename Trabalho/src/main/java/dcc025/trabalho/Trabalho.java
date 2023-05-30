@@ -9,7 +9,7 @@ import dcc025.trabalho.Produtos.Eletrodomestico;
 import dcc025.trabalho.Produtos.MaterialEscritorio;
 import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.Produtos.TiposProdutos;
-import dcc025.trabalho.Telas.TelaInicio;
+import dcc025.trabalho.Telas.TelaLogin;
 import java.util.Scanner;
 
 public class Trabalho {
@@ -64,7 +64,8 @@ public class Trabalho {
 //                System.out.println("Opção de usuário inválido");
 //                break;
 //        }       
-        TelaInicio tela = new TelaInicio();
+        TelaLogin tela = new TelaLogin();
+        tela.desenha();
     }
 }
 
