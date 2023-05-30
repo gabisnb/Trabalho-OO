@@ -4,9 +4,9 @@
  */
 package dcc025.trabalho.Usuario;
 import dcc025.trabalho.Usuario.Pessoa;
-import dcc025.trabalho.Produtos.Produto;
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
-import dcc025.trabalho.Produtos.TiposProdutos;
+import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.TiposProdutos;
 
 public class Comprador extends Pessoa implements TiposProdutos{
     private double saldo;

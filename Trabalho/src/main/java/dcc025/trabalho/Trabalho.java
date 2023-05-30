@@ -1,13 +1,13 @@
 package dcc025.trabalho;
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.Produtos.Movel;
-import dcc025.trabalho.Produtos.Roupa;
-import dcc025.trabalho.Produtos.Produto;
-import dcc025.trabalho.Produtos.Eletrodomestico;
-import dcc025.trabalho.Produtos.MaterialEscritorio;
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
-import dcc025.trabalho.Produtos.TiposProdutos;
+import dcc025.trabalho.model.Movel;
+import dcc025.trabalho.model.Roupa;
+import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.model.Eletrodomestico;
+import dcc025.trabalho.model.MaterialEscritorio;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.TiposProdutos;
 import java.util.Scanner;
 
 public class Trabalho {

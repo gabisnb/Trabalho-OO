@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package dcc025.trabalho.Produtos;
+package dcc025.trabalho.model;
 
 /**
  *
@@ -25,5 +25,4 @@ public interface TiposProdutos {
     public static enum TipoMovel{
         N_A, ASSENTO, MESA, ESTANTE, QUADRO, LUMINARIA, ARMARIO, CAMA
     }
-    
 }

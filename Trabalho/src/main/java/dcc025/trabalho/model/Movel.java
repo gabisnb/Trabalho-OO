@@ -1,8 +1,8 @@
-package dcc025.trabalho.Produtos;
+package dcc025.trabalho.model;
 
-import dcc025.trabalho.Produtos.Produto;
+import dcc025.trabalho.model.Produto;
 import java.util.*;
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public class Movel extends Produto{
     

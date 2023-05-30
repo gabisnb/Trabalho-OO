@@ -1,6 +1,6 @@
-package dcc025.trabalho.Produtos;
+package dcc025.trabalho.model;
 
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public class MaterialEscritorio extends Produto{
     private TipoMatEscritorio tipo;

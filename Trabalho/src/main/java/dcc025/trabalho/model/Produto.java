@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dcc025.trabalho.Produtos;
+package dcc025.trabalho.model;
 import java.util.*;
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public class Produto implements TiposProdutos{
     private double preco;
@@ -57,6 +57,8 @@ public class Produto implements TiposProdutos{
         
         this.quantidadeCor.setQuantidade(quantidade, cor);
     }
+    
+    //public abstract <T> T getTipo();
     
     public void exibirCatalogo(){}
     public void exibirResumoProduto(){}

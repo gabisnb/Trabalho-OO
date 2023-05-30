@@ -4,7 +4,7 @@
  */
 package dcc025.trabalho.Usuario;
 
-import dcc025.trabalho.Produtos.Produto;
+import dcc025.trabalho.model.Produto;
 import java.util.*;
 
 public class CarrinhoCompras {
