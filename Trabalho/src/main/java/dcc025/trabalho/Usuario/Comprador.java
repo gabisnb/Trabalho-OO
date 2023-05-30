@@ -8,7 +8,7 @@ import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.model.TiposProdutos;
 
-public class Comprador extends Pessoa implements TiposProdutos{
+public class Comprador extends Pessoa{
     private double saldo;
     private CarrinhoCompras carrinho;
     private static int qtdContas = 0;

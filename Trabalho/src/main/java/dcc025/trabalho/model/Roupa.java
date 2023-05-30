@@ -4,35 +4,11 @@ import dcc025.trabalho.model.Produto;
 import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
-public class Roupa extends Produto{
-    
-    private TipoRoupa tipo;
-
-    public Roupa(double preco, int quantidade, Cor cor, TipoRoupa tipo) {
-        super(preco, quantidade, cor);
+public enum Roupa{
+        N_A, SAPATO, CALCA, BLUSA, CONJUNTO, ACESSORIOS;
         
-        this.tipo = TipoRoupa.N_A;
-        for(TipoRoupa aux : TipoRoupa.values())
-            if(aux.equals(tipo))
-                this.tipo = tipo;
-        this.tipo = tipo;
-        
-    }
-    public TipoRoupa getTipo(){
-       return tipo; 
-    }
-    @Override
-    public void exibirCatalogo()
-    {
-        System.out.println("\n\nTipo de Roupa: " + this.tipo);
-        System.out.println("Preco do Produto: " + getPreco());
-        System.out.println("Quantidade em Estoque: " + getQuantidade());
-        System.out.println("Cores disponiveis: ");
-        quantidadeCor.listaCoresQuantidade();
-    }
-     @Override
-    public void exibirResumoProduto()
-    {
-        System.out.println("\n\nRoupa: " + this.tipo + "\nPreco: " + getPreco());
-    }
+        @Override
+        public String toString(){
+            return "Roupa";
+        }
 }

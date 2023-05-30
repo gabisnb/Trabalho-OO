@@ -8,21 +8,23 @@ package dcc025.trabalho.model;
  *
  * @author gabri
  */
-public interface TiposProdutos {
+public class TiposProdutos <T> {
+
+    private T tipo;
     
-    public static enum TipoRoupa{
-        N_A, SAPATO, CALCA, BLUSA, CONJUNTO, ACESSORIOS
+    public TiposProdutos(T tipo){
+        this.tipo = tipo;
     }
     
-    public static enum TipoEletrodomestico{
-        N_A, GELADEIRA, FOGAO, COMPUTADOR, TV, MAQUINA_DE_LAVAR
+    public void setTipo(T tipo){
+        this.tipo = tipo;
+    }
+    public T getTipo(){
+        return this.tipo = tipo;
     }
     
-    public static enum TipoMatEscritorio{
-        N_A, CANETA, LAPIS, BORRACHA, PAPEL, CLIPES
-    }
-    
-    public static enum TipoMovel{
-        N_A, ASSENTO, MESA, ESTANTE, QUADRO, LUMINARIA, ARMARIO, CAMA
+    @Override
+    public String toString(){
+        return tipo.toString();
     }
 }

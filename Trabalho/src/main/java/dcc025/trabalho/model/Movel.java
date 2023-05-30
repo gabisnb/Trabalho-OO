@@ -4,31 +4,6 @@ import dcc025.trabalho.model.Produto;
 import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
-public class Movel extends Produto{
-    
-    private TipoMovel tipo;
-    
-    public Movel(double preco, int quantidade, Cor cor, TipoMovel tipo) {
-        super(preco, quantidade, cor);
-        this.tipo = TipoMovel.N_A;
-        for(TipoMovel aux : TipoMovel.values())
-            if(aux.equals(tipo))
-                this.tipo = tipo;
-        }
-    
-    @Override
-    public void exibirCatalogo()
-    {
-        System.out.println("\nTipo de Movel: " + this.tipo);
-        System.out.println("Preco do Produto: " + getPreco());
-        System.out.println("Quantidade em Estoque: " + getQuantidade());
-        System.out.println("Cores disponiveis: ");
-        quantidadeCor.listaCoresQuantidade();
-    }
-    
-    @Override
-    public void exibirResumoProduto()
-    {
-        System.out.println("\n\nMovel: " + this.tipo + "\nPreco: " + getPreco());
-    }
+public enum Movel{
+    N_A, ASSENTO, MESA, ESTANTE, QUADRO, LUMINARIA, ARMARIO, CAMA;
 }

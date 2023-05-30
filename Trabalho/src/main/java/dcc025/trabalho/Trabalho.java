@@ -31,10 +31,10 @@ public class Trabalho {
         System.out.println("2 - Comprador");
         tipoUsuario = teclado.nextInt();
         
-        Produto roupa = new Roupa(50.00, 5, Cor.VERMELHO, TiposProdutos.TipoRoupa.BLUSA );
-        Produto movel = new Movel(250.00, 5, Cor.BRANCO, TiposProdutos.TipoMovel.MESA);
-        Produto material = new MaterialEscritorio(5, 5, Cor.PRETO, TiposProdutos.TipoMatEscritorio.CANETA);
-        Produto eletrodomestico = new Eletrodomestico(3000, 5, Cor.AZUL_CLARO, TiposProdutos.TipoEletrodomestico.COMPUTADOR);
+        Produto roupa = new Produto(50.00, 5, Cor.VERMELHO, "Blusa");
+//        Produto movel = new Movel(250.00, 5, Cor.BRANCO, TiposProdutos.TipoMovel.MESA);
+//        Produto material = new MaterialEscritorio(5, 5, Cor.PRETO, TiposProdutos.TipoMatEscritorio.CANETA);
+//        Produto eletrodomestico = new Eletrodomestico(3000, 5, Cor.AZUL_CLARO, TiposProdutos.TipoEletrodomestico.COMPUTADOR);
         
         
         switch(tipoUsuario){
@@ -42,9 +42,9 @@ public class Trabalho {
                 Vendedor vendedor = new Vendedor(nome, email, senha);
                 vendedor.DadosVendedor();
                 vendedor.adicionarProduto(roupa);
-                vendedor.adicionarProduto(movel);
-                vendedor.adicionarProduto(material);
-                vendedor.adicionarProduto(eletrodomestico);
+//                vendedor.adicionarProduto(movel);
+//                vendedor.adicionarProduto(material);
+//                vendedor.adicionarProduto(eletrodomestico);
                 vendedor.exibirEstoque();
                 break;
             
@@ -52,9 +52,9 @@ public class Trabalho {
                 Comprador comprador = new Comprador(nome, email, senha);
                 comprador.DadosComprador();
                 comprador.adicionarCarrinho(roupa, 1);
-                comprador.adicionarCarrinho(movel, 1);
-                comprador.adicionarCarrinho(material, 2);
-                comprador.adicionarCarrinho(eletrodomestico, 5);
+//                comprador.adicionarCarrinho(movel, 1);
+//                comprador.adicionarCarrinho(material, 2);
+//                comprador.adicionarCarrinho(eletrodomestico, 5);
                 comprador.exibirCarrinho();
                 break;
             
