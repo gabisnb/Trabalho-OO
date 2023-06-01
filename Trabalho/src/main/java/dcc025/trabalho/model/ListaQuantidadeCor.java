@@ -33,7 +33,8 @@ public class ListaQuantidadeCor {
     public void listaCoresQuantidade(){
         for(Map.Entry<Cor,Integer> aux : quantidade.entrySet())
         {
-            System.out.println("Cor: " + aux.getKey() + "\nQuantidade em estoque: " + aux.getValue());
+            if(aux.getValue()!=0)
+                System.out.println("Cor: " + aux.getKey() + "\nQuantidade em estoque: " + aux.getValue());
         }
     }
 }
