@@ -6,6 +6,7 @@ package dcc025.trabalho.Usuario;
 
 import dcc025.trabalho.Usuario.Pessoa;
 import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import java.util.*;
 
 public class Vendedor extends Pessoa {
@@ -20,6 +21,14 @@ public class Vendedor extends Pessoa {
     public void adicionarProduto(Produto produto){
         loja.add(produto);
     }
+    
+//    public void adicionaCor(String tipo, int quant, Cor cor){
+//        for(int i=0; i<this.loja.size(); i++){
+//            if(this.loja.get(i).getTipo().equalsIgnoreCase(tipo)){
+//                this.loja.get(i).addCorProduto(quant, cor);
+//            }
+//        }
+//    }
 
     public void exibirEstoque() {
         for (Produto aux : loja) {

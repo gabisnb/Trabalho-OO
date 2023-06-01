@@ -90,6 +90,10 @@ public class Produto{
             this.quantidadeTotal = quantidade;
     }
     
+    public String getTipo(){
+        return this.tipo.getTipo().toString();
+    }
+    
     public void addCorProduto(int quantidade, Cor cor){
         if(quantidade>=0)
             this.quantidadeTotal += quantidade;
@@ -101,15 +105,18 @@ public class Produto{
     
     public void exibirCatalogo()
     {
-        System.out.println("\nTipo: " + this.tipo);
+        System.out.println("\n-------" + this.tipo.getTipo().toString() + "-------");
         System.out.println("Preco do Produto: " + getPreco());
-        System.out.println("Quantidade em Estoque: " + getQuantidade());
+        System.out.println("Quantidade total em estoque: " + getQuantidade());
         System.out.println("Cores disponiveis: ");
         quantidadeCor.listaCoresQuantidade();
     }
     
     public void exibirResumoProduto()
     {
-        System.out.println("\n\nTipo: " + this.tipo.getClass().getName() + "\nPreco: " + getPreco());
+        
+//        String name = this.tipo.getTipo().toString();
+//        name = name.toLowerCase();
+        System.out.println("\n\nTipo: " + this.tipo.getTipo().toString() + "\nPreco: " + getPreco());
     } 
 }

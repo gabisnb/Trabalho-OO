@@ -19,12 +19,9 @@ public class TiposProdutos <T> {
     public void setTipo(T tipo){
         this.tipo = tipo;
     }
+    
     public T getTipo(){
-        return this.tipo = tipo;
+        return this.tipo;
     }
     
-    @Override
-    public String toString(){
-        return tipo.toString();
-    }
 }

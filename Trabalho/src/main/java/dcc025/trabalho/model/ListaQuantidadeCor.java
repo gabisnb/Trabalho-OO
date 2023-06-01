@@ -34,7 +34,7 @@ public class ListaQuantidadeCor {
         for(Map.Entry<Cor,Integer> aux : quantidade.entrySet())
         {
             if(aux.getValue()!=0)
-                System.out.println("Cor: " + aux.getKey() + "\nQuantidade em estoque: " + aux.getValue());
+                System.out.println(aux.getKey() + ": " + aux.getValue() + " em estoque");
         }
     }
 }

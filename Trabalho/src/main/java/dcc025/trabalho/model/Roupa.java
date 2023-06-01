@@ -5,10 +5,5 @@ import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public enum Roupa{
-        N_A, SAPATO, CALCA, BLUSA, CONJUNTO, ACESSORIOS;
-        
-        @Override
-        public String toString(){
-            return "Roupa";
-        }
+    N_A, SAPATO, CALCA, BLUSA, CONJUNTO, ACESSORIOS
 }

@@ -42,6 +42,7 @@ public class Trabalho {
                 Vendedor vendedor = new Vendedor(nome, email, senha);
                 vendedor.DadosVendedor();
                 vendedor.adicionarProduto(roupa);
+                roupa.addCorProduto(12, Cor.ROSA);
                 vendedor.adicionarProduto(movel);
                 vendedor.adicionarProduto(material);
                 vendedor.adicionarProduto(eletrodomestico);

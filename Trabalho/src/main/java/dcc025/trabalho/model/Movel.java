@@ -5,5 +5,5 @@ import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public enum Movel{
-    N_A, ASSENTO, MESA, ESTANTE, QUADRO, LUMINARIA, ARMARIO, CAMA;
+    N_A, ASSENTO, MESA, ESTANTE, QUADRO, LUMINARIA, ARMARIO, CAMA
 }
