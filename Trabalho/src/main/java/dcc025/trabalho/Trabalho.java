@@ -1,15 +1,7 @@
 package dcc025.trabalho;
 
-import dcc025.trabalho.Usuario.Vendedor;
-import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.Produtos.Movel;
-import dcc025.trabalho.Produtos.Roupa;
-import dcc025.trabalho.Produtos.Produto;
-import dcc025.trabalho.Produtos.Eletrodomestico;
-import dcc025.trabalho.Produtos.MaterialEscritorio;
-import dcc025.trabalho.Produtos.ListaQuantidadeCor.Cor;
-import dcc025.trabalho.Produtos.TiposProdutos;
-import dcc025.trabalho.Telas.TelaLogin;
+import dcc025.trabalho.Usuario.*;
+import dcc025.trabalho.Telas.*;
 import java.util.Scanner;
 
 public class Trabalho {
@@ -64,8 +56,38 @@ public class Trabalho {
 //                System.out.println("Opção de usuário inválido");
 //                break;
 //        }       
-        TelaLogin tela = new TelaLogin();
-        tela.desenha();
+        Scanner teclado = new Scanner(System.in);
+        
+        int opcao = 0;
+        do{
+            System.out.println("TESTE DAS TELAS");
+            System.out.println("[1] Login");
+            System.out.println("[2] Comprador");
+            System.out.println("[3] Vendedor");
+            System.out.println("[4] Carrinho");
+            switch(opcao){
+                case 1:
+                    TelaLogin tela = new TelaLogin();
+                    tela.desenha();
+                    break;
+                case 2:
+                    TelaCompra tela2 = new TelaCompra(
+                            new Comprador("testeComprador","comprador@teste.com", "senha"));
+                    tela2.desenha();
+                    break;
+                case 3:
+                    TelaVende tela3 = new TelaVende(
+                            new Vendedor("testeVendedor", "vendedor@teste.com", "senha"));
+                    tela3.desenha();
+                    break;
+                case 4:
+                    TelaCarrinho tela4 = new TelaCarrinho(
+                            new Comprador("testeCompradorCarrinho", "comprador@teste.com", "senha"),
+                            new CarrinhoCompras());
+                    tela4.desenha();
+                    break;
+            }
+        }while((opcao = teclado.nextInt()) > 0);
     }
 }
 

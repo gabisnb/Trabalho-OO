@@ -6,22 +6,23 @@ package dcc025.trabalho.Telas;
 
 import dcc025.trabalho.Usuario.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class TelaLogin{
+public class TelaLogin {
     
     private JFrame tela;
-    private final int ALTURA = 200;
+    private final int ALTURA = 300;
     private final int LARGURA = 400;
     
+    private JLabel jlEscolha;
     private JLabel jlNome;
     private JLabel jlEmail;
     private JLabel jlSenha;
+    
     private JTextField tfNome;
     private JTextField tfEmail;
     private JTextField tfSenha;
-    private JLabel jlEscolha;
+
     private JComboBox<String> cbEscolha;
     
     public void desenha(){
@@ -34,8 +35,6 @@ public class TelaLogin{
         desenhaMenu();
         
         tela.pack();
-        
-//        cbEscolha = new JComboBox<>(new String[] { "Vendedor", "Comprador" });
     }
     
     private void desenhaMenu(){
@@ -50,18 +49,23 @@ public class TelaLogin{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JButton jbEntrar = new JButton("Entrar");
-        painel.add(jbEntrar);
+        JPanel bpainel = new JPanel();
+        bpainel.add(jbEntrar);
+        
+        painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
     private JPanel desenhaLabel(){
         JPanel painelLabel = new JPanel();
-        painelLabel.setLayout(new GridLayout(0, 1));
+        painelLabel.setLayout(new GridLayout(0, 1, 5, 10));
+        
         jlNome = new JLabel("Nome:");
         jlEmail = new JLabel("Email:");
         jlSenha = new JLabel("Senha:");
         jlEscolha = new JLabel("Tipo de Usuário:");
+        
         painelLabel.add(jlNome);
         painelLabel.add(jlEmail);
         painelLabel.add(jlSenha);
@@ -72,13 +76,19 @@ public class TelaLogin{
     
     private JPanel desenhaTF(){
         JPanel painelTF = new JPanel();
-        painelTF.setLayout(new GridLayout(0,1));
+        painelTF.setLayout(new GridLayout(0,1, 5, 4));
         tfNome = new JTextField(20);
         tfEmail = new JTextField(20);
         tfSenha = new JTextField(20);
+        cbEscolha = new JComboBox();
+        
+        cbEscolha.addItem("Comprador");
+        cbEscolha.addItem("Vendedor");
+        
         painelTF.add(tfNome);
         painelTF.add(tfEmail);
         painelTF.add(tfSenha);
+        painelTF.add(cbEscolha);
         
         return painelTF;
     }
