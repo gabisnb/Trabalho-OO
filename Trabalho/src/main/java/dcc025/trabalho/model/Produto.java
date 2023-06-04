@@ -7,12 +7,20 @@ import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public class Produto{
-    private double preco;
-    private int quantidadeTotal;
-    private ListaQuantidadeCor quantidadeCor;
-    private TiposProdutos tipo;
+    protected double preco;
+    protected int quantidadeTotal;
+    protected ListaQuantidadeCor quantidadeCor;
+    protected TiposProdutos tipo;
 
-    public Produto(double preco, int quantidade, Cor cor, String tipo) {
+    public Produto(double preco, int quantidade, Map quantidadeCor, TiposProdutos tipo)
+    {
+        this.preco = preco;
+        quantidadeTotal = quantidade;
+        this.quantidadeCor.quantidade = quantidadeCor;
+        this.tipo = tipo;
+    }
+    
+    public Produto(double preco,int quantidade , Cor cor, String tipo) {
         
         quantidadeCor = new ListaQuantidadeCor();
         if(cor==null)
