@@ -1,11 +1,9 @@
 package dcc025.trabalho;
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.model.Movel;
-import dcc025.trabalho.model.Roupa;
+
 import dcc025.trabalho.model.Produto;
-import dcc025.trabalho.model.Eletrodomestico;
-import dcc025.trabalho.model.MaterialEscritorio;
+
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.model.TiposProdutos;
 import java.util.Scanner;
@@ -13,7 +11,7 @@ import java.util.Scanner;
 public class Trabalho {
 
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+        /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 
         String nome, email, senha;
         
@@ -31,9 +29,6 @@ public class Trabalho {
         System.out.println("2 - Comprador");
         tipoUsuario = teclado.nextInt();
         
-        Produto roupa = new Produto(50.00, 5, Cor.VERMELHO, "Blusa");
-        Produto movel = new Produto(250.00, 5, Cor.BRANCO, "Mesa");
-        Produto material = new Produto(5, 5, Cor.PRETO, "Caneta");
         Produto eletrodomestico = new Produto(3000, 5, Cor.AZUL_CLARO, "Computador");
         
         
@@ -62,7 +57,7 @@ public class Trabalho {
             default:
                 System.out.println("Opção de usuário inválido");
                 break;
-        }       
+        */}       
     }
-}
+
 

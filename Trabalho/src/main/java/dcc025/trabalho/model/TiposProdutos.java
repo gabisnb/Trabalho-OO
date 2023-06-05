@@ -8,20 +8,6 @@ package dcc025.trabalho.model;
  *
  * @author gabri
  */
-public class TiposProdutos <T> {
-
-    private T tipo;
-    
-    public TiposProdutos(T tipo){
-        this.tipo = tipo;
-    }
-    
-    public void setTipo(T tipo){
-        this.tipo = tipo;
-    }
-    
-    public T getTipo(){
-        return this.tipo;
-    }
-    
+public enum TiposProdutos{
+    N_A, ROUPAS, MOVEL, MATERIAL_ESCRITORIO, ELETRODOMESTICO
 }
