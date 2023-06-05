@@ -3,12 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dcc025.trabalho.controller;
-
+import dcc025.trabalho.Usuario.Comprador;
 /**
  *
  * @author gabri
  */
 public abstract class Pagamento {
-    
+
+    Comprador usuario;
+    public Pagamento(Comprador atual) {
+        this.usuario = atual;
+    }   
     public abstract void paga(double valor);
+    public abstract double calculaDesconto(double valor); 
 }
