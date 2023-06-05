@@ -31,7 +31,7 @@ public class AddProduto {
     }
     
     private Produto criaProduto(){
-        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo);
+        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo);
 
         return produto;
     }

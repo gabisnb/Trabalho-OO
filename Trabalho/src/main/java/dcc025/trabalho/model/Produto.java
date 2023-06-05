@@ -11,41 +11,31 @@ public class Produto{
     protected int quantidadeTotal;
     protected ListaQuantidadeCor quantidadeCor = new ListaQuantidadeCor();
     protected TiposProdutos tipo;
+    protected SubTipoProduto subtipo;
 
-    public Produto(double preco, int quantidade, Map<Cor, Integer> quantidadeCor, TiposProdutos tipo)
+    public Produto(double preco, int quantidade, Map<Cor, Integer> quantidadeCor, TiposProdutos tipo, SubTipoProduto subtipo)
     {
         this.preco = preco;
         quantidadeTotal = quantidade;
         this.quantidadeCor.quantidade = quantidadeCor;
         this.tipo = tipo;
+        this.subtipo = subtipo;
     }
     
-    public double getPreco() {
-        return preco;
-    }
+    public double getPreco() {return preco;}
     
     public void setPreco(double preco){
         if(preco>=0)
             this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidadeTotal;
-    }
+    public int getQuantidade() {return quantidadeTotal;}
     
     public void setQuantidade(int quantidade){
         if(quantidade>=0)
             this.quantidadeTotal = quantidade;
     }
-    
-
-    public void addCorProduto(int quantidade, Cor cor){
-        if(quantidade>=0)
-            this.quantidadeTotal += quantidade;
-        else
-            quantidade = 0;
-        
-        this.quantidadeCor.setQuantidade(quantidade, cor);
-    }
      
+    public String getTipo(){return this.tipo.toString();}
+    public String setSubTipo(){return this.subtipo.toString();}
 }
