@@ -1,14 +1,6 @@
 package dcc025.trabalho;
-import dcc025.trabalho.Usuario.Vendedor;
-import dcc025.trabalho.Usuario.Comprador;
 
-import dcc025.trabalho.model.Produto;
-
-import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
-import dcc025.trabalho.model.TiposProdutos;
-import java.util.Scanner;
-
-public class Trabalho {
+public class Main {
 
     public static void main(String[] args) {
         /* Scanner teclado = new Scanner(System.in);
