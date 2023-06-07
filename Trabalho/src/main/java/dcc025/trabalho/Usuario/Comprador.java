@@ -20,6 +20,10 @@ public class Comprador extends Pessoa{
         qtdContas++;
     }
 
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
     public double getSaldo() {
         return saldo;
     }
