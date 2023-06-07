@@ -12,14 +12,16 @@ public class Produto{
     protected ListaQuantidadeCor quantidadeCor = new ListaQuantidadeCor();
     protected TiposProdutos tipo;
     protected SubTipoProduto subtipo;
+    protected final String product_id;
 
-    public Produto(double preco, int quantidade, Map<Cor, Integer> quantidadeCor, TiposProdutos tipo, SubTipoProduto subtipo)
+    public Produto(double preco, int quantidade, Map<Cor, Integer> quantidadeCor, TiposProdutos tipo, SubTipoProduto subtipo, String id)
     {
         this.preco = preco;
-        quantidadeTotal = quantidade;
+        this.quantidadeTotal = quantidade;
         this.quantidadeCor.quantidade = quantidadeCor;
         this.tipo = tipo;
         this.subtipo = subtipo;
+        this.product_id = id;
     }
     
     public double getPreco() {return preco;}

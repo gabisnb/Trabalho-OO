@@ -1,6 +1,6 @@
 package dcc025.trabalho.view;
 
-
+import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,11 +9,22 @@ import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 
 public class AddProduto {
-    SubTipoProduto subtipo; 
-    TiposProdutos tipo;
-    Map<Cor, Integer> qCor = new HashMap<>();
-    double preco = 0;
-    int quantidadeTotal = 0;
+    
+    private SubTipoProduto subtipo; 
+    private TiposProdutos tipo;
+    private Map<Cor, Integer> qCor = new HashMap<>();
+    private double preco = 0;
+    private int quantidadeTotal = 0;
+    private List<Produto> loja;
+    private static int productId = 1;
+    private int userId;
+    
+    public AddProduto(List<Produto> loja, int userId){
+        this.loja = loja;
+        this.userId = userId;
+        this.productId++;
+    }
+
 
     private void setPreco(double preco){this.preco = preco;}
     
@@ -30,10 +41,10 @@ public class AddProduto {
         }
     }
     
-    private Produto criaProduto(){
-        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo);
-
-        return produto;
+    private void adicionaProduto(){
+        
+        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, Integer.toString(this.userId) + "x" + Integer.toString(this.productId));
+        loja.add(produto);
     }
     
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}
