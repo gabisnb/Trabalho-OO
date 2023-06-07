@@ -40,14 +40,4 @@ public class CarrinhoCompras {
         return totalPagar;
     }
 
-    public void itensNoCarrinho()
-    {
-        System.out.println("\nItens no Carrinho:");
-        for(Map.Entry<Produto,Integer> aux : carrinho.entrySet())
-        {
-            Produto produto = aux.getKey();
-            produto.exibirResumoProduto();
-            System.out.println("Quantidade em Carrinho: " + aux.getValue());
-        }
-    }
 }
