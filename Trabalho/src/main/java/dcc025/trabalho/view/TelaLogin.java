@@ -7,6 +7,7 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 
 public class TelaLogin {
     
@@ -24,6 +25,8 @@ public class TelaLogin {
     private JTextField tfSenha;
 
     private JComboBox<String> cbEscolha;
+
+    private JList<Vendedor> jlVendedores;
     
     public void desenha(){
         tela = new JFrame();
@@ -91,5 +94,16 @@ public class TelaLogin {
         painelTF.add(cbEscolha);
         
         return painelTF;
+    }
+
+    public ArrayList<Vendedor> listaVendedores(){
+        DefaultListModel<Vendedor> model = (DefaultListModel<Vendedor>)jlVendedores.getModel();
+        ArrayList<Vendedor> vendedores = new ArrayList<>();
+
+        for (int i = 0; i < model.size(); i++) {
+            vendedores.add(model.get(i));
+        }
+
+        return vendedores;
     }
 }
