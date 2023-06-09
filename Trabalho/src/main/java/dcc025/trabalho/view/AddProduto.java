@@ -15,13 +15,9 @@ public class AddProduto {
     private Map<Cor, Integer> qCor = new HashMap<>();
     private double preco = 0;
     private int quantidadeTotal = 0;
-    private List<Produto> loja;
     private static int productId = 1;
-    private int userId;
     
-    public AddProduto(List<Produto> loja, int userId){
-        this.loja = loja;
-        this.userId = userId;
+    public AddProduto(Vendedor vendedor){
         this.productId++;
     }
 
@@ -41,10 +37,10 @@ public class AddProduto {
         }
     }
     
-    private void adicionaProduto(){
+    private void adicionaProduto(Vendedor vendedor){
         
-        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, Integer.toString(this.userId) + "x" + Integer.toString(this.productId));
-        loja.add(produto);
+        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, vendedor.getId() + "x" + Integer.toString(this.productId));
+        vendedor.adicionarProduto(produto);
     }
     
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}
