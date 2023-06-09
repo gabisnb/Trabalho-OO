@@ -16,11 +16,13 @@ public class AddProduto {
     private double preco = 0;
     private int quantidadeTotal = 0;
     private static int productId = 1;
+
+    private Vendedor vendedor;
     
     public AddProduto(Vendedor vendedor){
+        this.vendedor = vendedor;
         this.productId++;
     }
-
 
     private void setPreco(double preco){this.preco = preco;}
     
@@ -37,10 +39,10 @@ public class AddProduto {
         }
     }
     
-    private void adicionaProduto(Vendedor vendedor){
+    private void adicionaProduto(){
         
-        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, vendedor.getId() + "x" + Integer.toString(this.productId));
-        vendedor.adicionarProduto(produto);
+        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
+        this.vendedor.adicionarProduto(produto);
     }
     
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}
