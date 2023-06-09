@@ -19,8 +19,9 @@ public class Vendedor extends Pessoa {
         loja = new ArrayList();
     }
     
-    private void adicionarProduto(Produto produto){
+    public void adicionarProduto(Produto produto){
         loja.add(produto);
     }
+    public String getId(){ return user_id.toString(); }
 
 }
