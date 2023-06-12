@@ -24,16 +24,6 @@ public class Comprador extends Pessoa{
         return saldo;
     }
     
-    public void olharProdutos(Vendedor vendedor){
-        vendedor.exibirEstoque();
-    }
-    
-    public void exibirCarrinho()
-    {
-        this.carrinho.itensNoCarrinho();
-        System.out.println("\nTotal a pagar: " + carrinho.getTotalPagar());
-    }
-    
     public void removeProdutoCarrinho(Produto produto, int quantidadeRemover)
     {
         this.carrinho.removeProduto(produto, quantidadeRemover);
