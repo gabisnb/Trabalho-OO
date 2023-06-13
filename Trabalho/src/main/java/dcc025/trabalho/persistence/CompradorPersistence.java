@@ -30,10 +30,10 @@ public class CompradorPersistence implements Persistence<Comprador> {
 
         String json = Arquivo.le(PATH);
 
-        List<Vendedor> compradores = new ArrayList<>();
+        List<Comprador> compradores = new ArrayList<>();
         if(!json.trim().equals("")) {
 
-            Type tipoLista = new TypeToken<List<Vendedor>>() {
+            Type tipoLista = new TypeToken<List<Comprador>>() {
             }.getType();
             compradores = gson.fromJson(json, tipoLista);
 
