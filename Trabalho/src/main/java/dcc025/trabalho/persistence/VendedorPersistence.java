@@ -1,5 +1,6 @@
 package dcc025.trabalho.persistence;
 
+import com.google.gson.reflect.TypeToken;
 import dcc025.trabalho.Usuario.Vendedor;
 
 import java.io.File;
@@ -7,6 +8,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
+
 public class VendedorPersistence implements Persistence<Vendedor> {
     private static final String PATH = DIRECTORY + File.separator + "vendedores.json";
 

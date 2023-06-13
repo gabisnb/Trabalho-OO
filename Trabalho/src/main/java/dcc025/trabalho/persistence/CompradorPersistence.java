@@ -1,7 +1,7 @@
 package dcc025.trabalho.persistence;
 
 import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.Usuario.Vendedor;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.lang.reflect.Type;
