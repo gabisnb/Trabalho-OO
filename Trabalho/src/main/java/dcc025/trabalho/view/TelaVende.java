@@ -12,6 +12,7 @@ import dcc025.trabalho.controller.SairVende;
 import dcc025.trabalho.view.TelaLogin;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class TelaVende {
@@ -65,7 +66,7 @@ public class TelaVende {
         JPanel bpainel = new JPanel();
 //        JButton jbEntrar = new JButton("Entrar");
 //        bpainel.add(jbEntrar);
-        jbSair = new JButton("Sair");
+        jbSair = new JButton("Voltar");
         jbSair.addActionListener(new SairVende(this));
         bpainel.add(jbSair);
         
@@ -117,6 +118,48 @@ public class TelaVende {
 
         return painel;
     }
+    
+    public void carregaProdutos(java.util.List<Produto> produtos){
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        
+        for (Produto c: produtos) {
+            model.addElement(c);
+        }
+    }
+    
+    public java.util.List<Produto> listaProdutos(){
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        java.util.List<Produto> produtos = new ArrayList<>();
+
+        for (int i = 0; i < model.size(); i++) {
+            produtos.add(model.get(i));
+        }
+
+        return produtos;
+    }
+
+    public void addProduto(){
+
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        //abrir tela de adição de produto
+        
+//        String input;
+//        
+//        Produto produto;
+//        model.addElement();
+
+    }
+//
+//    public void removerContato(){
+//
+//        int selectedIndex = jlContatos.getSelectedIndex();
+//
+//        if(selectedIndex != -1){
+//
+//            DefaultListModel<Contato> model = (DefaultListModel<Contato>)jlContatos.getModel();
+//            model.remove(selectedIndex);
+//        }
+//    }
     
     public void sair(){
         this.tela.dispose();

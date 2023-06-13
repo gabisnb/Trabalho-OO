@@ -1,27 +1,31 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dcc025.trabalho.controller;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import dcc025.trabalho.view.TelaCompra;
-import dcc025.trabalho.view.TelaLogin;
+import dcc025.trabalho.view.TelaVende;
+import java.util.List;
 
-public class GerenciarComprador implements WindowListener{
-    
-    private final TelaCompra tela;
-    
-    public GerenciarComprador(TelaCompra tela){
-        this.tela = tela;
-    }
-    
+/**
+ *
+ * @author gabri
+ */
+public class GerenciarProdutos implements WindowListener{
+
     @Override
     public void windowOpened(WindowEvent e) {
-        //adicionar atualização de vendedores
+//        Persistence<Produto> produtoPersistence = new ProdutoPersistence();
+//        List<Produto> all = produtoPersistence.findAll();
+//        tela.carregaProdutos(all);
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        //adicionar o salvamento de dados no banco
+        
     }
 
     @Override
@@ -48,4 +52,5 @@ public class GerenciarComprador implements WindowListener{
     public void windowDeactivated(WindowEvent e) {
         
     }
+    
 }

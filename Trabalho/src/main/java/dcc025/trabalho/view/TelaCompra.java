@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import dcc025.trabalho.controller.SairCompra;
 import dcc025.trabalho.controller.AdicionarSaldo;
-import dcc025.trabalho.controller.GerenciarComprador;
+import dcc025.trabalho.controller.GerenciarVendedores;
 
 import dcc025.trabalho.view.TelaLogin;
 
@@ -44,7 +44,7 @@ public class TelaCompra {
     
     public void desenha(){
         tela = new JFrame();
-        tela.addWindowListener(new GerenciarComprador(this));
+        tela.addWindowListener(new GerenciarVendedores(this));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setVisible(true);
