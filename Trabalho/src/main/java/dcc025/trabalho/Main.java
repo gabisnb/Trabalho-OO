@@ -5,9 +5,11 @@ import dcc025.trabalho.Usuario.*;
 public class Main {
 
     public static void main(String[] args) {
+        
         TelaLogin login = new TelaLogin();
-        TelaCompra compra = new TelaCompra(new Comprador("teste", "teste", "teste"));
-        compra.desenha();
+        login.desenha();
+//        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));
+//        compra.desenha();
         
         /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 

@@ -13,9 +13,13 @@ import dcc025.trabalho.controller.SairCompra;
 import dcc025.trabalho.controller.AdicionarSaldo;
 import dcc025.trabalho.controller.GerenciarComprador;
 
+import dcc025.trabalho.view.TelaLogin;
+
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
 
 public class TelaCompra {
+    
+    private TelaLogin menu;
     
     private Comprador usuario;
     
@@ -33,8 +37,9 @@ public class TelaCompra {
     
     private JList<Vendedor> jlistVendedores;
 
-    public TelaCompra(Comprador comp) {
+    public TelaCompra(TelaLogin login, Comprador comp) {
         usuario = comp;
+        this.menu = login;
     }
     
     public void desenha(){
@@ -63,7 +68,7 @@ public class TelaCompra {
         painel.add(painelAux, BorderLayout.CENTER);
         
 //        JButton jbEntrar = new JButton("Entrar");
-        jbSair = new JButton("Sair");
+        jbSair = new JButton("Voltar");
         jbSair.addActionListener(new SairCompra(this));
         
         JPanel bpainel = new JPanel();
@@ -146,6 +151,7 @@ public class TelaCompra {
     public void sair(){
         //implementar troca de telas
         this.tela.dispose();
+        this.menu.abrir();
     }
     
 }

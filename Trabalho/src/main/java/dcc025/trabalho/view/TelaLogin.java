@@ -116,11 +116,13 @@ public class TelaLogin {
         String senha = tfSenha.getText();
         int opcao = cbEscolha.getSelectedIndex();
         if(opcao==0){
-            //implementar troca de telas
-            JOptionPane.showMessageDialog(null, "Entrando na tela de comprador..."
-            + "\nNome: " + nome
-            + "\nEmail: " + email
-            + "\nSenha: " + senha);
+//            JOptionPane.showMessageDialog(null, "Entrando na tela de comprador..."
+//            + "\nNome: " + nome
+//            + "\nEmail: " + email
+//            + "\nSenha: " + senha);
+            TelaCompra comprador = new TelaCompra(this, new Comprador(nome, email, senha));
+            comprador.desenha();
+            tela.setVisible(false);
         }
         else{
             //implementar troca de telas
@@ -129,5 +131,10 @@ public class TelaLogin {
             + "\nEmail: " + email
             + "\nSenha: " + senha);
         }
+//        tela.setVisible(false);
+    }
+    
+    public void abrir(){
+        tela.setVisible(true);
     }
 }

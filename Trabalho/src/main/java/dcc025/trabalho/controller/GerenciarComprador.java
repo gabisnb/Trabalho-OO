@@ -4,6 +4,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import dcc025.trabalho.view.TelaCompra;
+import dcc025.trabalho.view.TelaLogin;
 
 public class GerenciarComprador implements WindowListener{
     
@@ -25,7 +26,7 @@ public class GerenciarComprador implements WindowListener{
 
     @Override
     public void windowClosed(WindowEvent e) {
-
+        
     }
 
     @Override
