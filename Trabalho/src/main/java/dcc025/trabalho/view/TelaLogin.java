@@ -130,6 +130,9 @@ public class TelaLogin {
             + "\nNome: " + nome
             + "\nEmail: " + email
             + "\nSenha: " + senha);
+            TelaVende vendedor = new TelaVende(this, new Vendedor(nome, email, senha));
+            vendedor.desenha();
+            tela.setVisible(false);
         }
 //        tela.setVisible(false);
     }

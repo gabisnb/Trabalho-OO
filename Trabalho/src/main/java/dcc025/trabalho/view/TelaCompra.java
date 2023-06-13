@@ -39,7 +39,7 @@ public class TelaCompra {
 
     public TelaCompra(TelaLogin login, Comprador comp) {
         usuario = comp;
-        this.menu = login;
+        menu = login;
     }
     
     public void desenha(){

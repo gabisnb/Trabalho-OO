@@ -10,6 +10,8 @@ public class Main {
         login.desenha();
 //        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));
 //        compra.desenha();
+//        TelaVende vende = new TelaVende(null, new Vendedor("teste", "teste", "teste"));
+//        vende.desenha();
         
         /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 

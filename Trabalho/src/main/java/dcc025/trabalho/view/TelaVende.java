@@ -6,12 +6,19 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.*;
+
+import dcc025.trabalho.controller.SairVende;
+
+import dcc025.trabalho.view.TelaLogin;
+
 import java.awt.*;
 import javax.swing.*;
 
 public class TelaVende {
     
     private Vendedor usuario;
+    
+    private TelaLogin menu;
     
     private JFrame tela;
     private final int ALTURA = 300;
@@ -26,8 +33,9 @@ public class TelaVende {
     
     private JList<Produto> jlistProdutos;
 
-    public TelaVende(Vendedor vend) {
+    public TelaVende(TelaLogin login, Vendedor vend) {
         usuario = vend;
+        menu = login;
     }
     
     public void desenha(){
@@ -58,6 +66,7 @@ public class TelaVende {
 //        JButton jbEntrar = new JButton("Entrar");
 //        bpainel.add(jbEntrar);
         jbSair = new JButton("Sair");
+        jbSair.addActionListener(new SairVende(this));
         bpainel.add(jbSair);
         
         painel.add(bpainel, BorderLayout.SOUTH);
@@ -107,6 +116,11 @@ public class TelaVende {
         painel.add(new JScrollPane(jlistProdutos), BorderLayout.CENTER);
 
         return painel;
+    }
+    
+    public void sair(){
+        this.tela.dispose();
+        this.menu.abrir();
     }
     
 }
