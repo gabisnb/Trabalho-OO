@@ -8,6 +8,7 @@ import dcc025.trabalho.Usuario.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
+import dcc025.trabalho.controller.LoginEntrar;
 
 public class TelaLogin {
     
@@ -52,6 +53,7 @@ public class TelaLogin {
         painel.add(painelAux, BorderLayout.CENTER);
         
         JButton jbEntrar = new JButton("Entrar");
+        jbEntrar.addActionListener(new LoginEntrar(this));
         JPanel bpainel = new JPanel();
         bpainel.add(jbEntrar);
         
@@ -105,5 +107,27 @@ public class TelaLogin {
         }
 
         return vendedores;
+    }
+    
+    
+    public void entrar(){
+        String nome = tfNome.getText();
+        String email = tfEmail.getText();
+        String senha = tfSenha.getText();
+        int opcao = cbEscolha.getSelectedIndex();
+        if(opcao==0){
+            //implementar troca de telas
+            JOptionPane.showMessageDialog(null, "Entrando na tela de comprador..."
+            + "\nNome: " + nome
+            + "\nEmail: " + email
+            + "\nSenha: " + senha);
+        }
+        else{
+            //implementar troca de telas
+            JOptionPane.showMessageDialog(null, "Entrando na tela de vendedor..."
+            + "\nNome: " + nome
+            + "\nEmail: " + email
+            + "\nSenha: " + senha);
+        }
     }
 }
