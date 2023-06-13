@@ -7,10 +7,6 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.*;
 
-import dcc025.trabalho.controller.SairVende;
-
-import dcc025.trabalho.view.TelaLogin;
-
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -66,8 +62,13 @@ public class TelaVende {
         JPanel bpainel = new JPanel();
 //        JButton jbEntrar = new JButton("Entrar");
 //        bpainel.add(jbEntrar);
-        jbSair = new JButton("Voltar");
-        jbSair.addActionListener(new SairVende(this));
+        jbSair = new JButton("Menu");
+        jbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
+                menu.abrir();
+            }
+        });
         bpainel.add(jbSair);
         
         painel.add(bpainel, BorderLayout.SOUTH);
@@ -161,9 +162,9 @@ public class TelaVende {
 //        }
 //    }
     
-    public void sair(){
-        this.tela.dispose();
-        this.menu.abrir();
+    public void fechar(){
+        //salvar informações no banco
+        tela.dispose();
     }
     
 }

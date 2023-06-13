@@ -30,6 +30,10 @@ public class Comprador extends Pessoa{
         return saldo;
     }
     
+    public CarrinhoCompras getCarrinho(){
+        return this.carrinho;
+    }
+    
     public void removeProdutoCarrinho(Produto produto, int quantidadeRemover)
     {
         this.carrinho.removeProduto(produto, quantidadeRemover);

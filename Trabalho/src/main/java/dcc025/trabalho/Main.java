@@ -12,6 +12,8 @@ public class Main {
 //        compra.desenha();
 //        TelaVende vende = new TelaVende(null, new Vendedor("teste", "teste", "teste"));
 //        vende.desenha();
+//        TelaCarrinho tela = new TelaCarrinho(new Comprador("teste", "teste", "teste"));
+//        tela.desenha();
         
         /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 

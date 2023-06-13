@@ -9,11 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import dcc025.trabalho.controller.SairCompra;
-import dcc025.trabalho.controller.AdicionarSaldo;
 import dcc025.trabalho.controller.GerenciarVendedores;
 
-import dcc025.trabalho.view.TelaLogin;
 
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
 
@@ -68,8 +65,13 @@ public class TelaCompra {
         painel.add(painelAux, BorderLayout.CENTER);
         
 //        JButton jbEntrar = new JButton("Entrar");
-        jbSair = new JButton("Voltar");
-        jbSair.addActionListener(new SairCompra(this));
+        jbSair = new JButton("Menu");
+        jbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
+                menu.abrir();
+            }
+        });
         
         JPanel bpainel = new JPanel();
 //        bpainel.add(jbEntrar);
@@ -100,9 +102,20 @@ public class TelaCompra {
         painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
         
         jbCarrinho =  new JButton("Carrinho de Compras");
+        jbCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                abrirCarrinho();
+            }
+        });
+        
 //        jbSair = new JButton("Sair");
         jbSaldo =  new JButton("Aumentar Saldo");
-        jbSaldo.addActionListener(new AdicionarSaldo(this));
+        jbSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                adicionarSaldo();
+                carrega();
+            }
+        });
         
         painelBotoes.add(jbSaldo);
         painelBotoes.add(jbCarrinho);
@@ -148,10 +161,19 @@ public class TelaCompra {
         }
     }
     
-    public void sair(){
-        //implementar troca de telas
-        this.tela.dispose();
-        this.menu.abrir();
+    public void abrir(){
+        tela.setVisible(true);
+    }
+    
+    public void fechar(){
+        //salvar informações no banco
+        tela.dispose();
+    }
+    
+    public void abrirCarrinho(){
+        TelaCarrinho carrinho = new TelaCarrinho(usuario, this, menu);
+        carrinho.desenha();
+        tela.setVisible(false);
     }
     
 }

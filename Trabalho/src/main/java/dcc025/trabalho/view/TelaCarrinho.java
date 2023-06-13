@@ -14,6 +14,9 @@ public class TelaCarrinho {
     private Comprador usuario;
     private CarrinhoCompras carrinho;
     
+    private TelaCompra telaComp;
+    private TelaLogin menu;
+    
     private JFrame tela;
     private final int ALTURA = 300;
     private final int LARGURA = 400;
@@ -29,9 +32,11 @@ public class TelaCarrinho {
     
     private JList<Produto> jlistProdutos;
 
-    public TelaCarrinho(Comprador comp, CarrinhoCompras car) {
+    public TelaCarrinho(Comprador comp, TelaCompra tela, TelaLogin login) {
         usuario = comp;
-        carrinho = car;
+        carrinho = usuario.getCarrinho();
+        telaComp = tela;
+        menu = login;
     }
     
     public void desenha(){
@@ -58,7 +63,14 @@ public class TelaCarrinho {
         painelAux.add(desenhaBotoes());
         painel.add(painelAux, BorderLayout.CENTER);
 
-        jbSair = new JButton("Sair");
+        jbSair = new JButton("Menu");
+        jbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                tela.dispose();
+                telaComp.fechar();
+                menu.abrir();
+            }
+        });
         JPanel bpainel = new JPanel();
         bpainel.add(jbSair);
         painel.add(bpainel, BorderLayout.PAGE_END);
@@ -87,7 +99,14 @@ public class TelaCarrinho {
         painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
         
         jbComprar =  new JButton("Comprar");
+        jbComprar.addActionListener(null);
         jbVoltar = new JButton("Voltar");
+        jbVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                tela.dispose();
+                telaComp.abrir();
+            }
+        });
 //        jbSair = new JButton("Sair");
         
         painelBotoes.add(jbVoltar);

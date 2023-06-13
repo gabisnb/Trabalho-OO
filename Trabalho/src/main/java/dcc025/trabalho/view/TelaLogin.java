@@ -8,7 +8,6 @@ import dcc025.trabalho.Usuario.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import dcc025.trabalho.controller.LoginEntrar;
 
 public class TelaLogin {
     
@@ -53,7 +52,11 @@ public class TelaLogin {
         painel.add(painelAux, BorderLayout.CENTER);
         
         JButton jbEntrar = new JButton("Entrar");
-        jbEntrar.addActionListener(new LoginEntrar(this));
+        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                entrar();
+            }
+        });
         JPanel bpainel = new JPanel();
         bpainel.add(jbEntrar);
         
