@@ -9,6 +9,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import dcc025.trabalho.controller.SairCompra;
+import dcc025.trabalho.controller.AdicionarSaldo;
+import dcc025.trabalho.controller.GerenciarComprador;
+
+import dcc025.trabalho.exceptions.SaldoInvalidoException;
+
 public class TelaCompra {
     
     private Comprador usuario;
@@ -33,6 +39,7 @@ public class TelaCompra {
     
     public void desenha(){
         tela = new JFrame();
+        tela.addWindowListener(new GerenciarComprador(this));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setVisible(true);
@@ -57,6 +64,8 @@ public class TelaCompra {
         
 //        JButton jbEntrar = new JButton("Entrar");
         jbSair = new JButton("Sair");
+        jbSair.addActionListener(new SairCompra(this));
+        
         JPanel bpainel = new JPanel();
 //        bpainel.add(jbEntrar);
         bpainel.add(jbSair, BorderLayout.PAGE_END);
@@ -88,6 +97,7 @@ public class TelaCompra {
         jbCarrinho =  new JButton("Carrinho de Compras");
 //        jbSair = new JButton("Sair");
         jbSaldo =  new JButton("Aumentar Saldo");
+        jbSaldo.addActionListener(new AdicionarSaldo(this));
         
         painelBotoes.add(jbSaldo);
         painelBotoes.add(jbCarrinho);
@@ -111,6 +121,31 @@ public class TelaCompra {
         painel.add(new JScrollPane(jlistVendedores), BorderLayout.CENTER);
 
         return painel;
+    }
+    
+    public void carrega(){
+//        jlNome.setText("Nome: " + usuario.getNome());
+//        jlEmail.setText("Email: " + usuario.getEmail());
+        jlSaldo.setText("Saldo: " + usuario.getSaldo());
+//        jlNome = new JLabel("Nome: " + usuario.getNome());
+//        jlEmail = new JLabel("Email: " + usuario.getEmail());
+//        jlSaldo = new JLabel("Saldo: " + usuario.getSaldo());
+    }
+    
+    public void adicionarSaldo(){
+        String input = JOptionPane.showInputDialog("Valor a ser adicionado:");
+        double saldo = Double.parseDouble(input);
+        try{
+            this.usuario.adicionarSaldo(saldo);
+        }
+        catch(SaldoInvalidoException e){
+            JOptionPane.showMessageDialog(null, "Valor inválido");
+        }
+    }
+    
+    public void sair(){
+        //implementar troca de telas
+        this.tela.dispose();
     }
     
 }

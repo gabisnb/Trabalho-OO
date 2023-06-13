@@ -1,11 +1,13 @@
 package dcc025.trabalho;
-import dcc025.trabalho.view.TelaLogin;
+import dcc025.trabalho.view.*;
+import dcc025.trabalho.Usuario.*;
 
 public class Main {
 
     public static void main(String[] args) {
         TelaLogin login = new TelaLogin();
-        login.desenha();
+        TelaCompra compra = new TelaCompra(new Comprador("teste", "teste", "teste"));
+        compra.desenha();
         
         /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 

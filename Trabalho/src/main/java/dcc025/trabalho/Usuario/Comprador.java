@@ -8,6 +8,8 @@ import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.model.TiposProdutos;
 
+import dcc025.trabalho.exceptions.SaldoInvalidoException;
+
 public class Comprador extends Pessoa{
     private double saldo;
     private CarrinhoCompras carrinho;
@@ -38,7 +40,9 @@ public class Comprador extends Pessoa{
         this.carrinho.insereProduto(produto, quantidadeAdicionar);
     }
     
-    public void adicionarSaldo(double saldo){
+    public void adicionarSaldo(double saldo) throws SaldoInvalidoException{
+        if(saldo<0)
+            throw new SaldoInvalidoException();
         this.saldo += saldo;
     }
     
