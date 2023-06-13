@@ -152,9 +152,12 @@ public class TelaCompra {
     
     public void adicionarSaldo(){
         String input = JOptionPane.showInputDialog("Valor a ser adicionado:");
-        double saldo = Double.parseDouble(input);
         try{
+            double saldo = Double.parseDouble(input);
             this.usuario.adicionarSaldo(saldo);
+        }
+        catch(NullPointerException e){
+            //nada
         }
         catch(SaldoInvalidoException e){
             JOptionPane.showMessageDialog(null, "Valor inválido");
