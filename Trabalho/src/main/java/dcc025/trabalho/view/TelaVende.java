@@ -4,17 +4,17 @@
  */
 package dcc025.trabalho.view;
 
-import dcc025.trabalho.Usuario.Comprador;
+import dcc025.trabalho.Usuario.Vendedor;
 
 import java.awt.*;
 import javax.swing.*;
 
-public class TelaComprador extends Tela{
+public class TelaVende extends Tela{
     
-    private final Comprador usuario;    
+    private final Vendedor usuario;
     
-    public TelaComprador(Comprador comp) {
-        usuario = comp;
+    public TelaVende(Vendedor vend) {
+        usuario = vend;
     }
     
     public void desenha(){
@@ -30,26 +30,25 @@ public class TelaComprador extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Comprador");
+        JPanel painel = ConfiguraPainelMain("Vendedor");
         
         String[] labels = {"Nome: "+usuario.getNome(),
-                           "Email: "+usuario.getEmail(),
-                           "Saldo: "+usuario.getSaldo()};
+                           "Email: "+usuario.getEmail()};
         
-        String[] botoes = {"Aumentar Saldo",
-                            "Carrinho de Compras"};
+        String[] botoes = {"Adicionar Produto",
+                           "Remover Produto"};
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
-        painelAux.add(desenhaLista("Vendedores Disponíveis"));
+        painelAux.add(desenhaLista("Produtos"));
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-        bpainel.add(new JButton("Sair"), BorderLayout.PAGE_END);
+        bpainel.add(new JButton("Sair"));
         
         painel.add(bpainel, BorderLayout.SOUTH);
-
+        
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
