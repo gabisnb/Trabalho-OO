@@ -9,24 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
-public class TelaLogin {
-    
-    private JFrame tela;
-    private final int ALTURA = 300;
-    private final int LARGURA = 400;
-    
-    private JLabel jlEscolha;
-    private JLabel jlNome;
-    private JLabel jlEmail;
-    private JLabel jlSenha;
-    
-    private JTextField tfNome;
-    private JTextField tfEmail;
-    private JTextField tfSenha;
-
-    private JComboBox<String> cbEscolha;
-
-    private JList<Vendedor> jlVendedores;
+public class TelaLogin extends Tela{
     
     public void desenha(){
         tela = new JFrame();
@@ -41,15 +24,26 @@ public class TelaLogin {
     }
     
     private void desenhaMenu(){
-        JPanel painel = new JPanel();
-        painel.setPreferredSize(new Dimension(LARGURA, ALTURA));
-        painel.setBorder(BorderFactory.createTitledBorder("Login"));
-        painel.setLayout(new BorderLayout());
+        JPanel painel = ConfiguraPainelMain("Login");
+        
+        String[] labels = {"Nome: ",
+                            "Email: ",
+                            "Senha: ",
+                            "Tipo de Usuário: "};
+        
+        JComboBox<String> cbEscolha = new JComboBox();
+        cbEscolha.addItem("Comprador");
+        cbEscolha.addItem("Vendedor");
+        JPanel panel = desenhaTF(3, 20);
+        panel.add(cbEscolha);
         
         JPanel painelAux = new JPanel();
-        painelAux.add(desenhaLabel());
-        painelAux.add(desenhaTF());
+        painelAux.add(desenhaLabel(labels));
+        painelAux.add(panel);
         painel.add(painelAux, BorderLayout.CENTER);
+        
+        JPanel bpainel = new JPanel();
+        bpainel.add(new JButton("Entrar"));
         
         JButton jbEntrar = new JButton("Entrar");
         jbEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,48 +51,10 @@ public class TelaLogin {
                 entrar();
             }
         });
-        JPanel bpainel = new JPanel();
-        bpainel.add(jbEntrar);
         
         painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
-    }
-    
-    private JPanel desenhaLabel(){
-        JPanel painelLabel = new JPanel();
-        painelLabel.setLayout(new GridLayout(0, 1, 5, 10));
-        
-        jlNome = new JLabel("Nome:");
-        jlEmail = new JLabel("Email:");
-        jlSenha = new JLabel("Senha:");
-        jlEscolha = new JLabel("Tipo de Usuário:");
-        
-        painelLabel.add(jlNome);
-        painelLabel.add(jlEmail);
-        painelLabel.add(jlSenha);
-        painelLabel.add(jlEscolha);
-        
-        return painelLabel;
-    }
-    
-    private JPanel desenhaTF(){
-        JPanel painelTF = new JPanel();
-        painelTF.setLayout(new GridLayout(0,1, 5, 4));
-        tfNome = new JTextField(20);
-        tfEmail = new JTextField(20);
-        tfSenha = new JTextField(20);
-        cbEscolha = new JComboBox();
-        
-        cbEscolha.addItem("Comprador");
-        cbEscolha.addItem("Vendedor");
-        
-        painelTF.add(tfNome);
-        painelTF.add(tfEmail);
-        painelTF.add(tfSenha);
-        painelTF.add(cbEscolha);
-        
-        return painelTF;
     }
 
     public ArrayList<Vendedor> listaVendedores(){
