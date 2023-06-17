@@ -3,14 +3,14 @@ package dcc025.trabalho.controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import dcc025.trabalho.view.TelaComprador;
+import dcc025.trabalho.view.TelaCompra;
 import dcc025.trabalho.view.TelaLogin;
 
 public class GerenciarVendedores implements WindowListener{
     
-    private final TelaComprador tela;
+    private final TelaCompra tela;
     
-    public GerenciarVendedores(TelaComprador tela){
+    public GerenciarVendedores(TelaCompra tela){
         this.tela = tela;
     }
     

@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <exec.mainClass>dcc025.trabalho.Trabalho</exec.mainClass>
+        <exec.mainClass>dcc025.trabalho.Main</exec.mainClass>
     </properties>
     <build>
         <plugins>
@@ -18,7 +18,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>dcc025.trabalho.Trabalho</mainClass>
+                            <mainClass>dcc025.trabalho.Main</mainClass>
                         </manifest>
                     </archive>
                         <descriptorRefs>
