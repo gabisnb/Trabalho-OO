@@ -6,16 +6,19 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
-import java.util.*;
 
 public class TelaLogin extends Tela{
+    
+    private ArrayList<JTextField> tf;
+    private JComboBox cbEscolha;
     
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
-        tela.setVisible(true);
+        abrir();
         tela.setLayout(new BorderLayout());
         
         desenhaMenu();
@@ -31,10 +34,10 @@ public class TelaLogin extends Tela{
                             "Senha: ",
                             "Tipo de Usuário: "};
         
-        JComboBox<String> cbEscolha = new JComboBox();
+        cbEscolha = new JComboBox();
         cbEscolha.addItem("Comprador");
         cbEscolha.addItem("Vendedor");
-        JPanel panel = desenhaTF(3, 20);
+        JPanel panel = desenhaTF(3, 20, tf);
         panel.add(cbEscolha);
         
         JPanel painelAux = new JPanel();
@@ -43,9 +46,9 @@ public class TelaLogin extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-        bpainel.add(new JButton("Entrar"));
-        
         JButton jbEntrar = new JButton("Entrar");
+        bpainel.add(jbEntrar);
+        
         jbEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 entrar();
@@ -56,32 +59,20 @@ public class TelaLogin extends Tela{
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
-
-    public ArrayList<Vendedor> listaVendedores(){
-        DefaultListModel<Vendedor> model = (DefaultListModel<Vendedor>)jlVendedores.getModel();
-        ArrayList<Vendedor> vendedores = new ArrayList<>();
-
-        for (int i = 0; i < model.size(); i++) {
-            vendedores.add(model.get(i));
-        }
-
-        return vendedores;
-    }
-    
     
     public void entrar(){
-        String nome = tfNome.getText();
-        String email = tfEmail.getText();
-        String senha = tfSenha.getText();
+        String nome = tf.get(0).getText();
+        String email = tf.get(1).getText();
+        String senha = tf.get(2).getText();
         int opcao = cbEscolha.getSelectedIndex();
         if(opcao==0){
             //implementar verificação de dados
-            TelaCompra comprador = new TelaCompra(this, new Comprador(nome, email, senha));
+            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
             comprador.desenha();
         }
         else{
             //implementar verificação de dados
-            TelaVende vendedor = new TelaVende(this, new Vendedor(nome, email, senha));
+            TelaVendedor vendedor = new TelaVendedor(this, new Vendedor(nome, email, senha));
             vendedor.desenha();
         }
         tela.setVisible(false);

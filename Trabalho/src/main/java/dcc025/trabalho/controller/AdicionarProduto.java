@@ -3,13 +3,13 @@ package dcc025.trabalho.controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import dcc025.trabalho.view.TelaVende;
+import dcc025.trabalho.view.TelaVendedor;
 
 public class AdicionarProduto implements ActionListener{
     
-    private final TelaVende tela;
+    private final TelaVendedor tela;
     
-    public AdicionarProduto(TelaVende tela){
+    public AdicionarProduto(TelaVendedor tela){
         this.tela = tela;
     }
 

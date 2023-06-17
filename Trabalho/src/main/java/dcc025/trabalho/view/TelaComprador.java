@@ -90,15 +90,6 @@ public class TelaComprador extends Tela{
 //        return painelBotoes;
 //    }
     
-    public void carrega(){
-//        jlNome.setText("Nome: " + usuario.getNome());
-//        jlEmail.setText("Email: " + usuario.getEmail());
-        jlSaldo.setText("Saldo: " + usuario.getSaldo());
-//        jlNome = new JLabel("Nome: " + usuario.getNome());
-//        jlEmail = new JLabel("Email: " + usuario.getEmail());
-//        jlSaldo = new JLabel("Saldo: " + usuario.getSaldo());
-    }
-    
     public void adicionarSaldo(){
         String input = JOptionPane.showInputDialog("Valor a ser adicionado:");
         try{

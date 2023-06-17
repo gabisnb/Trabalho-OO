@@ -48,16 +48,13 @@ public class TelaCarrinho extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = new JPanel();
-        painel.setPreferredSize(new Dimension(LARGURA, ALTURA));
-        painel.setBorder(BorderFactory.createTitledBorder("Carrinho de Compras"));
-        painel.setLayout(new BorderLayout());
+        JPanel painel = ConfiguraPainelMain("Carrinho de Compras");
         
         String[] labels = {"Nome: "+usuario.getNome(),
                            "Email: "+usuario.getEmail(),
                            "Saldo: "+usuario.getSaldo(),
                            "Valor Total: "+carrinho.getTotalPagar()};
-        
+                
         String[] botoes = {"Comprar",
                             "Voltar"};
         
