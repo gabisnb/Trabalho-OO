@@ -6,13 +6,12 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class TelaLogin extends Tela{
     
-    private JTextField tfNome;
-    private JTextField tfEmail;
-    private JTextField tfSenha;
+    private ArrayList<JTextField> tf;
     private JComboBox cbEscolha;
     
     public void desenha(){
@@ -38,7 +37,7 @@ public class TelaLogin extends Tela{
         cbEscolha = new JComboBox();
         cbEscolha.addItem("Comprador");
         cbEscolha.addItem("Vendedor");
-        JPanel panel = desenhaTF();
+        JPanel panel = desenhaTF(3, 20, tf);
         panel.add(cbEscolha);
         
         JPanel painelAux = new JPanel();
@@ -61,25 +60,10 @@ public class TelaLogin extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    private JPanel desenhaTF(){
-        JPanel painelTF = new JPanel();
-        painelTF.setLayout(new GridLayout(0,1, 5, 4));
-        
-        tfNome = new JTextField(20);
-        tfEmail = new JTextField(20);
-        tfSenha = new JTextField(20);
-        
-        painelTF.add(tfNome);
-        painelTF.add(tfEmail);
-        painelTF.add(tfSenha);
-        
-        return painelTF;
-    }
-    
     public void entrar(){
-        String nome = tfNome.getText();
-        String email = tfEmail.getText();
-        String senha = tfSenha.getText();
+        String nome = tf.get(0).getText();
+        String email = tf.get(1).getText();
+        String senha = tf.get(2).getText();
         int opcao = cbEscolha.getSelectedIndex();
         if(opcao==0){
             //implementar verificação de dados

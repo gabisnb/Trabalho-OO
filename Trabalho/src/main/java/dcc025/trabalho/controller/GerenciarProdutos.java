@@ -7,7 +7,7 @@ package dcc025.trabalho.controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import dcc025.trabalho.view.TelaVende;
+import dcc025.trabalho.view.TelaVendedor;
 import java.util.List;
 
 /**

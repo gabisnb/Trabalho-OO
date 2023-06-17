@@ -7,6 +7,7 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.controller.PagamentoDebito;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -15,11 +16,7 @@ import javax.swing.*;
  */
 public class TelaPagamentoDebito extends Tela{
     
-    private JTextField tfInstituicaoFinanceira;
-    private JTextField tfNomeCompleto;
-    private JTextField tfTipoDaConta;
-    private JTextField tfAgencia;
-    private JTextField tfContaComDigito;
+    private ArrayList<JTextField> tf;  //Instituicao, Nome, TipoConta, Agencia
     
     private JButton jbCancelar;
     private JButton jbPagar;
@@ -47,7 +44,7 @@ public class TelaPagamentoDebito extends Tela{
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
-        painelAux.add(desenhaTF());
+        painelAux.add(desenhaTF(5, 20, tf));
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
@@ -59,24 +56,5 @@ public class TelaPagamentoDebito extends Tela{
         painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
-    }
-    
-    private JPanel desenhaTF(){
-        JPanel painelTF = new JPanel();
-        painelTF.setLayout(new GridLayout(0,1, 5, 4));
-        
-        tfInstituicaoFinanceira = new JTextField(20);
-        tfNomeCompleto = new JTextField(20);
-        tfTipoDaConta = new JTextField(20);
-        tfAgencia = new JTextField(20);
-        tfContaComDigito = new JTextField(20);
-        
-        painelTF.add(tfInstituicaoFinanceira);
-        painelTF.add(tfNomeCompleto);
-        painelTF.add(tfTipoDaConta);
-        painelTF.add(tfAgencia);
-        painelTF.add(tfContaComDigito);
-
-        return painelTF;
     }
 }

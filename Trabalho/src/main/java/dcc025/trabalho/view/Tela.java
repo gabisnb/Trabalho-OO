@@ -7,6 +7,7 @@ package dcc025.trabalho.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public abstract class Tela {
@@ -42,20 +43,22 @@ public abstract class Tela {
         return painelBotoes;
     }
     
-//    protected JPanel desenhaTF(int quantidade, int tamanho, JTextField tf[]){
-//        JPanel painelTF = new JPanel();
-//        painelTF.setLayout(new GridLayout(0,1, 5, 4));
-//        
-//        tf = new JTextField[quantidade];
-//
-//        
-//        for(JTextField textfield : tf){
-//            textfield.setColumns(tamanho);
-//            painelTF.add(textfield);
-//        }
-//
-//        return painelTF;
-//    }
+    protected JPanel desenhaTF(int quantidade, int tamanho, ArrayList<JTextField> tf){
+        JPanel painelTF = new JPanel();
+        painelTF.setLayout(new GridLayout(0,1, 5, 4));
+        
+        tf = new ArrayList<>();
+        
+        for(int i = 0; i < quantidade; i++){
+            tf.add(new JTextField(tamanho));
+        }
+        
+        for(JTextField textfield : tf){
+            painelTF.add(textfield);
+        }
+
+        return painelTF;
+    }
     
     protected <T> JPanel desenhaLista(String string){
 
