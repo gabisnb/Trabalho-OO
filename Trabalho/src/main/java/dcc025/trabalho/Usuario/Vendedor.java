@@ -12,6 +12,7 @@ import java.util.*;
 public class Vendedor extends Pessoa {
 
     private List <Produto> loja ;
+    private static String user_id;
 
     public Vendedor(String nome, String email, String senha) {
         super(nome, email, senha);
@@ -21,11 +22,6 @@ public class Vendedor extends Pessoa {
     public void adicionarProduto(Produto produto){
         loja.add(produto);
     }
+    public String getId(){ return user_id.toString(); }
 
-    public void DadosVendedor() {
-        System.out.println("");
-        System.out.println("--Vendedor--");
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("Email: " + this.getEmail());
-    }
 }

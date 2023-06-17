@@ -5,12 +5,10 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
-
 import java.awt.*;
 import javax.swing.*;
 
 public class TelaLogin extends Tela{
-
     
     private JTextField tfNome;
     private JTextField tfEmail;
@@ -49,9 +47,6 @@ public class TelaLogin extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-<<<<<<< Updated upstream
-        bpainel.add(new JButton("Entrar"));
-=======
         JButton jbEntrar = new JButton("Entrar");
         bpainel.add(jbEntrar);
         
@@ -60,15 +55,11 @@ public class TelaLogin extends Tela{
                 entrar();
             }
         });
->>>>>>> Stashed changes
         
         painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
-<<<<<<< Updated upstream
-   
-=======
     
     private JPanel desenhaTF(){
         JPanel painelTF = new JPanel();
@@ -106,5 +97,4 @@ public class TelaLogin extends Tela{
     public void abrir(){
         tela.setVisible(true);
     }
->>>>>>> Stashed changes
 }
