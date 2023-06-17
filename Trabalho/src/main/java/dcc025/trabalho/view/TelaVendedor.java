@@ -22,6 +22,7 @@ public class TelaVendedor extends Tela{
     protected TelaVendedor(TelaLogin login, Vendedor vend) {
         usuario = vend;
         menu = login;
+        super.botoes = new ArrayList();
     }
     
     public void desenha(){
@@ -42,8 +43,8 @@ public class TelaVendedor extends Tela{
         String[] labels = {"Nome: "+usuario.getNome(),
                            "Email: "+usuario.getEmail()};
         
-        String[] botoes = {"Adicionar Produto",
-                           "Remover Produto"};
+        botoes.add(new JButton("Adicionar Produto"));
+        botoes.add(new JButton("Remover Produto"));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));

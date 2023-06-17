@@ -49,8 +49,6 @@ public abstract class Tela {
         JPanel painelTF = new JPanel();
         painelTF.setLayout(new GridLayout(0,1, 5, 4));
         
-        tf = new ArrayList<>();
-        
         for(int i = 0; i < quantidade; i++){
             tf.add(new JTextField(tamanho));
         }

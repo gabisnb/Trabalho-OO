@@ -14,6 +14,11 @@ public class TelaLogin extends Tela{
     private ArrayList<JTextField> tf;
     private JComboBox cbEscolha;
     
+    public TelaLogin(){
+        super.botoes = new ArrayList();
+        tf = new ArrayList();
+    }
+    
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -26,6 +26,10 @@ public class AddProduto extends Tela{
     private JSlider jsQuantidadeCor;
     private JComboBox<Cor> cbCor;
     
+    public AddProduto(){
+        super.botoes = new ArrayList();
+    }
+    
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +49,8 @@ public class AddProduto extends Tela{
                            "Tipo: ",
                            "SubTipo: "};
         
-        String[] botoes = {"Adicionar"};
+        //Botão Adicionar
+        botoes.add(new JButton("Adicionar"));
         
         JComboBox<TiposProdutos> cbTipo = new JComboBox();
         JComboBox<SubTipoProduto> cbSubTipo = new JComboBox();
@@ -68,6 +73,8 @@ public class AddProduto extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
 
         JPanel bpainel = new JPanel();
+        
+        //Botão Sair
         bpainel.add(new JButton("Sair"));
         painel.add(bpainel, BorderLayout.PAGE_END);
         

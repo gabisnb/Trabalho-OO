@@ -47,13 +47,8 @@ public class TelaComprador extends Tela{
                            "Email: "+usuario.getEmail(),
                            "Saldo: "+usuario.getSaldo()};
         
-        //Botões da tela
-        botoes.add(new JButton("Aumentar Saldo"));
-        botoes.add(new JButton("Carrinho de Compras"));
-        botoes.add(new JButton("Sair"));
-        
-        /////Adicionando as funções dos botões/////
         //Botão Adicionar Saldo
+        botoes.add(new JButton("Aumentar Saldo"));
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 adicionarSaldo();
@@ -62,18 +57,11 @@ public class TelaComprador extends Tela{
         });
         
         //Botão Carrinho de Compras
+        botoes.add(new JButton("Carrinho de Compras"));
         botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
             //Função que implementa a troca de tela para a tela do carrinho de compras do usuário
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 abrirCarrinho();
-            }
-        });
-        
-        //Botão Sair
-        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                fechar();
-                menu.abrir();
             }
         });
         
@@ -84,6 +72,17 @@ public class TelaComprador extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
+        
+        //Botão Sair
+        botoes.add(new JButton("Sair"));
+        //Adicionando função do botão sair
+        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
+                menu.abrir();
+            }
+        });
+        //Adicionando o botão no bpainel
         bpainel.add(botoes.get(2), BorderLayout.PAGE_END);
         
         painel.add(bpainel, BorderLayout.SOUTH);

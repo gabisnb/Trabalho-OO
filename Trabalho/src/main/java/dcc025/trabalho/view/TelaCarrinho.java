@@ -7,6 +7,7 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.*;
 import dcc025.trabalho.model.*;
 import java.awt.*;
+import java.util.*;
 import javax.swing.*;
 
 public class TelaCarrinho extends Tela{
@@ -33,6 +34,7 @@ public class TelaCarrinho extends Tela{
         carrinho = usuario.getCarrinho();
         telaComp = tela;
         menu = login;
+        super.botoes = new ArrayList();
     }
     
     public void desenha(){
@@ -55,8 +57,9 @@ public class TelaCarrinho extends Tela{
                            "Saldo: "+usuario.getSaldo(),
                            "Valor Total: "+carrinho.getTotalPagar()};
                 
-        String[] botoes = {"Comprar",
-                            "Voltar"};
+        
+        botoes.add(new JButton("Comprar"));
+        botoes.add(new JButton("Voltar"));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -64,8 +67,8 @@ public class TelaCarrinho extends Tela{
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
 
-        jbSair = new JButton("Menu");
-        jbSair.addActionListener(new java.awt.event.ActionListener() {
+        botoes.add(new JButton("Menu"));
+        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 tela.dispose();
                 telaComp.fechar();
@@ -73,7 +76,7 @@ public class TelaCarrinho extends Tela{
             }
         });
         JPanel bpainel = new JPanel();
-        bpainel.add(jbSair);
+        bpainel.add(botoes.get(2));
         painel.add(bpainel, BorderLayout.PAGE_END);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
