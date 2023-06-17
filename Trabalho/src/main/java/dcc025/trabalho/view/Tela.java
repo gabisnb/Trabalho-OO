@@ -15,6 +15,8 @@ public abstract class Tela {
     protected final int ALTURA = 300;
     protected final int LARGURA = 400;
     
+    protected ArrayList<JButton> botoes;
+    
     protected JPanel ConfiguraPainelMain(String nome){
         JPanel painel = new JPanel();
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA));
@@ -33,12 +35,12 @@ public abstract class Tela {
         return painelLabel;
     }
     
-    protected JPanel desenhaBotoes(String strings[]){
+    protected JPanel desenhaBotoes(ArrayList<JButton> botoes){
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
         
-        for(String string : strings)
-            painelBotoes.add(new JButton(string));
+        for(JButton botao : botoes)
+            painelBotoes.add(botao);
         
         return painelBotoes;
     }
