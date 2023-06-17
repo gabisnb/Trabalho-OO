@@ -16,6 +16,7 @@ public abstract class Tela {
     protected final int LARGURA = 400;
     
     protected ArrayList<JButton> botoes;
+    protected ArrayList<JLabel> labels;
     
     protected JPanel ConfiguraPainelMain(String nome){
         JPanel painel = new JPanel();
@@ -25,12 +26,12 @@ public abstract class Tela {
         return painel;
     }
     
-    protected JPanel desenhaLabel(String strings[]){
+    protected JPanel desenhaLabel(ArrayList<JLabel> labels){
         JPanel painelLabel = new JPanel();
         painelLabel.setLayout(new GridLayout(0, 1, 5, 10));
         
-        for(String string : strings)
-            painelLabel.add(new JLabel(string));
+        for(JLabel label : labels)
+            painelLabel.add(label);
         
         return painelLabel;
     }

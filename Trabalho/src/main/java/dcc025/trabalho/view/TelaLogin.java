@@ -16,6 +16,7 @@ public class TelaLogin extends Tela{
     
     public TelaLogin(){
         super.botoes = new ArrayList();
+        super.labels = new ArrayList();
         tf = new ArrayList();
     }
     
@@ -34,10 +35,10 @@ public class TelaLogin extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Login");
         
-        String[] labels = {"Nome: ",
-                            "Email: ",
-                            "Senha: ",
-                            "Tipo de Usuário: "};
+        labels.add(new JLabel("Nome: "));
+        labels.add(new JLabel("Email: "));
+        labels.add(new JLabel("Senha: "));
+        labels.add(new JLabel("Tipo de Usuário: "));
         
         cbEscolha = new JComboBox();
         cbEscolha.addItem("Comprador");
@@ -51,15 +52,16 @@ public class TelaLogin extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-        JButton jbEntrar = new JButton("Entrar");
-        bpainel.add(jbEntrar);
         
-        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
+        //Botão Entrar
+        botoes.add(new JButton("Entrar"));
+        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 entrar();
             }
         });
         
+        bpainel.add(botoes.get(0));
         painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);

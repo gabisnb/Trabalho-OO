@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoCredito;
@@ -16,6 +12,10 @@ public class TelaPagamentoCredito extends Tela{
     
     private JButton jbPagar;
     private JButton jbCancelar;
+    
+    public TelaPagamentoCredito(){
+        super.labels = new ArrayList();
+    }
     
     public void desenha(){
         tela = new JFrame();
@@ -32,10 +32,10 @@ public class TelaPagamentoCredito extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Pagamento em Credito");
         
-        String[] labels = {"Numero do Cartao: ",
-                            "Nome Completo: ",
-                            "Mes Expiracao: ",
-                            "Ano Expiracao: "};
+        labels.add(new JLabel("Numero do Cartao: "));
+        labels.add(new JLabel("Nome Completo: "));
+        labels.add(new JLabel("Mes Expiracao: "));
+        labels.add(new JLabel("Ano Expiracao: "));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));

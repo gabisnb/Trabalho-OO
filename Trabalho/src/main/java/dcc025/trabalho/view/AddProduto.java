@@ -28,6 +28,7 @@ public class AddProduto extends Tela{
     
     public AddProduto(){
         super.botoes = new ArrayList();
+        super.labels = new ArrayList();
     }
     
     public void desenha(){
@@ -45,9 +46,9 @@ public class AddProduto extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Adicionar Produto");
         
-        String[] labels = {"Preco: ",
-                           "Tipo: ",
-                           "SubTipo: "};
+        labels.add(new JLabel("Preco: "));
+        labels.add(new JLabel("Tipo: "));
+        labels.add(new JLabel("SubTipo: "));
         
         //Botão Adicionar
         botoes.add(new JButton("Adicionar"));

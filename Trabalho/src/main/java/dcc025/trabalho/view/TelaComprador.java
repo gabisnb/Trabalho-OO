@@ -26,6 +26,7 @@ public class TelaComprador extends Tela{
         usuario = comp;
         menu = login;
         super.botoes = new ArrayList();
+        super.labels = new ArrayList();
     }
     
     public void desenha(){
@@ -43,9 +44,12 @@ public class TelaComprador extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Comprador");
         
-        String[] labels = {"Nome: "+usuario.getNome(),
-                           "Email: "+usuario.getEmail(),
-                           "Saldo: "+usuario.getSaldo()};
+        labels.add(new JLabel("Nome: "+usuario.getNome()));
+        labels.add(new JLabel("Email: "+usuario.getEmail()));
+        labels.add(new JLabel("Saldo: "+usuario.getSaldo()));
+//        String[] labels = {"Nome: "+usuario.getNome(),
+//                           "Email: "+usuario.getEmail(),
+//                           "Saldo: "+usuario.getSaldo()};
         
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
@@ -89,6 +93,7 @@ public class TelaComprador extends Tela{
 
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
+    
     
 //    private JPanel desenhaBotoes(){
 //        JPanel painelBotoes = new JPanel();
