@@ -24,6 +24,14 @@ public class TelaAdicionaSaldo extends Tela{
         usuario = comprador;
         tComprador = tela;
     }
+    @Override
+    protected JPanel ConfiguraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/2));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
+    }
     
     public void desenha(){
         tela = new JFrame();
@@ -36,15 +44,6 @@ public class TelaAdicionaSaldo extends Tela{
         desenhaMenu();
         
         tela.pack();
-    }
-    
-    @Override
-    protected JPanel ConfiguraPainelMain(String nome){
-        JPanel painel = new JPanel();
-        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/2));
-        painel.setBorder(BorderFactory.createTitledBorder(nome));
-        painel.setLayout(new BorderLayout());
-        return painel;
     }
     
     public void desenhaMenu(){
@@ -86,6 +85,21 @@ public class TelaAdicionaSaldo extends Tela{
                 adicionarSaldo();
                 tela.dispose();
             }
+        });
+        botoes.get(0).addKeyListener(new java.awt.event.KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    adicionarSaldo();
+                    tela.dispose();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
         });
         
         bpainel.add(botoes.get(0));
