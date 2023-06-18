@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.*;
 import javax.swing.*;
 
-/**
- *
- * @author joaov
- */
+
 public class TelaPagamento extends Tela{
     
     private Comprador usuario;
@@ -24,12 +18,14 @@ public class TelaPagamento extends Tela{
     
     public TelaPagamento(Comprador comp){
         usuario = comp;
+        super.labels = new ArrayList();
     }
     
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -41,10 +37,10 @@ public class TelaPagamento extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Pagamento");
         
-        String[] labels = {"Valor Total:       R$"+usuario.getCarrinho().getTotalPagar(),
-                           "Valor por Credito: R$",
-                           "Valor por Debito:  R$",
-                           "Valor por Saldo:   R$"};
+        labels.add(new JLabel("Valor Total:       R$"+usuario.getCarrinho().getTotalPagar()));
+        labels.add(new JLabel("Valor por Credito: R$"));
+        labels.add(new JLabel("Valor por Debito:  R$"));
+        labels.add(new JLabel("Valor por Saldo:   R$"));
         
         cbEscolha = new JComboBox<>();
         cbEscolha.addItem("Modo de Pagamento");

@@ -25,12 +25,15 @@ public class TelaComprador extends Tela{
     protected TelaComprador(TelaLogin login, Comprador comp) {
         usuario = comp;
         menu = login;
+        super.botoes = new ArrayList();
+        super.labels = new ArrayList();
     }
     
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -42,12 +45,27 @@ public class TelaComprador extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Comprador");
         
-        String[] labels = {"Nome: "+usuario.getNome(),
-                           "Email: "+usuario.getEmail(),
-                           "Saldo: "+usuario.getSaldo()};
+        labels.add(new JLabel("Nome: "+usuario.getNome()));
+        labels.add(new JLabel("Email: "+usuario.getEmail()));
+        labels.add(new JLabel("Saldo: "+usuario.getSaldo()));
         
-        String[] botoes = {"Aumentar Saldo",
-                            "Carrinho de Compras"};
+        //Botão Adicionar Saldo
+        botoes.add(new JButton("Aumentar Saldo"));
+        //Configuração
+        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                adicionarSaldo();
+            }
+        });
+        
+        //Botão Carrinho de Compras
+        botoes.add(new JButton("Carrinho de Compras"));
+        //Configuração
+        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                abrirCarrinho();
+            }
+        });
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -56,52 +74,34 @@ public class TelaComprador extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-        bpainel.add(new JButton("Sair"), BorderLayout.PAGE_END);
+        
+        //Botão Sair
+        botoes.add(new JButton("Sair"));
+        //Configuração
+        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
+                menu.abrir();
+            }
+        });
+        
+        //Adicionando o botão no bpainel
+        bpainel.add(botoes.get(2), BorderLayout.PAGE_END);
         
         painel.add(bpainel, BorderLayout.SOUTH);
 
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-//    private JPanel desenhaBotoes(){
-//        JPanel painelBotoes = new JPanel();
-//        painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
-//        
-//        jbCarrinho =  new JButton("Carrinho de Compras");
-//        jbCarrinho.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                abrirCarrinho();
-//            }
-//        });
-//        
-////        jbSair = new JButton("Sair");
-//        jbSaldo =  new JButton("Aumentar Saldo");
-//        jbSaldo.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                adicionarSaldo();
-//                carrega();
-//            }
-//        });
-//        
-//        painelBotoes.add(jbSaldo);
-//        painelBotoes.add(jbCarrinho);
-////        painelBotoes.add(jbSair);
-//        
-//        return painelBotoes;
-//    }
-    
     public void adicionarSaldo(){
-        String input = JOptionPane.showInputDialog("Valor a ser adicionado:");
-        try{
-            double saldo = Double.parseDouble(input);
-            this.usuario.adicionarSaldo(saldo);
-        }
-        catch(NullPointerException e){
-            //nada
-        }
-        catch(SaldoInvalidoException e){
-            JOptionPane.showMessageDialog(null, "Valor inválido");
-        }
+        TelaAdicionaSaldo addSaldo = new TelaAdicionaSaldo(this, usuario);
+        addSaldo.desenha();
+    }
+    
+    public void carrega(){
+        labels.get(0).setText("Nome: "+usuario.getNome());
+        labels.get(1).setText("Email: "+usuario.getEmail());
+        labels.get(2).setText("Saldo: "+usuario.getSaldo());
     }
     
     public void abrir(){

@@ -1,19 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.controller.PagamentoSaldoLoja;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.*;
 import javax.swing.*;
 
-/**
- *
- * @author joaov
- */
+
+
 public class TelaPagamentoSaldoLoja extends Tela{
     
     private Comprador usuario;
@@ -22,6 +17,7 @@ public class TelaPagamentoSaldoLoja extends Tela{
     private JButton jbPagar;
     
     public TelaPagamentoSaldoLoja(Comprador comprador){
+        super.labels = new ArrayList();
         usuario = comprador;
     }
     
@@ -29,6 +25,7 @@ public class TelaPagamentoSaldoLoja extends Tela{
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -40,8 +37,8 @@ public class TelaPagamentoSaldoLoja extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Pagamento pelo Saldo");
         
-        String[] labels = {"Nome Completo: "+usuario.getNome(),
-                           "Saldo disponível: "+usuario.getSaldo()};
+        labels.add(new JLabel("Nome Completo: " + usuario.getNome()));
+        labels.add(new JLabel("Saldo disponível: " + usuario.getSaldo()));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));

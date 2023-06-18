@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoDebito;
@@ -10,10 +6,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author joaov
- */
+
 public class TelaPagamentoDebito extends Tela{
     
     private ArrayList<JTextField> tf;  //Instituicao, Nome, TipoConta, Agencia
@@ -21,10 +14,15 @@ public class TelaPagamentoDebito extends Tela{
     private JButton jbCancelar;
     private JButton jbPagar;
     
+    public TelaPagamentoDebito(){
+        super.labels = new ArrayList();
+    }
+    
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -36,11 +34,11 @@ public class TelaPagamentoDebito extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Pagamento em Debito");
         
-        String[] labels = {"Instituicao Financeira: ",
-                            "Nome Completo: ",
-                            "Tipo da Conta: ",
-                            "Agencia: ",
-                            "Conta com Digito: "};
+        labels.add(new JLabel("Instituicao Financeira: "));
+        labels.add(new JLabel("Nome Completo: "));
+        labels.add(new JLabel("Tipo da Conta: "));
+        labels.add(new JLabel("Agencia: "));
+        labels.add(new JLabel("Conta com Digito: "));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));

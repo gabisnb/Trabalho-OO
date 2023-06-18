@@ -22,12 +22,15 @@ public class TelaVendedor extends Tela{
     protected TelaVendedor(TelaLogin login, Vendedor vend) {
         usuario = vend;
         menu = login;
+        super.botoes = new ArrayList();
+        super.labels = new ArrayList();
     }
     
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -39,11 +42,11 @@ public class TelaVendedor extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Vendedor");
         
-        String[] labels = {"Nome: "+usuario.getNome(),
-                           "Email: "+usuario.getEmail()};
+        labels.add(new JLabel("Nome: " + usuario.getNome()));
+        labels.add(new JLabel("Email: " + usuario.getEmail()));
         
-        String[] botoes = {"Adicionar Produto",
-                           "Remover Produto"};
+        botoes.add(new JButton("Adicionar Produto"));
+        botoes.add(new JButton("Remover Produto"));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -52,7 +55,17 @@ public class TelaVendedor extends Tela{
         painel.add(painelAux, BorderLayout.CENTER);
         
         JPanel bpainel = new JPanel();
-        bpainel.add(new JButton("Sair"));
+        
+        //Botão Sair
+        botoes.add(new JButton("Sair"));
+        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
+                menu.abrir();
+            }
+        });
+        
+        bpainel.add(botoes.get(2));
         
         painel.add(bpainel, BorderLayout.SOUTH);
         

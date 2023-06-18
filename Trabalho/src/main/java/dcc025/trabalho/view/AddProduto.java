@@ -22,14 +22,23 @@ public class AddProduto extends Tela{
     private static int productId = 1;
     private Vendedor vendedor;
     
-    private JTextField tfPreco;
     private JSlider jsQuantidadeCor;
     private JComboBox<Cor> cbCor;
+    private JComboBox<TiposProdutos> cbTipo;
+    private JComboBox<SubTipoProduto> cbSubTipo;
+    private ArrayList<JTextField> tf;
+    
+    public AddProduto(){
+        super.botoes = new ArrayList();
+        super.labels = new ArrayList();
+        tf = new ArrayList<>();
+    }
     
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -41,14 +50,17 @@ public class AddProduto extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Adicionar Produto");
         
-        String[] labels = {"Preco: ",
-                           "Tipo: ",
-                           "SubTipo: "};
+        labels.add(new JLabel("Preco: "));
+        labels.add(new JLabel("Tipo: "));
+        labels.add(new JLabel("SubTipo: "));
+        labels.add(new JLabel("Cor: "));
+        labels.add(new JLabel("Quantidade: "));
         
-        String[] botoes = {"Adicionar"};
+        botoes.add(new JButton("Adicionar"));
+        botoes.add(new JButton("Sair"));
         
-        JComboBox<TiposProdutos> cbTipo = new JComboBox();
-        JComboBox<SubTipoProduto> cbSubTipo = new JComboBox();
+        cbTipo = new JComboBox();
+        cbSubTipo = new JComboBox();
         
         cbTipo.addItem(TiposProdutos.ELETRODOMESTICO);
         cbTipo.addItem(TiposProdutos.MATERIAL_ESCRITORIO);
@@ -56,99 +68,62 @@ public class AddProduto extends Tela{
         cbTipo.addItem(TiposProdutos.ROUPAS);
         cbTipo.addItem(TiposProdutos.N_A);
         
-        JPanel panel = desenhaTF();
+        JPanel panel = desenhaTF(1, 20, tf);
         panel.add(cbTipo);
         panel.add(cbSubTipo);
+        panel.add(desenhaCB());
+        panel.add(desenhaJS());
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
         painelAux.add(panel);
-//        painelAux.add(desenhaRadio());
-        painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
 
         JPanel bpainel = new JPanel();
-        bpainel.add(new JButton("Sair"));
+        
+        //Botões Adicionar e Sair
+        bpainel.add(desenhaBotoes(botoes));
         painel.add(bpainel, BorderLayout.PAGE_END);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    private JPanel desenhaTF(){
-        JPanel painelTF = new JPanel();
-        painelTF.setLayout(new GridLayout(0,1, 5, 4));
+    private JPanel desenhaCB(){
+        JPanel painelCB = new JPanel();
+        painelCB.setLayout(new GridLayout(0,1, 5, 4));
         
-        tfPreco = new JTextField(20);
+        cbCor = new JComboBox<>();
+        cbCor.addItem(Cor.AMARELO);
+        cbCor.addItem(Cor.AZUL);
+        cbCor.addItem(Cor.AZUL_CLARO);
+        cbCor.addItem(Cor.BRANCO);
+        cbCor.addItem(Cor.CIANO);
+        cbCor.addItem(Cor.CINZA);
+        cbCor.addItem(Cor.LARANJA);
+        cbCor.addItem(Cor.MAJENTA);
+        cbCor.addItem(Cor.PRETO);
+        cbCor.addItem(Cor.ROSA);
+        cbCor.addItem(Cor.ROXO);
+        cbCor.addItem(Cor.VERDE);
+        cbCor.addItem(Cor.VERDE_CLARO);
+        cbCor.addItem(Cor.VERMELHO);
         
-        painelTF.add(tfPreco);
-
-        return painelTF;
+        painelCB.add(cbCor);
+        
+        return painelCB;
     }
     
-//    private JPanel desenhaRadio(){
-//
-//        JPanel painel = new JPanel();
-//        painel.setBorder(BorderFactory.createTitledBorder("Cor"));
-//        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
-//        painel.setLayout(new BorderLayout());
-//
-//        bgCor = new ButtonGroup();
-//        
-//        JRadioButton amarelo = new JRadioButton("Amarelo");
-//        JRadioButton azul = new JRadioButton("Azul");
-//        JRadioButton branco = new JRadioButton("Branco");
-//        JRadioButton cinza = new JRadioButton("Cinza");
-//        JRadioButton laranja = new JRadioButton("Laranja");
-//        JRadioButton preto = new JRadioButton("Preto");
-//        JRadioButton rosa = new JRadioButton("Rosa");
-//        JRadioButton verde = new JRadioButton("Verde");
-//        JRadioButton vermelho = new JRadioButton("Vermelho");
-//        
-//        
-//        bgCor.add(amarelo);
-//        bgCor.add(azul);
-//        bgCor.add(branco);
-//        bgCor.add(cinza);
-//        bgCor.add(laranja);
-//        bgCor.add(preto);
-//        bgCor.add(rosa);
-//        bgCor.add(verde);
-//        bgCor.add(vermelho);
-//        
-//        painel.add(amarelo).setBounds(30, 30, 60, 50);
-//        painel.add(azul);
-//        painel.add(branco);
-//        painel.add(cinza);
-//        painel.add(laranja);
-//        painel.add(preto);
-//        painel.add(rosa);
-//        painel.add(verde);
-//        painel.add(vermelho);
-//        
-////        amarelo.setBounds(120, 30, 120, 50);
-////        azul.setBounds(120, 60, 120, 80);
-////        azulClaro.setBounds(120, 30, 120, 50);
-////        tela.add(amarelo);
-////        tela.add(azul);
-////        tela.add(azulClaro);
-////        tela.add(branco);
-////        tela.add(ciano);
-////        tela.add(cinza);
-////        tela.add(laranja);
-////        tela.add(majenta);
-////        tela.add(preto);
-////        tela.add(rosa);
-////        tela.add(roxo);
-////        tela.add(verde);
-////        tela.add(verdeClaro);
-////        tela.add(vermelho);
-//        
-////        for(int i = 0; i < 14; i++)
-////            painel.add(bgCor, BorderLayout.EAST);
-//
-//        return painel;
-//    }
-//    
+    private JPanel desenhaJS(){
+        JPanel painelJS = new JPanel();
+        painelJS.setLayout(new GridLayout(0,1, 5, 4));
+        
+        jsQuantidadeCor = new JSlider(1, 100);
+        
+        painelJS.add(jsQuantidadeCor);
+        
+        return painelJS;
+    }
+
     public AddProduto(Vendedor vendedor){
         this.vendedor = vendedor;
         this.productId++;
