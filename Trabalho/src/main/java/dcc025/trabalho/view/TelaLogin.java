@@ -24,6 +24,7 @@ public class TelaLogin extends Tela{
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         abrir();
         tela.setLayout(new BorderLayout());
         

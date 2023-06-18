@@ -33,6 +33,7 @@ public class TelaComprador extends Tela{
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
         
@@ -47,23 +48,19 @@ public class TelaComprador extends Tela{
         labels.add(new JLabel("Nome: "+usuario.getNome()));
         labels.add(new JLabel("Email: "+usuario.getEmail()));
         labels.add(new JLabel("Saldo: "+usuario.getSaldo()));
-//        String[] labels = {"Nome: "+usuario.getNome(),
-//                           "Email: "+usuario.getEmail(),
-//                           "Saldo: "+usuario.getSaldo()};
         
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 adicionarSaldo();
-                //carrega();
+                carrega();
             }
         });
         
         //Botão Carrinho de Compras
         botoes.add(new JButton("Carrinho de Compras"));
         botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            //Função que implementa a troca de tela para a tela do carrinho de compras do usuário
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 abrirCarrinho();
             }
@@ -79,13 +76,13 @@ public class TelaComprador extends Tela{
         
         //Botão Sair
         botoes.add(new JButton("Sair"));
-        //Adicionando função do botão sair
         botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 fechar();
                 menu.abrir();
             }
         });
+        
         //Adicionando o botão no bpainel
         bpainel.add(botoes.get(2), BorderLayout.PAGE_END);
         
@@ -134,6 +131,12 @@ public class TelaComprador extends Tela{
         catch(SaldoInvalidoException e){
             JOptionPane.showMessageDialog(null, "Valor inválido");
         }
+    }
+    
+    public void carrega(){
+        labels.get(0).setText("Nome: "+usuario.getNome());
+        labels.get(1).setText("Email: "+usuario.getEmail());
+        labels.get(2).setText("Saldo: "+usuario.getSaldo());
     }
     
     public void abrir(){
