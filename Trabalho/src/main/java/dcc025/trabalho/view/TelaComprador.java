@@ -51,15 +51,16 @@ public class TelaComprador extends Tela{
         
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
+        //Configuração
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 adicionarSaldo();
-                carrega();
             }
         });
         
         //Botão Carrinho de Compras
         botoes.add(new JButton("Carrinho de Compras"));
+        //Configuração
         botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 abrirCarrinho();
@@ -76,6 +77,7 @@ public class TelaComprador extends Tela{
         
         //Botão Sair
         botoes.add(new JButton("Sair"));
+        //Configuração
         botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 fechar();
@@ -120,17 +122,8 @@ public class TelaComprador extends Tela{
 //    }
     
     public void adicionarSaldo(){
-        String input = JOptionPane.showInputDialog("Valor a ser adicionado:");
-        try{
-            double saldo = Double.parseDouble(input);
-            this.usuario.adicionarSaldo(saldo);
-        }
-        catch(NullPointerException e){
-            //nada
-        }
-        catch(SaldoInvalidoException e){
-            JOptionPane.showMessageDialog(null, "Valor inválido");
-        }
+        TelaAdicionaSaldo addSaldo = new TelaAdicionaSaldo(this, usuario);
+        addSaldo.desenha();
     }
     
     public void carrega(){

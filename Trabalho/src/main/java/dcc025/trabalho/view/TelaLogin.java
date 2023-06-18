@@ -56,6 +56,7 @@ public class TelaLogin extends Tela{
         
         //Botão Entrar
         botoes.add(new JButton("Entrar"));
+        //Configuração
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 entrar();
