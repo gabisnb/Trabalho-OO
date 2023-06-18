@@ -94,26 +94,4 @@ public class TelaCarrinho extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-//    private JPanel desenhaBotoes(){
-//        JPanel painelBotoes = new JPanel();
-//        painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
-//        
-//        jbComprar =  new JButton("Comprar");
-//        jbComprar.addActionListener(null);
-//        jbVoltar = new JButton("Voltar");
-//        jbVoltar.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                tela.dispose();
-//                telaComp.abrir();
-//            }
-//        });
-////        jbSair = new JButton("Sair");
-//        
-//        painelBotoes.add(jbVoltar);
-//        painelBotoes.add(jbComprar);
-////        painelBotoes.add(jbSair);
-//        
-//        return painelBotoes;
-//    }
-    
 }

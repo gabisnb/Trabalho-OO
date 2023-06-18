@@ -93,34 +93,6 @@ public class TelaComprador extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    
-//    private JPanel desenhaBotoes(){
-//        JPanel painelBotoes = new JPanel();
-//        painelBotoes.setLayout(new GridLayout(1, 0, 5, 10));
-//        
-//        jbCarrinho =  new JButton("Carrinho de Compras");
-//        jbCarrinho.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                abrirCarrinho();
-//            }
-//        });
-//        
-////        jbSair = new JButton("Sair");
-//        jbSaldo =  new JButton("Aumentar Saldo");
-//        jbSaldo.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                adicionarSaldo();
-//                carrega();
-//            }
-//        });
-//        
-//        painelBotoes.add(jbSaldo);
-//        painelBotoes.add(jbCarrinho);
-////        painelBotoes.add(jbSair);
-//        
-//        return painelBotoes;
-//    }
-    
     public void adicionarSaldo(){
         TelaAdicionaSaldo addSaldo = new TelaAdicionaSaldo(this, usuario);
         addSaldo.desenha();
