@@ -36,7 +36,7 @@ public class TelaAdicionaSaldo extends Tela{
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        tela.setSize(LARGURA/2, ALTURA/2);
+        tela.setSize(LARGURA, ALTURA/2);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
