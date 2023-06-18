@@ -6,6 +6,7 @@ package dcc025.trabalho.controller;
 
 import dcc025.trabalho.controller.Pagamento;
 import dcc025.trabalho.Usuario.Comprador;
+import dcc025.trabalho.exceptions.NumberParcelasException;
 /**
  *
  * @author gabri
@@ -17,12 +18,14 @@ public class PagamentoCredito extends Pagamento {
     private final int anoExp; 
     private final int parcelas; 
     
-    public PagamentoCredito(Comprador atual, String numero, String nome ,int mesExp, int anoExp, int parcelas){
+    public PagamentoCredito(Comprador atual, String numero, String nome ,int mesExp, int anoExp, int parcelas) throws NumberParcelasException{
         super(atual);
         this.numero = numero; 
         this.nome = nome;
         this.mesExp = mesExp; 
         this.anoExp = anoExp;
+        if(parcelas <= 0 && parcelas >12)
+            throw new NumberParcelasException();
         this.parcelas = parcelas;
     }
     public void paga(double valor){
@@ -32,5 +35,4 @@ public class PagamentoCredito extends Pagamento {
         valor = this.parcelas*0.95 + valor;
         return valor;
     }
-    
 }
