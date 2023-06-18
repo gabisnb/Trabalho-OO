@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        AddProduto login = new AddProduto();
+        TelaLogin login = new TelaLogin();
         login.desenha();
 //        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));
 //        compra.desenha();
