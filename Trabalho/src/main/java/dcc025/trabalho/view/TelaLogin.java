@@ -11,7 +11,6 @@ import javax.swing.*;
 
 public class TelaLogin extends Tela{
     
-    private ArrayList<JTextField> tf;
     private JComboBox cbEscolha;
     
     public TelaLogin(){

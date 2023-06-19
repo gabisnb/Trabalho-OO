@@ -28,7 +28,6 @@ public class AddProduto extends Tela{
     private JComboBox<TiposProdutos> cbTipo;
     private JComboBox<SubTipoProduto> cbSubTipo;
     private ArrayList<JTextField> tf;
-
     
     public AddProduto(TelaVendedor telaVendedor, Vendedor vend){
         super.botoes = new ArrayList();
@@ -62,6 +61,12 @@ public class AddProduto extends Tela{
         
         botoes.add(new JButton("Adicionar"));
         botoes.add(new JButton("Sair"));
+        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                telaAnterior.abrir();
+                tela.dispose();
+            }
+        });
         
         cbTipo = new JComboBox();
         cbSubTipo = new JComboBox();

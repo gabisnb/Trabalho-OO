@@ -17,6 +17,7 @@ public abstract class Tela {
     
     protected ArrayList<JButton> botoes;
     protected ArrayList<JLabel> labels;
+    protected ArrayList<JTextField> tf;
     
     protected JPanel ConfiguraPainelMain(String nome){
         JPanel painel = new JPanel();

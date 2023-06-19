@@ -46,6 +46,11 @@ public class TelaVendedor extends Tela{
         labels.add(new JLabel("Email: " + usuario.getEmail()));
         
         botoes.add(new JButton("Adicionar Produto"));
+        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                abrirAddProduto();
+            }
+        });
         botoes.add(new JButton("Remover Produto"));
         
         JPanel painelAux = new JPanel();
@@ -113,6 +118,15 @@ public class TelaVendedor extends Tela{
 //            model.remove(selectedIndex);
 //        }
 //    }
+    public void abrirAddProduto(){
+        AddProduto telaAddProd = new AddProduto(this, usuario);
+        telaAddProd.desenha();
+        tela.setVisible(false);
+    }
+    
+    public void abrir(){
+        tela.setVisible(true);
+    }
     
     public void fechar(){
         //salvar informações no banco
