@@ -20,18 +20,22 @@ public class AddProduto extends Tela{
     private double preco = 0;
     private int quantidadeTotal = 0;
     private static int productId = 1;
-    private Vendedor vendedor;
     
-    private JSlider jsQuantidadeCor;
+    private Vendedor vendedor;
+    private TelaVendedor telaAnterior;
+    
     private JComboBox<Cor> cbCor;
     private JComboBox<TiposProdutos> cbTipo;
     private JComboBox<SubTipoProduto> cbSubTipo;
     private ArrayList<JTextField> tf;
+
     
-    public AddProduto(){
+    public AddProduto(TelaVendedor telaVendedor, Vendedor vend){
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
         tf = new ArrayList<>();
+        telaAnterior = telaVendedor;
+        vendedor = vend;
     }
     
     public void desenha(){
@@ -50,10 +54,10 @@ public class AddProduto extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Adicionar Produto");
         
-        labels.add(new JLabel("Preco: "));
         labels.add(new JLabel("Tipo: "));
         labels.add(new JLabel("SubTipo: "));
         labels.add(new JLabel("Cor: "));
+        labels.add(new JLabel("Preco: "));
         labels.add(new JLabel("Quantidade: "));
         
         botoes.add(new JButton("Adicionar"));
@@ -68,11 +72,11 @@ public class AddProduto extends Tela{
         cbTipo.addItem(TiposProdutos.ROUPAS);
         cbTipo.addItem(TiposProdutos.N_A);
         
-        JPanel panel = desenhaTF(1, 20, tf);
+        JPanel panel = new JPanel();
         panel.add(cbTipo);
         panel.add(cbSubTipo);
         panel.add(desenhaCB());
-        panel.add(desenhaJS());
+        panel.add(desenhaTF(2, 20, tf));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -111,17 +115,6 @@ public class AddProduto extends Tela{
         painelCB.add(cbCor);
         
         return painelCB;
-    }
-    
-    private JPanel desenhaJS(){
-        JPanel painelJS = new JPanel();
-        painelJS.setLayout(new GridLayout(0,1, 5, 4));
-        
-        jsQuantidadeCor = new JSlider(1, 100);
-        
-        painelJS.add(jsQuantidadeCor);
-        
-        return painelJS;
     }
 
     public AddProduto(Vendedor vendedor){
