@@ -11,6 +11,7 @@ import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
 
 public class AddProduto extends Tela{
     
@@ -60,16 +61,35 @@ public class AddProduto extends Tela{
         labels.add(new JLabel("Quantidade: "));
         
         botoes.add(new JButton("Adicionar"));
+        
+        //Configuração do botão Sair
         botoes.add(new JButton("Sair"));
-        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                telaAnterior.abrir();
-                tela.dispose();
+        
+        cbTipo = new JComboBox();
+        cbTipo.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        carregaCbEletrodomestico();
+                        break;
+                    case 1:
+                        setTipoEscritorio();
+                        break;
+                    case 2:
+                        carregaCbMovel();
+                        break;
+                    case 3:
+                        setTipoRoupa();
+                        break;
+                }
+                
             }
         });
         
-        cbTipo = new JComboBox();
         cbSubTipo = new JComboBox();
+        carregaCbEletrodomestico();
         
         cbTipo.addItem(TiposProdutos.ELETRODOMESTICO);
         cbTipo.addItem(TiposProdutos.MATERIAL_ESCRITORIO);
@@ -92,6 +112,45 @@ public class AddProduto extends Tela{
         
         //Botões Adicionar e Sair
         bpainel.add(desenhaBotoes(botoes));
+        
+        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                int selected = cbTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        carregaCbEletrodomestico();
+                        break;
+                    case 1:
+                        setTipoEscritorio();
+                        break;
+                    case 2:
+                        setTipoMovel();
+                        break;
+                    case 3:
+                        setTipoRoupa();
+                        break;
+                }
+                
+                selected = cbSubTipo.getSelectedIndex();
+                switch(selected){
+                    //socorro
+                }
+                
+                String input = tf.get(0).getText();
+                preco = Double.parseDouble(input);
+                
+                input = tf.get(1).getText();
+                quantidadeTotal = Integer.parseInt(input);
+            }
+        });
+        
+        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                telaAnterior.abrir();
+                tela.dispose();
+            }
+        });
+        
         painel.add(bpainel, BorderLayout.PAGE_END);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
@@ -122,11 +181,6 @@ public class AddProduto extends Tela{
         return painelCB;
     }
 
-    public AddProduto(Vendedor vendedor){
-        this.vendedor = vendedor;
-        this.productId++;
-    }
-
     private void setPreco(double preco){this.preco = preco;}
     
     private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
@@ -140,8 +194,19 @@ public class AddProduto extends Tela{
     }
     
     private void adicionaProduto(){
-        Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
-        this.vendedor.adicionarProduto(produto);
+        try{
+            productId++;
+            Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
+            this.vendedor.adicionarProduto(produto);
+            telaAnterior.addProduto(produto);
+        }
+        catch(Exception e){
+            
+        }
+        finally{
+            this.tela.dispose();
+            telaAnterior.abrir();
+        }
     }
 
 /////////////////////// - Sets para Tipo de Produto /////////////////////////////////////////////////
@@ -175,6 +240,15 @@ public class AddProduto extends Tela{
     private void setTipoEscritorioClipes(){subtipo = SubTipoProduto.CLIPES ;}
     private void setTipoEscritorioLapis(){subtipo = SubTipoProduto.LAPIS ;}
     private void setTipoEscritorioPapel(){subtipo = SubTipoProduto.PAPEL ;}
+    
+    private void carregaCbEletrodomestico(){
+        cbSubTipo.removeAllItems();
+        cbSubTipo.addItem(SubTipoProduto.COMPUTADOR);
+    }
 
+    private void carregaCbMovel(){
+        cbSubTipo.removeAllItems();
+        cbSubTipo.addItem(SubTipoProduto.FOGAO);
+    }
 
 }

@@ -9,6 +9,7 @@ import dcc025.trabalho.model.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.*;
 
 public class TelaVendedor extends Tela{
@@ -96,16 +97,15 @@ public class TelaVendedor extends Tela{
         return produtos;
     }
 
-    public void addProduto(){
+    public void addProduto(Produto produto){
 
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-        //abrir tela de adição de produto
-        
-//        String input;
-//        
-//        Produto produto;
-//        model.addElement();
-
+        try {
+            model.addElement(produto);
+        }
+        catch(Exception e){
+            
+        }
     }
 //
 //    public void removerContato(){
