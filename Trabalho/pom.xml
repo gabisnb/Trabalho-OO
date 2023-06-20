@@ -5,6 +5,11 @@
     <artifactId>Trabalho</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <name>Trabalho</name>
+    <!-- FIXME change it to the project's website -->
+    <url>https://github.com/gabisnb/Trabalho-OO</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
@@ -50,4 +55,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

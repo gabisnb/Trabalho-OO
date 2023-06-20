@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Arquivo {
 
+
     public static String le(String filePath) {
         StringBuilder content = new StringBuilder();
 

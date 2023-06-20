@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 
+
 public class CompradorPersistence implements Persistence<Comprador>{
- private static final String PATH = DIRECTORY + File.separator + "compradores.json";
+    private static final String PATH = DIRECTORY + File.separator + "compradores.json";
+
     @Override
     public void save(List<Comprador> itens){
         Gson gson = new Gson();

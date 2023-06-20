@@ -49,4 +49,32 @@ public class ProdutoPersistence implements Persistence <Produto>{
 
         return produtos;
     }
+
+    public Produto getProductbyID(String product_id){
+        List<Produto> produtos = new ArrayList<>();
+        produtos = findAll();
+        for(Produto produto : produtos) {
+            if (produto.getProduct_id().equals(product_id)) return produto;
+        }
+        return null;
+    }
+
+    public List<Produto> getAllProductsByVenderID(String vender_id){
+        List<Produto> allProducts = new ArrayList<>();
+        allProducts = findAll();
+
+        List<Produto> sameIdProducts = new ArrayList<>();
+
+        for(Produto produto : allProducts){
+            if(separateProductId(produto.getProduct_id()).equals(vender_id))
+                sameIdProducts.add(produto);
+        }
+        return sameIdProducts;
+    }
+
+    private String separateProductId(String product_id){
+        String[] id = product_id.split("x");
+
+        return id[0];
+    }
 }

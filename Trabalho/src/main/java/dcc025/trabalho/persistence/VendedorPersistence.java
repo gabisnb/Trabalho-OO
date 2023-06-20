@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.persistence;
 
 import dcc025.trabalho.Usuario.Vendedor;
@@ -23,6 +19,7 @@ public class VendedorPersistence implements Persistence <Vendedor>{
         String json = gson.toJson(itens);
 
         File diretorio = new File(DIRECTORY);
+
         if (!diretorio.exists()) {
             diretorio.mkdirs();
         }
@@ -37,6 +34,7 @@ public class VendedorPersistence implements Persistence <Vendedor>{
         String json = Arquivo.le(PATH);
 
         List<Vendedor> vendedores = new ArrayList<>();
+
         if (!json.trim().equals("")) {
 
             Type tipoLista = new TypeToken<List<Vendedor>>() {
