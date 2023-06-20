@@ -11,7 +11,6 @@ import javax.swing.*;
 
 public class TelaLogin extends Tela{
     
-    private ArrayList<JTextField> tf;
     private JComboBox cbEscolha;
     
     public TelaLogin(){
@@ -87,7 +86,7 @@ public class TelaLogin extends Tela{
         tela.setVisible(false);
     }
     
-    public void abrir(){
+    protected void abrir(){
         tela.setVisible(true);
     }
 }

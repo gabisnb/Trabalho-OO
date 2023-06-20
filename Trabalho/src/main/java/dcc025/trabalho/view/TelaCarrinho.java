@@ -7,6 +7,7 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.*;
 import dcc025.trabalho.model.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.*;
 
@@ -17,15 +18,6 @@ public class TelaCarrinho extends Tela{
     
     private TelaComprador telaComp;
     private TelaLogin menu;
-    
-//    private JLabel jlNome;
-//    private JLabel jlEmail;
-//    private JLabel jlSaldo;
-//    private JLabel jlValorTotal;
-//
-//    private JButton jbComprar;
-//    private JButton jbVoltar;
-//    private JButton jbSair;
     
     private JList<Produto> jlistProdutos;
 
@@ -71,6 +63,12 @@ public class TelaCarrinho extends Tela{
             }
         });
         
+        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                abrirPagamento();
+            }
+        });
+        
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
         painelAux.add(desenhaLista("Produtos no Carrinho"));
@@ -94,4 +92,13 @@ public class TelaCarrinho extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
+    protected void abrirPagamento(){
+        TelaPagamento telaPaga = new TelaPagamento(usuario, this);
+        telaPaga.desenha();
+        tela.setVisible(false);
+    }
+    
+    protected void abrir(){
+        tela.setVisible(true);
+    }
 }

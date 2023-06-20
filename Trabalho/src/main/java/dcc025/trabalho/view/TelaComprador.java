@@ -104,7 +104,7 @@ public class TelaComprador extends Tela{
         labels.get(2).setText("Saldo: "+usuario.getSaldo());
     }
     
-    public void abrir(){
+    protected void abrir(){
         tela.setVisible(true);
     }
     
