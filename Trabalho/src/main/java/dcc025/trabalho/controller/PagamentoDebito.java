@@ -11,26 +11,27 @@ import dcc025.trabalho.Usuario.Comprador;
  * @author gabri
  */
 public class PagamentoDebito extends Pagamento {
-    private final String nomeCompleto;
-    private final String instituicaoFinanceira;
-    private final int tipoConta;  // utilizar select na interface gráfica 
+    private final String nome;
+    private final String instituicao;
+    private final int tipo;  // utilizar select na interface gráfica 
     private final int agencia; 
-    private final String contaComDigito;
+    private final String conta;
     
     public PagamentoDebito(Comprador atual, String nome, String instituicao, int tipo, int agencia, String conta) {
         super(atual);
-        this.nomeCompleto = nome; 
-        this.instituicaoFinanceira = instituicao; 
-        this.tipoConta = tipo;
+        this.nome = nome; 
+        this.instituicao = instituicao; 
+        this.tipo = tipo;
         this.agencia = agencia; 
-        this.contaComDigito = conta;
+        this.conta = conta;
         
     }
     
     public void paga(double valor){
-        
+        System.out.println("Pagamento efetuado no valor de "+ calculaDesconto(valor));
     }
     public double calculaDesconto(double valor){
-        return 0;
+        valor = valor*0.95;
+        return valor;
     }
 }

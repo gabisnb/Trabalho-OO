@@ -3,12 +3,16 @@ package dcc025.trabalho.view;
 import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.*;
 
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
-public class AddProduto {
+public class AddProduto extends Tela{
     
     private SubTipoProduto subtipo; 
     private TiposProdutos tipo;
@@ -18,6 +22,108 @@ public class AddProduto {
     private static int productId = 1;
     private Vendedor vendedor;
     
+    private JSlider jsQuantidadeCor;
+    private JComboBox<Cor> cbCor;
+    private JComboBox<TiposProdutos> cbTipo;
+    private JComboBox<SubTipoProduto> cbSubTipo;
+    private ArrayList<JTextField> tf;
+    
+    public AddProduto(){
+        super.botoes = new ArrayList();
+        super.labels = new ArrayList();
+        tf = new ArrayList<>();
+    }
+    
+    public void desenha(){
+        tela = new JFrame();
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setSize(LARGURA, ALTURA);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
+        tela.setLayout(new BorderLayout());
+        
+        desenhaMenu();
+        
+        tela.pack();
+    }
+    
+    private void desenhaMenu(){
+        JPanel painel = ConfiguraPainelMain("Adicionar Produto");
+        
+        labels.add(new JLabel("Preco: "));
+        labels.add(new JLabel("Tipo: "));
+        labels.add(new JLabel("SubTipo: "));
+        labels.add(new JLabel("Cor: "));
+        labels.add(new JLabel("Quantidade: "));
+        
+        botoes.add(new JButton("Adicionar"));
+        botoes.add(new JButton("Sair"));
+        
+        cbTipo = new JComboBox();
+        cbSubTipo = new JComboBox();
+        
+        cbTipo.addItem(TiposProdutos.ELETRODOMESTICO);
+        cbTipo.addItem(TiposProdutos.MATERIAL_ESCRITORIO);
+        cbTipo.addItem(TiposProdutos.MOVEL);
+        cbTipo.addItem(TiposProdutos.ROUPAS);
+        cbTipo.addItem(TiposProdutos.N_A);
+        
+        JPanel panel = desenhaTF(1, 20, tf);
+        panel.add(cbTipo);
+        panel.add(cbSubTipo);
+        panel.add(desenhaCB());
+        panel.add(desenhaJS());
+        
+        JPanel painelAux = new JPanel();
+        painelAux.add(desenhaLabel(labels));
+        painelAux.add(panel);
+        painel.add(painelAux, BorderLayout.CENTER);
+
+        JPanel bpainel = new JPanel();
+        
+        //Botões Adicionar e Sair
+        bpainel.add(desenhaBotoes(botoes));
+        painel.add(bpainel, BorderLayout.PAGE_END);
+        
+        tela.getContentPane().add(painel, BorderLayout.CENTER);
+    }
+    
+    private JPanel desenhaCB(){
+        JPanel painelCB = new JPanel();
+        painelCB.setLayout(new GridLayout(0,1, 5, 4));
+        
+        cbCor = new JComboBox<>();
+        cbCor.addItem(Cor.AMARELO);
+        cbCor.addItem(Cor.AZUL);
+        cbCor.addItem(Cor.AZUL_CLARO);
+        cbCor.addItem(Cor.BRANCO);
+        cbCor.addItem(Cor.CIANO);
+        cbCor.addItem(Cor.CINZA);
+        cbCor.addItem(Cor.LARANJA);
+        cbCor.addItem(Cor.MAJENTA);
+        cbCor.addItem(Cor.PRETO);
+        cbCor.addItem(Cor.ROSA);
+        cbCor.addItem(Cor.ROXO);
+        cbCor.addItem(Cor.VERDE);
+        cbCor.addItem(Cor.VERDE_CLARO);
+        cbCor.addItem(Cor.VERMELHO);
+        
+        painelCB.add(cbCor);
+        
+        return painelCB;
+    }
+    
+    private JPanel desenhaJS(){
+        JPanel painelJS = new JPanel();
+        painelJS.setLayout(new GridLayout(0,1, 5, 4));
+        
+        jsQuantidadeCor = new JSlider(1, 100);
+        
+        painelJS.add(jsQuantidadeCor);
+        
+        return painelJS;
+    }
+
     public AddProduto(Vendedor vendedor){
         this.vendedor = vendedor;
         this.productId++;

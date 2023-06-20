@@ -2,6 +2,8 @@ package dcc025.trabalho.persistence;
 import java.io.*;
 
 public class Arquivo {
+
+
     public static String le(String filePath) {
         StringBuilder content = new StringBuilder();
 

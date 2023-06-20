@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dcc025.trabalho.persistence;
 
 import dcc025.trabalho.Usuario.Comprador;
@@ -9,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 
-public class CompradorPersistence implements Persistence<Comprador> {
 
+public class CompradorPersistence implements Persistence<Comprador>{
     private static final String PATH = DIRECTORY + File.separator + "compradores.json";
+
     @Override
     public void save(List<Comprador> itens){
         Gson gson = new Gson();
@@ -41,5 +46,6 @@ public class CompradorPersistence implements Persistence<Comprador> {
                 compradores = new ArrayList<>();
         }
 
-        return compradores;
+        return compradores;   
+    }
 }

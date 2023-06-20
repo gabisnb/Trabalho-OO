@@ -5,30 +5,12 @@
     <artifactId>Trabalho</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <name>Trabalho</name>
-    <!-- FIXME change it to the project's website -->
-    <url>https://github.com/gabisnb/Trabalho-OO</url>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <exec.mainClass>dcc025.trabalho.Main</exec.mainClass>
+        <exec.mainClass>dcc025.trabalho.Trabalho</exec.mainClass>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10</version>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -36,12 +18,12 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>dcc025.trabalho.Main</mainClass>
+                            <mainClass>dcc025.trabalho.Trabalho</mainClass>
                         </manifest>
                     </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
                 </configuration>
                 <executions>
                     <execution>
@@ -55,5 +37,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

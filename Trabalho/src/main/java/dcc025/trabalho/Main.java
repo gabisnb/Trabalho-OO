@@ -1,8 +1,20 @@
 package dcc025.trabalho;
+import dcc025.trabalho.view.*;
+import dcc025.trabalho.Usuario.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        
+        TelaLogin login = new TelaLogin();
+        login.desenha();
+//        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));
+//        compra.desenha();
+//        TelaVende vende = new TelaVende(null, new Vendedor("teste", "teste", "teste"));
+//        vende.desenha();
+//        TelaCarrinho tela = new TelaCarrinho(new Comprador("teste", "teste", "teste"));
+//        tela.desenha();
+        
         /* Scanner teclado = new Scanner(System.in);
         int tipoUsuario; 
         String nome, email, senha;
