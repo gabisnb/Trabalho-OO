@@ -23,6 +23,10 @@ public class Produto{
         this.subtipo = subtipo;
         this.product_id = id;
     }
+
+    public String getProduct_id() {
+        return product_id;
+    }
     
     public double getPreco() {return preco;}
     

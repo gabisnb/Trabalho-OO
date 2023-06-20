@@ -4,20 +4,21 @@
  */
 package dcc025.trabalho.persistence;
 
+import dcc025.trabalho.Usuario.Vendedor;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
-import dcc025.trabalho.model.Produto;
 
-public class ProdutoPersistence implements Persistence <Produto>{
+public class VendedorPersistence implements Persistence <Vendedor>{
 
-    private static final String PATH = DIRECTORY + File.separator + "produto.json";
+    private static final String PATH = DIRECTORY + File.separator + "vendedores.json";
 
     @Override
-    public void save(List<Produto> itens) {
+    public void save(List<Vendedor> itens) {
         Gson gson = new Gson();
         String json = gson.toJson(itens);
 
@@ -30,23 +31,23 @@ public class ProdutoPersistence implements Persistence <Produto>{
     }
 
     @Override
-    public List<Produto> findAll() {
+    public List<Vendedor> findAll() {
         Gson gson = new Gson();
 
         String json = Arquivo.le(PATH);
 
-        List<Produto> produtos = new ArrayList<>();
+        List<Vendedor> vendedores = new ArrayList<>();
         if (!json.trim().equals("")) {
 
-            Type tipoLista = new TypeToken<List<Produto>>() {
+            Type tipoLista = new TypeToken<List<Vendedor>>() {
             }.getType();
-            produtos = gson.fromJson(json, tipoLista);
+            vendedores = gson.fromJson(json, tipoLista);
 
-            if (produtos == null) {
-                produtos = new ArrayList<>();
+            if (vendedores == null) {
+                vendedores = new ArrayList<>();
             }
         }
 
-        return produtos;
+        return vendedores;
     }
 }

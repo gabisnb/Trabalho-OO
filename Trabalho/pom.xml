@@ -11,6 +11,19 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>dcc025.trabalho.Main</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -21,9 +34,9 @@
                             <mainClass>dcc025.trabalho.Main</mainClass>
                         </manifest>
                     </archive>
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
                 <executions>
                     <execution>
