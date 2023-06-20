@@ -38,10 +38,19 @@ public class AddProduto extends Tela{
         vendedor = vend;
     }
     
+    @Override
+    protected JPanel ConfiguraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA-(ALTURA/3)));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
+    }
+    
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setSize(LARGURA, ALTURA);
+        tela.setSize(LARGURA, ALTURA-(ALTURA/3));
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
@@ -97,15 +106,57 @@ public class AddProduto extends Tela{
         cbTipo.addItem(TiposProdutos.ROUPAS);
         cbTipo.addItem(TiposProdutos.N_A);
         
-        JPanel panel = new JPanel();
-        panel.add(cbTipo);
-        panel.add(cbSubTipo);
-        panel.add(desenhaCB());
-        panel.add(desenhaTF(2, 20, tf));
+//        JPanel panel = new JPanel();
+//        panel.add(labels.get(0));
+//        panel.add(cbTipo);
+//        panel.add(cbSubTipo);
+//        panel.add(desenhaCB());
+//        panel.add(desenhaTF(2, 20, tf));
+
+//        JPanel pTipo = new JPanel();
+//        pTipo.add(labels.get(0));
+//        pTipo.add(cbTipo);
+//        
+//        JPanel pSubTipo = new JPanel();
+//        pSubTipo.add(labels.get(1));
+//        pSubTipo.add(cbSubTipo);
+//        
+//        JPanel painelAux = new JPanel();
+//        //painelAux.add(desenhaLabel(labels));
+//        painelAux.setLayout(new GridLayout(4,1, 0, 2));
+//        painelAux.add(pTipo);
+//        painelAux.add(pSubTipo);
+//        painelAux.add(desenhaCB(), BorderLayout.CENTER);
+//        
+//        desenhaTF(2, 20, tf);
+        
+        JPanel jpLabels = new JPanel();
+        jpLabels.setLayout(new GridLayout(5,1, 5, 4));
+        for(int i=0; i<5; i++)
+            jpLabels.add(labels.get(i));
+        
+        JPanel jpCBTF = new JPanel();
+        jpCBTF.setLayout(new GridLayout(5,1, 0, 5));
+        jpCBTF.add(cbTipo);
+        jpCBTF.add(cbSubTipo);
+        jpCBTF.add(desenhaCB());
+        desenhaTF(2, 20, tf);
+        jpCBTF.add(tf.get(0));
+        jpCBTF.add(tf.get(1));
+        
+//        jpLabels.add(labels.get(3));
+//        jpLabels.add(labels.get(4));
+        
+//        JPanel jpTF = new JPanel();
+//        jpTF.setLayout(new GridLayout(2,1, 0, 2));
+//        jpTF.add(tf.get(0));
+//        jpTF.add(tf.get(1));
         
         JPanel painelAux = new JPanel();
-        painelAux.add(desenhaLabel(labels));
-        painelAux.add(panel);
+        painelAux.setLayout(new GridLayout(1,2, 5, 2));
+        painelAux.add(jpLabels);
+        painelAux.add(jpCBTF);
+        
         painel.add(painelAux, BorderLayout.CENTER);
 
         JPanel bpainel = new JPanel();
@@ -156,9 +207,9 @@ public class AddProduto extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    private JPanel desenhaCB(){
-        JPanel painelCB = new JPanel();
-        painelCB.setLayout(new GridLayout(0,1, 5, 4));
+    private JComboBox desenhaCB(){
+//        JPanel painelCB = new JPanel();
+        //painelCB.setLayout(new GridLayout(0,1, 5, 4));
         
         cbCor = new JComboBox<>();
         cbCor.addItem(Cor.AMARELO);
@@ -176,9 +227,9 @@ public class AddProduto extends Tela{
         cbCor.addItem(Cor.VERDE_CLARO);
         cbCor.addItem(Cor.VERMELHO);
         
-        painelCB.add(cbCor);
+//        painelCB.add(cbCor);
         
-        return painelCB;
+        return cbCor;
     }
 
     private void setPreco(double preco){this.preco = preco;}
