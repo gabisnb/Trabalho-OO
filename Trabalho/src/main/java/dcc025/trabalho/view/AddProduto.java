@@ -15,11 +15,11 @@ import java.awt.event.ItemEvent;
 
 public class AddProduto extends Tela{
     
-    private SubTipoProduto subtipo; 
-    private TiposProdutos tipo;
-    private Map<Cor, Integer> qCor = new HashMap<>();
+    private SubTipoProduto subtipo = SubTipoProduto.N_A; 
+    private TiposProdutos tipo = TiposProdutos.ELETRODOMESTICO;
+    private Cor qCor = Cor.AMARELO;
     private double preco = 0;
-    private int quantidadeTotal = 0;
+    private int quantidade = 0;
     private static int productId = 1;
     
     private Vendedor vendedor;
@@ -78,32 +78,13 @@ public class AddProduto extends Tela{
         //Adicionar
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                int selected = cbTipo.getSelectedIndex();
-                switch(selected){
-                    case 0:
-                        carregaCbEletrodomestico();
-                        break;
-                    case 1:
-                        setTipoEscritorio();
-                        break;
-                    case 2:
-                        setTipoMovel();
-                        break;
-                    case 3:
-                        setTipoRoupa();
-                        break;
-                }
-                
-                selected = cbSubTipo.getSelectedIndex();
-                switch(selected){
-                    //socorro
-                }
-                
                 String input = tf.get(0).getText();
                 preco = Double.parseDouble(input);
                 
                 input = tf.get(1).getText();
-                quantidadeTotal = Integer.parseInt(input);
+                quantidade = Integer.parseInt(input);
+                
+                adicionaProduto();
             }
         });
         //Sair
@@ -170,6 +151,58 @@ public class AddProduto extends Tela{
         cbCor.addItem(Cor.VERDE_CLARO);
         cbCor.addItem(Cor.VERMELHO);
         
+        //Adiciona eventListener
+        cbCor.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        qCor = Cor.AMARELO;
+                        break;
+                    case 1:
+                        qCor = Cor.AZUL;
+                        break;
+                    case 2:
+                        qCor = Cor.AZUL_CLARO;
+                        break;
+                    case 3:
+                        qCor = Cor.BRANCO;
+                        break;
+                    case 4:
+                        qCor = Cor.CIANO;
+                        break;
+                    case 5:
+                        qCor = Cor.CINZA;
+                        break;
+                    case 6:
+                        qCor = Cor.LARANJA;
+                        break;
+                    case 7:
+                        qCor = Cor.MAJENTA;
+                        break;
+                    case 8:
+                        qCor = Cor.PRETO;
+                        break;
+                    case 9:
+                        qCor = Cor.ROSA;
+                        break;
+                    case 10:
+                        qCor = Cor.ROXO;
+                        break;
+                    case 11:
+                        qCor = Cor.VERDE;
+                        break;
+                    case 12:
+                        qCor = Cor.VERDE_CLARO;
+                        break;
+                    case 13:
+                        qCor = Cor.VERMELHO;
+                        break;
+                }
+            }
+        });
+        
         return cbCor;
     }
     
@@ -190,15 +223,19 @@ public class AddProduto extends Tela{
                 int selected = cbTipo.getSelectedIndex();
                 switch(selected){
                     case 0:
+                        setTipoEletrodomestico();
                         carregaCbEletrodomestico();
                         break;
                     case 1:
+                        setTipoEscritorio();
                         carregaCbEscritorio();
                         break;
                     case 2:
+                        setTipoMovel();
                         carregaCbMovel();
                         break;
                     case 3:
+                        setTipoRoupa();
                         carregaCbRoupa();
                         break;
                 }
@@ -214,6 +251,9 @@ public class AddProduto extends Tela{
         //Adiciona itens default
         carregaCbEletrodomestico();
         
+        //Adiciona eventListener
+        
+        
         return cbSubTipo;
     }
     
@@ -227,6 +267,33 @@ public class AddProduto extends Tela{
         cbSubTipo.addItem(SubTipoProduto.COMPUTADOR);
         cbSubTipo.addItem(SubTipoProduto.TV);
         cbSubTipo.addItem(SubTipoProduto.MAQUINA_DE_LAVAR);
+                
+        cbSubTipo.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbSubTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoEletrodomesticoGeladeira();
+                        break;
+                    case 2:
+                        setTipoEletrodomesticoFogao();
+                        break;
+                    case 3:
+                        setTipoEletrodomesticoComputador();
+                        break;
+                    case 4:
+                        setTipoEletrodomesticoTV();
+                        break;
+                    case 5:
+                        setTipoEletrodomesticoMaquina();
+                        break;
+                }
+            }
+        });
     }
     
     private void carregaCbEscritorio(){
@@ -269,20 +336,22 @@ public class AddProduto extends Tela{
 
     private void setPreco(double preco){this.preco = preco;}
     
-    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
+//    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
 
     
-    private void getQuantidadeTotal()
-    {
-        for(Cor aux : Cor.values()){
-            quantidadeTotal += qCor.get(aux);
-        }
-    }
+//    private void getQuantidadeTotal()
+//    {
+//        for(Cor aux : Cor.values()){
+//            quantidade += qCor.get(aux);
+//        }
+//    }
     
     private void adicionaProduto(){
         try{
             productId++;
-            Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
+            Map<Cor, Integer> cor = new HashMap<>();
+            cor.put(qCor, quantidade);
+            Produto produto = new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
             this.vendedor.adicionarProduto(produto);
             telaAnterior.addProduto(produto);
         }
