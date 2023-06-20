@@ -86,7 +86,7 @@ public class TelaLogin extends Tela{
         tela.setVisible(false);
     }
     
-    public void abrir(){
+    protected void abrir(){
         tela.setVisible(true);
     }
 }
