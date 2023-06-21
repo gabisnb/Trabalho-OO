@@ -2,25 +2,22 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.util.*;
 import javax.swing.*;
 
 
 public class TelaPagamento extends Tela{
     
-    private Comprador usuario;
-    private TelaCarrinho telaAnterior;
+    private final Comprador usuario;
+    private final TelaCarrinho telaAnterior;
     
     private JComboBox cbEscolha;
-    
-    private JButton jbPagar;
-    private JButton jbCancelar;
     
     public TelaPagamento(Comprador comp, TelaCarrinho carrinho){
         usuario = comp;
         telaAnterior = carrinho;
         super.labels = new ArrayList();
+        super.botoes = new ArrayList();
     }
     
     public void desenha(){
@@ -45,7 +42,7 @@ public class TelaPagamento extends Tela{
         labels.add(new JLabel("Valor por Saldo:   R$"));
         
         cbEscolha = new JComboBox<>();
-        cbEscolha.addItem("Modo de Pagamento");
+        cbEscolha.addItem("Metodo de Pagamento");
         cbEscolha.addItem("Credito");
         cbEscolha.addItem("Debito");
         cbEscolha.addItem("Saldo");
@@ -54,25 +51,50 @@ public class TelaPagamento extends Tela{
         painelAux.add(desenhaLabel(labels));
         painel.add(painelAux, BorderLayout.CENTER);
         painel.add(cbEscolha, BorderLayout.BEFORE_FIRST_LINE);
+
         
-        JPanel bpainel = new JPanel();
+        botoes.add(new JButton("Cancelar"));
+        botoes.add(new JButton("Ir para Pagamento"));
         
-        jbCancelar = new JButton("Cancelar");
-        bpainel.add(jbCancelar);
-//        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-//            @Override
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                tela.dispose();
-//                telaAnterior.abrir();
-//            }
-//        });
+        botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
+            tela.dispose();
+            telaAnterior.abrir();
+        });
         
-        jbPagar = new JButton("Ir para Pagamento");
-        bpainel.add(jbPagar);
+        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
+            pagar();
+        });
         
-        painel.add(bpainel, BorderLayout.PAGE_END);
+        painel.add(desenhaBotoes(botoes), BorderLayout.PAGE_END);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
+    }
+    
+    private void pagar(){
+        
+        int opcao = cbEscolha.getSelectedIndex();
+        
+        switch(opcao){
+            case 0 ->{
+                //Implementar caso esteja como "Metodo de Pagamento"
+                JOptionPane.showMessageDialog(null, "Escolha o Metodo de Pagamento para prosseguir");
+            }
+            case 1 ->{
+                tela.dispose();
+                TelaPagamentoCredito credito = new TelaPagamentoCredito(this);
+                credito.desenha();
+            }
+            case 2 ->{
+                tela.dispose();
+                TelaPagamentoDebito debito = new TelaPagamentoDebito(this);
+                debito.desenha();
+            }
+            case 3 ->{
+                tela.dispose();
+                TelaPagamentoSaldoLoja saldo = new TelaPagamentoSaldoLoja(usuario, this);
+                saldo.desenha();
+            }
+        } 
     }
     
     protected void abrir(){

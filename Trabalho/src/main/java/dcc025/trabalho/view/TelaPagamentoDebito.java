@@ -2,20 +2,20 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoDebito;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 
 
-public class TelaPagamentoDebito extends Tela{
+public class TelaPagamentoDebito extends Tela{    
     
-    private ArrayList<JTextField> tf;  //Instituicao, Nome, TipoConta, Agencia
+    private final TelaPagamento telaAnterior;
     
-    private JButton jbCancelar;
-    private JButton jbPagar;
-    
-    public TelaPagamentoDebito(){
+    public TelaPagamentoDebito(TelaPagamento telaPagamento){
+        super.tf = new ArrayList();
         super.labels = new ArrayList();
+        super.botoes = new ArrayList();
+        telaAnterior = telaPagamento;
     }
     
     public void desenha(){
@@ -45,13 +45,16 @@ public class TelaPagamentoDebito extends Tela{
         painelAux.add(desenhaTF(5, 20, tf));
         painel.add(painelAux, BorderLayout.CENTER);
         
-        JPanel bpainel = new JPanel();
-        jbCancelar = new JButton("Cancelar");
-        bpainel.add(jbCancelar);
-        jbPagar = new JButton("Finalizar Pagamento");
-        bpainel.add(jbPagar);
         
-        painel.add(bpainel, BorderLayout.SOUTH);
+        botoes.add(new JButton("Cancelar"));
+        botoes.add(new JButton("Finalizar Pagamento"));
+        
+        botoes.get(0).addActionListener((ActionEvent e) -> {
+            tela.dispose();
+            telaAnterior.abrir();
+        });
+        
+        painel.add(desenhaBotoes(botoes), BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
