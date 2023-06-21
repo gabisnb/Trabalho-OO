@@ -27,7 +27,7 @@ public abstract class Pessoa {
         this.email = email;
     }
 
-    private String getSenha() {
+    public String getSenha() {
         return senha;
     }
 

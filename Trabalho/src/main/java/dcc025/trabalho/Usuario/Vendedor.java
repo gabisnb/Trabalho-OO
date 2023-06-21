@@ -28,5 +28,4 @@ public class Vendedor extends Pessoa {
     public List<Produto> getListaProdutos(){
         return this.loja;
     }
-
 }

@@ -122,7 +122,7 @@ public class TelaVendedor extends Tela{
             carregaProdutos(usuario.getListaProdutos());
         }
         catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Houve um erro!");
         }
     }
 //
@@ -139,7 +139,6 @@ public class TelaVendedor extends Tela{
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario);
         telaAddProd.desenha();
-        tela.setVisible(false);
     }
     
     public void abrir(){

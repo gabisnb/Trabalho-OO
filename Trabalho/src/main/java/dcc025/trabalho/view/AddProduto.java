@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.*;
 
 import dcc025.trabalho.Usuario.Vendedor;
+import dcc025.trabalho.controller.AdicionarProduto;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import java.awt.BorderLayout;
@@ -22,8 +23,8 @@ public class AddProduto extends Tela{
     private int quantidade = 0;
     private static int productId = 1;
     
-    private Vendedor vendedor;
-    private TelaVendedor telaAnterior;
+    private final Vendedor vendedor;
+    private final TelaVendedor telaAnterior;
     
     private JComboBox<Cor> cbCor;
     private JComboBox<TiposProdutos> cbTipo;
@@ -49,7 +50,7 @@ public class AddProduto extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA-(ALTURA/3));
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
@@ -76,22 +77,11 @@ public class AddProduto extends Tela{
         
         //Configuração dos botões
         //Adicionar
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                String input = tf.get(0).getText();
-                preco = Double.parseDouble(input);
-                
-                input = tf.get(1).getText();
-                quantidade = Integer.parseInt(input);
-                
-                adicionaProduto();
-            }
-        });
+        botoes.get(0).addActionListener(new AdicionarProduto(telaAnterior, this));
         //Sair
         botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                telaAnterior.abrir();
-                tela.dispose();
+                fechar();
             }
         });
         
@@ -336,6 +326,20 @@ public class AddProduto extends Tela{
 
     private void setPreco(double preco){this.preco = preco;}
     
+    public Produto getProduto(){
+        Map<ListaQuantidadeCor.Cor, Integer> cor = new HashMap<>();
+        cor.put(qCor, quantidade);
+        String input = tf.get(0).getText();
+        preco = Double.parseDouble(input);
+        input = tf.get(1).getText();
+        quantidade = Integer.parseInt(input);
+        return new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId());
+    }
+    
+    public void fechar(){
+        tela.dispose();
+    }
+    
 //    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
 
     
@@ -345,24 +349,6 @@ public class AddProduto extends Tela{
 //            quantidade += qCor.get(aux);
 //        }
 //    }
-    
-    private void adicionaProduto(){
-        try{
-            productId++;
-            Map<Cor, Integer> cor = new HashMap<>();
-            cor.put(qCor, quantidade);
-            Produto produto = new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
-            this.vendedor.adicionarProduto(produto);
-            telaAnterior.addProduto(produto);
-        }
-        catch(Exception e){
-            
-        }
-        finally{
-            this.tela.dispose();
-            telaAnterior.abrir();
-        }
-    }
 
 /////////////////////// - Sets para Tipo de Produto /////////////////////////////////////////////////
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}

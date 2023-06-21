@@ -1,10 +1,17 @@
 package dcc025.trabalho;
 import dcc025.trabalho.view.*;
 import dcc025.trabalho.Usuario.*;
+import dcc025.trabalho.persistence.VendedorPersistence;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        
+        VendedorPersistence persistence =  new VendedorPersistence();
+//        List<Vendedor> list = new ArrayList();
+//        list.add(new Vendedor("Maria", "teste@gmail.com", "1234"));
+//        persistence.save(list);
         
         TelaLogin login = new TelaLogin();
         login.desenha();
