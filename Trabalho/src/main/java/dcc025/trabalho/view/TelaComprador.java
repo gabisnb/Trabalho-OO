@@ -5,6 +5,7 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
+import dcc025.trabalho.controller.GerenciaCompradores;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -13,12 +14,14 @@ import dcc025.trabalho.controller.GerenciarVendedores;
 
 
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.persistence.CompradorPersistence;
+import dcc025.trabalho.persistence.Persistence;
 
 public class TelaComprador extends Tela{
     
     private TelaLogin menu;
     
-    private Comprador usuario;
+    private final Comprador usuario;
     
     private JList<Vendedor> jlistVendedores;
 
@@ -31,6 +34,7 @@ public class TelaComprador extends Tela{
     
     public void desenha(){
         tela = new JFrame();
+        tela.addWindowListener(new GerenciaCompradores(usuario));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setLocationRelativeTo(null);
@@ -99,6 +103,13 @@ public class TelaComprador extends Tela{
     }
     
     public void carrega(){
+        //Salvando dados
+        Persistence<Comprador> persistence = new CompradorPersistence();
+        java.util.List<Comprador> comprador =  new ArrayList();
+        comprador.add(this.usuario);
+        persistence.save(comprador);
+        
+        //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
         labels.get(2).setText("Saldo: "+usuario.getSaldo());

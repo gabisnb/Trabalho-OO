@@ -1,6 +1,7 @@
 package dcc025.trabalho;
 import dcc025.trabalho.view.*;
 import dcc025.trabalho.Usuario.*;
+import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 import java.util.*;
 
@@ -8,9 +9,14 @@ public class Main {
 
     public static void main(String[] args) {
         
-        VendedorPersistence persistence =  new VendedorPersistence();
+//        VendedorPersistence persistence =  new VendedorPersistence();
 //        List<Vendedor> list = new ArrayList();
-//        list.add(new Vendedor("Maria", "teste@gmail.com", "1234"));
+//        list.add(new Vendedor("t", "t", "t"));
+//        persistence.save(list);
+
+//        CompradorPersistence persistence =  new CompradorPersistence();
+//        List<Comprador> list = new ArrayList();
+//        list.add(new Comprador("t", "t", "t", 100.00));
 //        persistence.save(list);
         
         TelaLogin login = new TelaLogin();

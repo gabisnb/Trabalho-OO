@@ -72,8 +72,8 @@ public class TelaLogin extends Tela{
         int opcao = cbEscolha.getSelectedIndex();
         if(opcao==0){
             //implementar verificação de dados
-            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
-            comprador.desenha();
+//            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
+//            comprador.desenha();
         }
         else{
             //implementar verificação de dados
@@ -86,6 +86,12 @@ public class TelaLogin extends Tela{
     public void entrarVendedor(Vendedor vendedor){
         TelaVendedor telaVendedor = new TelaVendedor(this, vendedor);
         telaVendedor.desenha();
+        tela.setVisible(false);
+    }
+    
+    public void entrarComprador(Comprador comprador){
+        TelaComprador telaComprador = new TelaComprador(this, comprador);
+        telaComprador.desenha();
         tela.setVisible(false);
     }
     
