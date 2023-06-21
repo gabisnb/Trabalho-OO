@@ -23,5 +23,9 @@ public class Vendedor extends Pessoa {
         loja.add(produto);
     }
     public String getId(){ return user_id.toString(); }
-
+    
+    //Função adicionada apenas para testagem da adição de produto, mudar depois
+    public List<Produto> getListaProdutos(){
+        return this.loja;
+    }
 }

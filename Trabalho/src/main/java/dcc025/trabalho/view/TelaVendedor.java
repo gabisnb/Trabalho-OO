@@ -78,6 +78,23 @@ public class TelaVendedor extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
+    @Override
+    protected JPanel desenhaLista(String string){
+
+        JPanel painel = new JPanel();
+        painel.setBorder(BorderFactory.createTitledBorder(string));
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
+        painel.setLayout(new BorderLayout());
+
+        DefaultListModel<Produto> model = new DefaultListModel<>();
+
+        jlistProdutos = new JList<>(model);
+
+        painel.add(new JScrollPane(jlistProdutos), BorderLayout.CENTER);
+
+        return painel;
+    }
+    
     public void carregaProdutos(java.util.List<Produto> produtos){
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         
@@ -102,9 +119,10 @@ public class TelaVendedor extends Tela{
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         try {
             model.addElement(produto);
+            carregaProdutos(usuario.getListaProdutos());
         }
         catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Houve um erro!");
         }
     }
 //
@@ -121,7 +139,6 @@ public class TelaVendedor extends Tela{
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario);
         telaAddProd.desenha();
-        tela.setVisible(false);
     }
     
     public void abrir(){

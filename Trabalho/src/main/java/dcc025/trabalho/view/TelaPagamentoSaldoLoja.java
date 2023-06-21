@@ -3,7 +3,7 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.controller.PagamentoSaldoLoja;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.*;
 
@@ -11,14 +11,15 @@ import javax.swing.*;
 
 public class TelaPagamentoSaldoLoja extends Tela{
     
-    private Comprador usuario;
+    private final Comprador usuario;
     
-    private JButton jbCancelar;
-    private JButton jbPagar;
+    private final TelaPagamento telaAnterior;
     
-    public TelaPagamentoSaldoLoja(Comprador comprador){
+    public TelaPagamentoSaldoLoja(Comprador comprador, TelaPagamento telaPagamento){
         super.labels = new ArrayList();
+        super.botoes = new ArrayList();
         usuario = comprador;
+        telaAnterior = telaPagamento;
     }
     
     public void desenha(){
@@ -44,13 +45,16 @@ public class TelaPagamentoSaldoLoja extends Tela{
         painelAux.add(desenhaLabel(labels));
         painel.add(painelAux, BorderLayout.CENTER);
         
-        JPanel bpainel = new JPanel();
-        jbCancelar = new JButton("Cancelar");
-        bpainel.add(jbCancelar);
-        jbPagar = new JButton("Finalizar Pagamento");
-        bpainel.add(jbPagar);
         
-        painel.add(bpainel, BorderLayout.SOUTH);
+        botoes.add(new JButton("Cancelar"));
+        botoes.add(new JButton("Finalizar Pagamento"));
+        
+        botoes.get(0).addActionListener((ActionEvent e) -> {
+            tela.dispose();
+            telaAnterior.abrir();
+        });
+        
+        painel.add(desenhaBotoes(botoes), BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }

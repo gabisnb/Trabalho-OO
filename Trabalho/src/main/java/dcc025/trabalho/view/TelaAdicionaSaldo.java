@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class TelaAdicionaSaldo extends Tela{
     
-    private Comprador usuario;
+    private final Comprador usuario;
     private TelaComprador tComprador;
     
     private ArrayList<JTextField> tf;

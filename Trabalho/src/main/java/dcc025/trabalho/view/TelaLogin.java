@@ -5,6 +5,7 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
+import dcc025.trabalho.controller.Entrar;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -56,11 +57,7 @@ public class TelaLogin extends Tela{
         //Botão Entrar
         botoes.add(new JButton("Entrar"));
         //Configuração
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                entrar();
-            }
-        });
+        botoes.get(0).addActionListener(new Entrar(this));
         
         bpainel.add(botoes.get(0));
         painel.add(bpainel, BorderLayout.SOUTH);
@@ -75,8 +72,8 @@ public class TelaLogin extends Tela{
         int opcao = cbEscolha.getSelectedIndex();
         if(opcao==0){
             //implementar verificação de dados
-            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
-            comprador.desenha();
+//            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
+//            comprador.desenha();
         }
         else{
             //implementar verificação de dados
@@ -84,6 +81,31 @@ public class TelaLogin extends Tela{
             vendedor.desenha();
         }
         tela.setVisible(false);
+    }
+    
+    public void entrarVendedor(Vendedor vendedor){
+        TelaVendedor telaVendedor = new TelaVendedor(this, vendedor);
+        telaVendedor.desenha();
+        tela.setVisible(false);
+    }
+    
+    public void entrarComprador(Comprador comprador){
+        TelaComprador telaComprador = new TelaComprador(this, comprador);
+        telaComprador.desenha();
+        tela.setVisible(false);
+    }
+    
+    public int getSelectedUsuario(){
+        return cbEscolha.getSelectedIndex();
+    }
+    
+    public String [] getInfo(){
+        String [] info = new String[3];
+        info[0] = tf.get(0).getText();
+        info[1] = tf.get(1).getText();
+        info[2] = tf.get(2).getText();
+        
+        return info;
     }
     
     protected void abrir(){

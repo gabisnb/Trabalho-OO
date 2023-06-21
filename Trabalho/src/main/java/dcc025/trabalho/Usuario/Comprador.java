@@ -16,9 +16,9 @@ public class Comprador extends Pessoa {
     private double saldo;
     private CarrinhoCompras carrinho;
 
-    public Comprador(String nome, String email, String senha) {
+    public Comprador(String nome, String email, String senha, double saldo) {
         super(nome, email, senha);
-        this.saldo = 100.00;
+        this.saldo = saldo;
         this.carrinho = new CarrinhoCompras();
     }
 

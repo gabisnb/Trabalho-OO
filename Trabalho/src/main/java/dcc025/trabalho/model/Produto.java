@@ -44,4 +44,5 @@ public class Produto{
      
     public String getTipo(){return this.tipo.toString();}
     public String setSubTipo(){return this.subtipo.toString();}
+    
 }

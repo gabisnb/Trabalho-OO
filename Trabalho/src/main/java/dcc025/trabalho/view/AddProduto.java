@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.*;
 
 import dcc025.trabalho.Usuario.Vendedor;
+import dcc025.trabalho.controller.AdicionarProduto;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import java.awt.BorderLayout;
@@ -15,15 +16,15 @@ import java.awt.event.ItemEvent;
 
 public class AddProduto extends Tela{
     
-    private SubTipoProduto subtipo; 
-    private TiposProdutos tipo;
-    private Map<Cor, Integer> qCor = new HashMap<>();
+    private SubTipoProduto subtipo = SubTipoProduto.N_A; 
+    private TiposProdutos tipo = TiposProdutos.ELETRODOMESTICO;
+    private Cor qCor = Cor.AMARELO;
     private double preco = 0;
-    private int quantidadeTotal = 0;
+    private int quantidade = 0;
     private static int productId = 1;
     
-    private Vendedor vendedor;
-    private TelaVendedor telaAnterior;
+    private final Vendedor vendedor;
+    private final TelaVendedor telaAnterior;
     
     private JComboBox<Cor> cbCor;
     private JComboBox<TiposProdutos> cbTipo;
@@ -49,7 +50,7 @@ public class AddProduto extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA-(ALTURA/3));
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
@@ -63,155 +64,68 @@ public class AddProduto extends Tela{
     private void desenhaMenu(){
         JPanel painel = ConfiguraPainelMain("Adicionar Produto");
         
+        //Cria labels
         labels.add(new JLabel("Tipo: "));
         labels.add(new JLabel("SubTipo: "));
         labels.add(new JLabel("Cor: "));
         labels.add(new JLabel("Preco: "));
         labels.add(new JLabel("Quantidade: "));
         
+        //Cria botões
         botoes.add(new JButton("Adicionar"));
-        
-        //Configuração do botão Sair
         botoes.add(new JButton("Sair"));
         
-        cbTipo = new JComboBox();
-        cbTipo.addItemListener(new java.awt.event.ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                int selected = cbTipo.getSelectedIndex();
-                switch(selected){
-                    case 0:
-                        carregaCbEletrodomestico();
-                        break;
-                    case 1:
-                        setTipoEscritorio();
-                        break;
-                    case 2:
-                        carregaCbMovel();
-                        break;
-                    case 3:
-                        setTipoRoupa();
-                        break;
-                }
-                
+        //Configuração dos botões
+        //Adicionar
+        botoes.get(0).addActionListener(new AdicionarProduto(telaAnterior, this));
+        //Sair
+        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                fechar();
             }
         });
         
-        cbSubTipo = new JComboBox();
-        carregaCbEletrodomestico();
-        
-        cbTipo.addItem(TiposProdutos.ELETRODOMESTICO);
-        cbTipo.addItem(TiposProdutos.MATERIAL_ESCRITORIO);
-        cbTipo.addItem(TiposProdutos.MOVEL);
-        cbTipo.addItem(TiposProdutos.ROUPAS);
-        cbTipo.addItem(TiposProdutos.N_A);
-        
-//        JPanel panel = new JPanel();
-//        panel.add(labels.get(0));
-//        panel.add(cbTipo);
-//        panel.add(cbSubTipo);
-//        panel.add(desenhaCB());
-//        panel.add(desenhaTF(2, 20, tf));
-
-//        JPanel pTipo = new JPanel();
-//        pTipo.add(labels.get(0));
-//        pTipo.add(cbTipo);
-//        
-//        JPanel pSubTipo = new JPanel();
-//        pSubTipo.add(labels.get(1));
-//        pSubTipo.add(cbSubTipo);
-//        
-//        JPanel painelAux = new JPanel();
-//        //painelAux.add(desenhaLabel(labels));
-//        painelAux.setLayout(new GridLayout(4,1, 0, 2));
-//        painelAux.add(pTipo);
-//        painelAux.add(pSubTipo);
-//        painelAux.add(desenhaCB(), BorderLayout.CENTER);
-//        
-//        desenhaTF(2, 20, tf);
-        
+        //Cria painel que conterá labels
         JPanel jpLabels = new JPanel();
         jpLabels.setLayout(new GridLayout(5,1, 5, 4));
         for(int i=0; i<5; i++)
             jpLabels.add(labels.get(i));
         
+        //Cria painel que conterá combo box e text field
         JPanel jpCBTF = new JPanel();
         jpCBTF.setLayout(new GridLayout(5,1, 0, 5));
-        jpCBTF.add(cbTipo);
-        jpCBTF.add(cbSubTipo);
-        jpCBTF.add(desenhaCB());
+        //Adiciona combo box
+        jpCBTF.add(desenhaCBTipo());
+        jpCBTF.add(desenhaCBSubTipo());
+        jpCBTF.add(desenhaCBCor());
+        //Adiciona text field
         desenhaTF(2, 20, tf);
         jpCBTF.add(tf.get(0));
         jpCBTF.add(tf.get(1));
         
-//        jpLabels.add(labels.get(3));
-//        jpLabels.add(labels.get(4));
-        
-//        JPanel jpTF = new JPanel();
-//        jpTF.setLayout(new GridLayout(2,1, 0, 2));
-//        jpTF.add(tf.get(0));
-//        jpTF.add(tf.get(1));
-        
+        //Cria painel que conterá labels, combo box e text field
         JPanel painelAux = new JPanel();
         painelAux.setLayout(new GridLayout(1,2, 5, 2));
         painelAux.add(jpLabels);
         painelAux.add(jpCBTF);
-        
+        //Adiciona painel na janela
         painel.add(painelAux, BorderLayout.CENTER);
 
+        //Cria painel que conterá os botões
         JPanel bpainel = new JPanel();
-        
-        //Botões Adicionar e Sair
         bpainel.add(desenhaBotoes(botoes));
         
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                int selected = cbTipo.getSelectedIndex();
-                switch(selected){
-                    case 0:
-                        carregaCbEletrodomestico();
-                        break;
-                    case 1:
-                        setTipoEscritorio();
-                        break;
-                    case 2:
-                        setTipoMovel();
-                        break;
-                    case 3:
-                        setTipoRoupa();
-                        break;
-                }
-                
-                selected = cbSubTipo.getSelectedIndex();
-                switch(selected){
-                    //socorro
-                }
-                
-                String input = tf.get(0).getText();
-                preco = Double.parseDouble(input);
-                
-                input = tf.get(1).getText();
-                quantidadeTotal = Integer.parseInt(input);
-            }
-        });
         
-        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                telaAnterior.abrir();
-                tela.dispose();
-            }
-        });
-        
+        //Adiciona o painel na janela
         painel.add(bpainel, BorderLayout.PAGE_END);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    private JComboBox desenhaCB(){
-//        JPanel painelCB = new JPanel();
-        //painelCB.setLayout(new GridLayout(0,1, 5, 4));
-        
+    private JComboBox desenhaCBCor(){
         cbCor = new JComboBox<>();
+        
+        //Adiciona itens
         cbCor.addItem(Cor.AMARELO);
         cbCor.addItem(Cor.AZUL);
         cbCor.addItem(Cor.AZUL_CLARO);
@@ -227,38 +141,214 @@ public class AddProduto extends Tela{
         cbCor.addItem(Cor.VERDE_CLARO);
         cbCor.addItem(Cor.VERMELHO);
         
-//        painelCB.add(cbCor);
+        //Adiciona eventListener
+        cbCor.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        qCor = Cor.AMARELO;
+                        break;
+                    case 1:
+                        qCor = Cor.AZUL;
+                        break;
+                    case 2:
+                        qCor = Cor.AZUL_CLARO;
+                        break;
+                    case 3:
+                        qCor = Cor.BRANCO;
+                        break;
+                    case 4:
+                        qCor = Cor.CIANO;
+                        break;
+                    case 5:
+                        qCor = Cor.CINZA;
+                        break;
+                    case 6:
+                        qCor = Cor.LARANJA;
+                        break;
+                    case 7:
+                        qCor = Cor.MAJENTA;
+                        break;
+                    case 8:
+                        qCor = Cor.PRETO;
+                        break;
+                    case 9:
+                        qCor = Cor.ROSA;
+                        break;
+                    case 10:
+                        qCor = Cor.ROXO;
+                        break;
+                    case 11:
+                        qCor = Cor.VERDE;
+                        break;
+                    case 12:
+                        qCor = Cor.VERDE_CLARO;
+                        break;
+                    case 13:
+                        qCor = Cor.VERMELHO;
+                        break;
+                }
+            }
+        });
         
         return cbCor;
+    }
+    
+    private JComboBox desenhaCBTipo(){
+        cbTipo = new JComboBox();
+        
+        //Adiciona itens
+        cbTipo.addItem(TiposProdutos.ELETRODOMESTICO);
+        cbTipo.addItem(TiposProdutos.MATERIAL_ESCRITORIO);
+        cbTipo.addItem(TiposProdutos.MOVEL);
+        cbTipo.addItem(TiposProdutos.ROUPAS);
+        cbTipo.addItem(TiposProdutos.N_A);
+        
+        //Adiciona eventListener para mudar os itens de cbSubTipo
+        cbTipo.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        setTipoEletrodomestico();
+                        carregaCbEletrodomestico();
+                        break;
+                    case 1:
+                        setTipoEscritorio();
+                        carregaCbEscritorio();
+                        break;
+                    case 2:
+                        setTipoMovel();
+                        carregaCbMovel();
+                        break;
+                    case 3:
+                        setTipoRoupa();
+                        carregaCbRoupa();
+                        break;
+                }
+            }
+        });
+        
+        return cbTipo;
+    }
+    
+    private JComboBox desenhaCBSubTipo(){
+        cbSubTipo = new JComboBox();
+        
+        //Adiciona itens default
+        carregaCbEletrodomestico();
+        
+        //Adiciona eventListener
+        
+        
+        return cbSubTipo;
+    }
+    
+    private void carregaCbEletrodomestico(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
+        cbSubTipo.addItem(SubTipoProduto.GELADEIRA);
+        cbSubTipo.addItem(SubTipoProduto.FOGAO);
+        cbSubTipo.addItem(SubTipoProduto.COMPUTADOR);
+        cbSubTipo.addItem(SubTipoProduto.TV);
+        cbSubTipo.addItem(SubTipoProduto.MAQUINA_DE_LAVAR);
+                
+        cbSubTipo.addItemListener(new java.awt.event.ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int selected = cbSubTipo.getSelectedIndex();
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoEletrodomesticoGeladeira();
+                        break;
+                    case 2:
+                        setTipoEletrodomesticoFogao();
+                        break;
+                    case 3:
+                        setTipoEletrodomesticoComputador();
+                        break;
+                    case 4:
+                        setTipoEletrodomesticoTV();
+                        break;
+                    case 5:
+                        setTipoEletrodomesticoMaquina();
+                        break;
+                }
+            }
+        });
+    }
+    
+    private void carregaCbEscritorio(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
+        cbSubTipo.addItem(SubTipoProduto.CANETA);
+        cbSubTipo.addItem(SubTipoProduto.LAPIS);
+        cbSubTipo.addItem(SubTipoProduto.BORRACHA);
+        cbSubTipo.addItem(SubTipoProduto.PAPEL);
+        cbSubTipo.addItem(SubTipoProduto.CLIPES);
+    }
+
+    private void carregaCbMovel(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
+        cbSubTipo.addItem(SubTipoProduto.ASSENTO);
+        cbSubTipo.addItem(SubTipoProduto.MESA);
+        cbSubTipo.addItem(SubTipoProduto.ESTANTE);
+        cbSubTipo.addItem(SubTipoProduto.QUADRO);
+        cbSubTipo.addItem(SubTipoProduto.LUMINARIA);
+        cbSubTipo.addItem(SubTipoProduto.ARMARIO);
+        cbSubTipo.addItem(SubTipoProduto.CAMA);
+    }
+    
+    private void carregaCbRoupa(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
+        cbSubTipo.addItem(SubTipoProduto.SAPATO);
+        cbSubTipo.addItem(SubTipoProduto.CALCA);
+        cbSubTipo.addItem(SubTipoProduto.BLUSA);
+        cbSubTipo.addItem(SubTipoProduto.CONJUNTO);
+        cbSubTipo.addItem(SubTipoProduto.ACESSORIOS);
     }
 
     private void setPreco(double preco){this.preco = preco;}
     
-    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
+    public Produto getProduto(){
+        Map<ListaQuantidadeCor.Cor, Integer> cor = new HashMap<>();
+        cor.put(qCor, quantidade);
+        String input = tf.get(0).getText();
+        preco = Double.parseDouble(input);
+        input = tf.get(1).getText();
+        quantidade = Integer.parseInt(input);
+        return new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId());
+    }
+    
+    public void fechar(){
+        tela.dispose();
+    }
+    
+//    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
 
     
-    private void getQuantidadeTotal()
-    {
-        for(Cor aux : Cor.values()){
-            quantidadeTotal += qCor.get(aux);
-        }
-    }
-    
-    private void adicionaProduto(){
-        try{
-            productId++;
-            Produto produto = new Produto(preco, quantidadeTotal, qCor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
-            this.vendedor.adicionarProduto(produto);
-            telaAnterior.addProduto(produto);
-        }
-        catch(Exception e){
-            
-        }
-        finally{
-            this.tela.dispose();
-            telaAnterior.abrir();
-        }
-    }
+//    private void getQuantidadeTotal()
+//    {
+//        for(Cor aux : Cor.values()){
+//            quantidade += qCor.get(aux);
+//        }
+//    }
 
 /////////////////////// - Sets para Tipo de Produto /////////////////////////////////////////////////
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}
@@ -292,14 +382,6 @@ public class AddProduto extends Tela{
     private void setTipoEscritorioLapis(){subtipo = SubTipoProduto.LAPIS ;}
     private void setTipoEscritorioPapel(){subtipo = SubTipoProduto.PAPEL ;}
     
-    private void carregaCbEletrodomestico(){
-        cbSubTipo.removeAllItems();
-        cbSubTipo.addItem(SubTipoProduto.COMPUTADOR);
-    }
-
-    private void carregaCbMovel(){
-        cbSubTipo.removeAllItems();
-        cbSubTipo.addItem(SubTipoProduto.FOGAO);
-    }
+    
 
 }
