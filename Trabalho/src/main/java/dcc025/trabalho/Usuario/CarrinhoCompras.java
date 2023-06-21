@@ -5,10 +5,16 @@
 package dcc025.trabalho.Usuario;
 
 import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.persistence.ProdutoPersistence;
+import dcc025.trabalho.persistence.VendedorPersistence;
+
+import javax.swing.JOptionPane;
+
+import javax.swing.*;
 import java.util.*;
 
 public class CarrinhoCompras {
-    private Map<Produto, Integer> carrinho; //Gabriel: Armazena o produto junto com sua quantidade
+    private Map<String, Integer> carrinho; //Gabriel: Armazena o produto junto com sua quantidade
     private double totalPagar;
     
     public CarrinhoCompras()
@@ -17,25 +23,59 @@ public class CarrinhoCompras {
         carrinho =  new HashMap<>();
     }
 
-    public void insereProduto(Produto produto, int quantidade){
-        this.totalPagar += produto.getPreco() * quantidade;
-        this.carrinho.put(produto, quantidade);
+    public void insereProduto(String product_id, int quantidade){
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        Produto produto = persistence.getProductbyID(product_id);
+
+        carrinho.put(produto.getProduct_id(), quantidade);
+
+        totalPagar += produto.getPreco() * quantidade;
     }
 
-    public void removeProduto(Produto produto, int quantidade)
+    public void removeProduto(String product_id, int quantidade)
     {
-        if(carrinho.get(produto) - quantidade > 0)
+
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        Produto produto = persistence.getProductbyID(product_id);
+
+        if(carrinho.get(product_id) - quantidade > 0)
         {
-        this.totalPagar -= produto.getPreco()*quantidade;
-        int quantidadeNoCarrinhoAposRemocao = carrinho.get(produto) - quantidade;
-            carrinho.put(produto, quantidadeNoCarrinhoAposRemocao);
+            this.totalPagar -= produto.getPreco()*quantidade;
+            int quantidadeNoCarrinhoAposRemocao = carrinho.get(product_id) - quantidade;
+            carrinho.put(produto.getProduct_id(), quantidadeNoCarrinhoAposRemocao);
         }
         else{
-            this.totalPagar -= carrinho.get(produto)*produto.getPreco();
-            carrinho.remove(produto);
+            this.totalPagar -= carrinho.get(product_id)*produto.getPreco();
+            carrinho.remove(product_id);
         }
     }
-    
+
+    public void comprarTudo()
+    {
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        List<Produto> allProducts = new ArrayList<>();
+        allProducts = persistence.findAll();
+
+        for (Produto produto : allProducts)
+        {
+            try{
+                if(carrinho.containsKey(produto.getProduct_id()))
+                {
+                    VendedorPersistence vendedorPers = new VendedorPersistence();
+                    Vendedor vendedor = vendedorPers.findVendedorByProductID(produto.getProduct_id());
+                    vendedor.adicionaSaldo(produto.getPreco() * carrinho.get(produto.getProduct_id()));
+                }
+            } catch (NullPointerException e){
+                JOptionPane.showMessageDialog(null, "Produto esgotado");
+            }
+            finally {
+                carrinho.remove(produto.getProduct_id());
+            }
+        }
+        allProducts.clear();
+        allProducts = null;
+    }
+
     public double getTotalPagar(){
         return totalPagar;
     }

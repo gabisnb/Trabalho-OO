@@ -49,4 +49,17 @@ public class VendedorPersistence implements Persistence <Vendedor>{
 
         return vendedores;
     }
+
+    public Vendedor findVendedorByProductID(String product_id){
+        String [] split_ID = product_id.split("x");
+        String vendedorID = split_ID[0];
+
+        List<Vendedor> vendedores = findAll();
+
+        for (Vendedor vendedor : vendedores){
+            if(vendedor.getId().equals(vendedorID)) return vendedor;
+        }
+
+        return null;
+    }
 }
