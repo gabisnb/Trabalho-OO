@@ -3,16 +3,17 @@ package dcc025.trabalho.controller;
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.view.TelaComprador;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
 
 public class GerenciaCompradores  implements WindowListener{
     
-    public final Comprador comprador;
+    public final TelaComprador tela;
     
-    public GerenciaCompradores(Comprador comprador){
-        this.comprador = comprador;
+    public GerenciaCompradores(TelaComprador tela){
+        this.tela = tela;
     }
 
     @Override
@@ -22,10 +23,7 @@ public class GerenciaCompradores  implements WindowListener{
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Persistence<Comprador> persistence = new CompradorPersistence();
-        List<Comprador> comprador =  new ArrayList();
-        comprador.add(this.comprador);
-        persistence.save(comprador);
+        tela.salvar();
     }
 
     @Override
