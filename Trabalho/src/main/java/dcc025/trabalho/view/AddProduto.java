@@ -37,6 +37,7 @@ public class AddProduto extends Tela{
         tf = new ArrayList<>();
         telaAnterior = telaVendedor;
         vendedor = vend;
+        productId++;
     }
     
     @Override
@@ -333,7 +334,7 @@ public class AddProduto extends Tela{
         preco = Double.parseDouble(input);
         input = tf.get(1).getText();
         quantidade = Integer.parseInt(input);
-        return new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId());
+        return new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId() + "x" + productId);
     }
     
     public void fechar(){
