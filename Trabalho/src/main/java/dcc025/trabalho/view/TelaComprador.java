@@ -37,7 +37,7 @@ public class TelaComprador extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.addWindowListener(new GerenciaCompradores(usuario));
+        tela.addWindowListener(new GerenciaCompradores(this));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setLocationRelativeTo(null);
@@ -129,6 +129,8 @@ public class TelaComprador extends Tela{
     }
 
     public void carrega(){
+        //Salvando dados
+        salvar();
         //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
@@ -142,6 +144,14 @@ public class TelaComprador extends Tela{
     public void fechar(){
         //salvar informações no banco
         tela.dispose();
+    }
+    
+    public void salvar(){
+        //Salvando dados
+        Persistence<Comprador> persistence = new CompradorPersistence();
+        java.util.List<Comprador> comprador =  new ArrayList();
+        comprador.add(this.usuario);
+        persistence.save(comprador);
     }
     
     public void abrirCarrinho(){
