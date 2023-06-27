@@ -9,6 +9,8 @@ import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.controller.AdicionarProduto;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -78,7 +80,7 @@ public class AddProduto extends Tela{
         
         //Configuração dos botões
         //Adicionar
-        botoes.get(0).addActionListener(new AdicionarProduto(telaAnterior, this));
+        botoes.get(0).addActionListener(new AdicionarProduto(this));
         //Sair
         botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -258,33 +260,6 @@ public class AddProduto extends Tela{
         cbSubTipo.addItem(SubTipoProduto.COMPUTADOR);
         cbSubTipo.addItem(SubTipoProduto.TV);
         cbSubTipo.addItem(SubTipoProduto.MAQUINA_DE_LAVAR);
-                
-        cbSubTipo.addItemListener(new java.awt.event.ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                int selected = cbSubTipo.getSelectedIndex();
-                switch(selected){
-                    case 0:
-                        subtipo = SubTipoProduto.N_A;
-                        break;
-                    case 1:
-                        setTipoEletrodomesticoGeladeira();
-                        break;
-                    case 2:
-                        setTipoEletrodomesticoFogao();
-                        break;
-                    case 3:
-                        setTipoEletrodomesticoComputador();
-                        break;
-                    case 4:
-                        setTipoEletrodomesticoTV();
-                        break;
-                    case 5:
-                        setTipoEletrodomesticoMaquina();
-                        break;
-                }
-            }
-        });
     }
     
     private void carregaCbEscritorio(){
@@ -328,13 +303,40 @@ public class AddProduto extends Tela{
     private void setPreco(double preco){this.preco = preco;}
     
     public Produto getProduto(){
-        Map<ListaQuantidadeCor.Cor, Integer> cor = new HashMap<>();
-        cor.put(qCor, quantidade);
+        int selected = cbSubTipo.getSelectedIndex();
+        switch(tipo){
+            case ELETRODOMESTICO:
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoEletrodomesticoGeladeira();
+                        break;
+                    case 2:
+                        setTipoEletrodomesticoFogao();
+                        break;
+                    case 3:
+                        setTipoEletrodomesticoComputador();
+                        break;
+                    case 4:
+                        setTipoEletrodomesticoTV();
+                        break;
+                    case 5:
+                        setTipoEletrodomesticoMaquina();
+                        break;
+                }
+        }
+        
         String input = tf.get(0).getText();
         preco = Double.parseDouble(input);
         input = tf.get(1).getText();
         quantidade = Integer.parseInt(input);
-        return new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId() + "x" + productId);
+        return new Produto(preco, quantidade, qCor, tipo, subtipo, this.vendedor.getId() + "x" + productId);
+    }
+    
+    public void adicionarProduto(){
+        this.telaAnterior.addProduto(getProduto());
     }
     
     public void fechar(){
