@@ -7,25 +7,47 @@ package dcc025.trabalho.Usuario;
 import dcc025.trabalho.Usuario.Pessoa;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.persistence.ProdutoPersistence;
+
+
 import java.util.*;
 
 public class Vendedor extends Pessoa {
-
-    private List <Produto> loja ;
-    private static String user_id;
+    private static int user_id = 1;
+    private double saldo_loja;
 
     public Vendedor(String nome, String email, String senha) {
+
         super(nome, email, senha);
-        loja = new ArrayList();
+        user_id++;
+
     }
-    
-    public void adicionarProduto(Produto produto){
-        loja.add(produto);
+    public String getId(){ return Integer.toString(user_id); }
+
+    public void adicionaSaldo(double valor){
+        saldo_loja += valor;
     }
-    public String getId(){ return user_id.toString(); }
     
     //Função adicionada apenas para testagem da adição de produto, mudar depois
-    public List<Produto> getListaProdutos(){
-        return this.loja;
+
+
+    public List<Produto> getProdutosByVendedorID(String vender_id){
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        List<Produto> allProducts = new ArrayList<>();
+        allProducts = persistence.findAll();
+
+        List<Produto> sameIdProducts = new ArrayList<>();
+
+        for(Produto produto : allProducts){
+            if(separateProductId(produto.getProduct_id()).equals(vender_id))
+                sameIdProducts.add(produto);
+        }
+        return sameIdProducts;
+    }
+
+    private String separateProductId(String product_id){
+        String[] id = product_id.split("x");
+
+        return id[0];
     }
 }

@@ -34,13 +34,15 @@ public class Comprador extends Pessoa {
         return this.carrinho;
     }
 
-    public void removeProdutoCarrinho(Produto produto, int quantidadeRemover) {
-        this.carrinho.removeProduto(produto, quantidadeRemover);
+    public void removeProdutoCarrinho(String product_id, int quantidadeRemover) {
+        this.carrinho.removeProduto(product_id, quantidadeRemover);
     }
 
-    public void adicionarCarrinho(Produto produto, int quantidadeAdicionar) {
-        this.carrinho.insereProduto(produto, quantidadeAdicionar);
+    public void adicionarProdutoCarrinho(String product_id, int quantidadeAdicionar) {
+        this.carrinho.insereProduto(product_id, quantidadeAdicionar);
     }
+
+    public void comprarCarrinho(){carrinho.comprarTudo();}
 
     public void adicionarSaldo(double saldo) throws SaldoInvalidoException {
         if (saldo < 0) {
