@@ -121,7 +121,7 @@ public class TelaVendedor extends Tela{
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         try {
             model.addElement(produto);
-            carregaProdutos(usuario.getProdutosByVendedorID(usuario.getId()));
+            carregaProdutosBanco(usuario.getProdutosByVendedorID(usuario.getId()));
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Houve um erro!");
