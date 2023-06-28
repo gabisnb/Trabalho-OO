@@ -9,16 +9,16 @@ import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 public class Produto{
     protected double preco;
     protected int quantidadeTotal;
-    protected ListaQuantidadeCor quantidadeCor = new ListaQuantidadeCor();
+    protected Cor cor;
     protected TiposProdutos tipo;
     protected SubTipoProduto subtipo;
     protected final String product_id;
 
-    public Produto(double preco, int quantidade, Map<Cor, Integer> quantidadeCor, TiposProdutos tipo, SubTipoProduto subtipo, String id)
+    public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String id)
     {
         this.preco = preco;
         this.quantidadeTotal = quantidade;
-        this.quantidadeCor.quantidade = quantidadeCor;
+        this.cor = cor;
         this.tipo = tipo;
         this.subtipo = subtipo;
         this.product_id = id;
@@ -44,5 +44,10 @@ public class Produto{
      
     public String getTipo(){return this.tipo.toString();}
     public String setSubTipo(){return this.subtipo.toString();}
+    
+    @Override
+    public String toString(){
+        return this.subtipo.name() + "    Cor: " + this.cor + "    Preço: " + this.preco + "    Quantidade: " + this.quantidadeTotal;
+    }
     
 }

@@ -6,6 +6,8 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.*;
+import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.persistence.ProdutoPersistence;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,6 +27,9 @@ public class TelaVendedor extends Tela{
         menu = login;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
+        
+        DefaultListModel<Produto> model = new DefaultListModel<>();
+        jlistProdutos = new JList<>(model);
     }
     
     public void desenha(){
@@ -67,6 +72,7 @@ public class TelaVendedor extends Tela{
         botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 fechar();
+                salvar();
                 menu.abrir();
             }
         });
@@ -86,16 +92,12 @@ public class TelaVendedor extends Tela{
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
         painel.setLayout(new BorderLayout());
 
-        DefaultListModel<Produto> model = new DefaultListModel<>();
-
-        jlistProdutos = new JList<>(model);
-
         painel.add(new JScrollPane(jlistProdutos), BorderLayout.CENTER);
 
         return painel;
     }
     
-    public void carregaProdutos(java.util.List<Produto> produtos){
+    public void carregaProdutosBanco(java.util.List<Produto> produtos){
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         
         for (Produto c: produtos) {
@@ -119,11 +121,19 @@ public class TelaVendedor extends Tela{
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         try {
             model.addElement(produto);
-            carregaProdutos(usuario.getProdutosByVendedorID(usuario.getId()));
+            carregaProdutosBanco(usuario.getProdutosByVendedorID(usuario.getId()));
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Houve um erro!");
         }
+    }
+    
+    public void salvar(){
+        //Salvando dados
+        Persistence<Produto> persistence = new ProdutoPersistence();
+        java.util.List<Produto> produtos =  listaProdutos();
+        
+        persistence.save(produtos);
     }
 //
 //    public void removerContato(){

@@ -14,8 +14,11 @@ import dcc025.trabalho.controller.GerenciarVendedores;
 
 
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.persistence.VendedorPersistence;
+import java.awt.event.*;
 
 public class TelaComprador extends Tela{
     
@@ -56,8 +59,8 @@ public class TelaComprador extends Tela{
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
         //Configuração
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        botoes.get(0).addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 adicionarSaldo();
             }
         });
@@ -65,8 +68,8 @@ public class TelaComprador extends Tela{
         //Botão Carrinho de Compras
         botoes.add(new JButton("Carrinho de Compras"));
         //Configuração
-        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        botoes.get(1).addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 abrirCarrinho();
             }
         });
@@ -82,9 +85,13 @@ public class TelaComprador extends Tela{
         //Botão Sair
         botoes.add(new JButton("Sair"));
         //Configuração
-        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        botoes.get(2).addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 fechar();
+                
+                //Salvando dados
+                salvar();
+                
                 menu.abrir();
             }
         });
@@ -97,15 +104,33 @@ public class TelaComprador extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
+    @Override
+    protected JPanel desenhaLista(String string){
+
+        JPanel painel = new JPanel();
+        painel.setBorder(BorderFactory.createTitledBorder(string));
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
+        painel.setLayout(new BorderLayout());
+
+        DefaultListModel<Vendedor> model = new DefaultListModel<>();
+
+        jlistVendedores = new JList<>(model);
+
+        painel.add(new JScrollPane(jlistVendedores), BorderLayout.CENTER);
+
+        Persistence<Vendedor> persistence = new VendedorPersistence();
+        carregaVendedores(persistence.findAll());
+        return painel;
+    }
+    
     public void adicionarSaldo(){
         TelaAdicionaSaldo addSaldo = new TelaAdicionaSaldo(this, usuario);
         addSaldo.desenha();
     }
-    
+
     public void carrega(){
         //Salvando dados
         salvar();
-        
         //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
@@ -134,5 +159,36 @@ public class TelaComprador extends Tela{
         carrinho.desenha();
         tela.setVisible(false);
     }
+    
+    public void carregaVendedores(java.util.List<Vendedor> vendedores){
+        DefaultListModel<Vendedor> model = (DefaultListModel<Vendedor>)jlistVendedores.getModel();
+        
+        for (Vendedor v: vendedores) {
+            model.addElement(v);
+        }
+    }
+//    
+//    public java.util.List<Produto> listaProdutos(){
+//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+//        java.util.List<Produto> produtos = new ArrayList<>();
+//
+//        for (int i = 0; i < model.size(); i++) {
+//            produtos.add(model.get(i));
+//        }
+//
+//        return produtos;
+//    }
+//
+//    public void addProduto(Produto produto){
+//
+//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+//        try {
+//            model.addElement(produto);
+//            carregaProdutos(usuario.getProdutosByVendedorID(usuario.getId()));
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null, "Houve um erro!");
+//        }
+//    }
     
 }

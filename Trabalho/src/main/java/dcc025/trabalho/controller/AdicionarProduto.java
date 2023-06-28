@@ -12,36 +12,16 @@ import java.util.Map;
 
 public class AdicionarProduto implements ActionListener{
     
-    private final TelaVendedor telaVend;
     private final AddProduto telaAdd;
     
-    public AdicionarProduto(TelaVendedor telaVend, AddProduto telaAdd){
-        this.telaVend = telaVend;
+    public AdicionarProduto(AddProduto telaAdd){
         this.telaAdd = telaAdd;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        telaVend.addProduto(telaAdd.getProduto());
+        telaAdd.adicionarProduto();
         telaAdd.fechar();
     }
-    
-//    private void adicionaProduto(){
-//        try{
-//            productId++;
-//            Map<ListaQuantidadeCor.Cor, Integer> cor = new HashMap<>();
-//            cor.put(qCor, quantidade);
-//            Produto produto = new Produto(preco, quantidade, cor, tipo, subtipo, this.vendedor.getId() + "x" + Integer.toString(this.productId));
-//            this.vendedor.adicionarProduto(produto);
-//            telaAnterior.addProduto(produto);
-//        }
-//        catch(Exception e){
-//            
-//        }
-//        finally{
-//            this.tela.dispose();
-//            telaAnterior.abrir();
-//        }
-//    }
        
 }

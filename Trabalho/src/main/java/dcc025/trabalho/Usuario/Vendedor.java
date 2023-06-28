@@ -14,15 +14,16 @@ import java.util.*;
 
 public class Vendedor extends Pessoa {
     private static int user_id = 1;
+    private final int id;
     private double saldo_loja;
 
     public Vendedor(String nome, String email, String senha) {
 
         super(nome, email, senha);
-        user_id++;
+        this.id = user_id++;
 
     }
-    public String getId(){ return Integer.toString(user_id); }
+    public String getId(){ return Integer.toString(id); }
 
     public void adicionaSaldo(double valor){
         saldo_loja += valor;
@@ -31,7 +32,7 @@ public class Vendedor extends Pessoa {
     //Função adicionada apenas para testagem da adição de produto, mudar depois
 
 
-    public List<Produto> getProdutosByVendedorID(String vender_id){
+    public static List<Produto> getProdutosByVendedorID(String vender_id){
         ProdutoPersistence persistence = new ProdutoPersistence();
         List<Produto> allProducts = new ArrayList<>();
         allProducts = persistence.findAll();
@@ -45,9 +46,14 @@ public class Vendedor extends Pessoa {
         return sameIdProducts;
     }
 
-    private String separateProductId(String product_id){
+    private static String separateProductId(String product_id){
         String[] id = product_id.split("x");
 
         return id[0];
+    }
+    
+    @Override
+    public String toString(){
+        return "Loja de " +  this.getNome();
     }
 }

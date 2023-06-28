@@ -4,28 +4,36 @@
  */
 package dcc025.trabalho.controller;
 
+import dcc025.trabalho.Usuario.Vendedor;
+import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import dcc025.trabalho.view.TelaVendedor;
 import java.util.List;
 
-/**
- *
- * @author gabri
- */
+
 public class GerenciarProdutos implements WindowListener{
+    
+    private final TelaVendedor tela;
+    private final Vendedor vendedor;
+    
+    public GerenciarProdutos(TelaVendedor tela, Vendedor vendedor){
+        this.tela = tela;
+        this.vendedor = vendedor;
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
-//        Persistence<Produto> produtoPersistence = new ProdutoPersistence();
-//        List<Produto> all = produtoPersistence.findAll();
-//        tela.carregaProdutos(all);
+        List<Produto> produtos = vendedor.getProdutosByVendedorID(vendedor.getId());
+        tela.carregaProdutosBanco(produtos);
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+        tela.salvar();
     }
 
     @Override
