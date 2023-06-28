@@ -25,7 +25,7 @@ public class TelaAdicionaSaldo extends Tela{
         tComprador = tela;
     }
     @Override
-    protected JPanel ConfiguraPainelMain(String nome){
+    protected JPanel configuraPainelMain(String nome){
         JPanel painel = new JPanel();
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA/2));
         painel.setBorder(BorderFactory.createTitledBorder(nome));
@@ -47,7 +47,7 @@ public class TelaAdicionaSaldo extends Tela{
     }
     
     public void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Adicionar Saldo");
+        JPanel painel = configuraPainelMain("Adicionar Saldo");
         
         labels.add(new JLabel("Valor a ser adicionado: "));
         labels.add(new JLabel("Verificação: "));

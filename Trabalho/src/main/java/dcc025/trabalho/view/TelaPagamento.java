@@ -34,7 +34,7 @@ public class TelaPagamento extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Pagamento");
+        JPanel painel = configuraPainelMain("Pagamento");
         
         labels.add(new JLabel("Valor Total:       R$"+usuario.getCarrinho().getTotalPagar()));
         labels.add(new JLabel("Valor por Credito: R$"));

@@ -34,7 +34,7 @@ public class TelaLogin extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Login");
+        JPanel painel = configuraPainelMain("Login");
         
         labels.add(new JLabel("Nome: "));
         labels.add(new JLabel("Email: "));

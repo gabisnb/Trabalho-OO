@@ -43,7 +43,7 @@ public class AddProduto extends Tela{
     }
     
     @Override
-    protected JPanel ConfiguraPainelMain(String nome){
+    protected JPanel configuraPainelMain(String nome){
         JPanel painel = new JPanel();
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA-(ALTURA/3)));
         painel.setBorder(BorderFactory.createTitledBorder(nome));
@@ -65,7 +65,7 @@ public class AddProduto extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Adicionar Produto");
+        JPanel painel = configuraPainelMain("Adicionar Produto");
         
         //Cria labels
         labels.add(new JLabel("Tipo: "));

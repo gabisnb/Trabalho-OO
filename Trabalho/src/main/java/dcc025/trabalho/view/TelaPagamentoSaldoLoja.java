@@ -36,7 +36,7 @@ public class TelaPagamentoSaldoLoja extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Pagamento pelo Saldo");
+        JPanel painel = configuraPainelMain("Pagamento pelo Saldo");
         
         labels.add(new JLabel("Nome Completo: " + usuario.getNome()));
         labels.add(new JLabel("Saldo disponível: " + usuario.getSaldo()));

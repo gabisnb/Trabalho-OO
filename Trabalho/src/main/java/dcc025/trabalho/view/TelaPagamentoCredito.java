@@ -31,7 +31,7 @@ public class TelaPagamentoCredito extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Pagamento em Credito");
+        JPanel painel = configuraPainelMain("Pagamento em Credito");
         
         labels.add(new JLabel("Numero do Cartao: "));
         labels.add(new JLabel("Nome Completo: "));

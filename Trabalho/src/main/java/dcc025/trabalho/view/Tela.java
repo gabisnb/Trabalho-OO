@@ -15,7 +15,7 @@ public abstract class Tela {
     protected ArrayList<JLabel> labels;
     protected ArrayList<JTextField> tf;
     
-    protected JPanel ConfiguraPainelMain(String nome){
+    protected JPanel configuraPainelMain(String nome){
         JPanel painel = new JPanel();
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA));
         painel.setBorder(BorderFactory.createTitledBorder(nome));
