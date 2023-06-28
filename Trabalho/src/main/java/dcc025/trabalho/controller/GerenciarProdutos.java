@@ -18,7 +18,7 @@ import java.util.List;
 public class GerenciarProdutos implements WindowListener{
     
     private final TelaVendedor tela;
-    private final Vendedor vendedor;
+    private Vendedor vendedor;
     
     public GerenciarProdutos(TelaVendedor tela, Vendedor vendedor){
         this.tela = tela;

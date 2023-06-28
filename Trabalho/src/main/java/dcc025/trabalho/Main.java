@@ -14,10 +14,10 @@ public class Main {
 //        list.add(new Vendedor("t", "t", "t"));
 //        persistence.save(list);
 
-//        CompradorPersistence persistence =  new CompradorPersistence();
-//        List<Comprador> list = new ArrayList();
-//        list.add(new Comprador("t", "t", "t", 100.00));
-//        persistence.save(list);
+        CompradorPersistence cpersistence =  new CompradorPersistence();
+        List<Comprador> clist = new ArrayList();
+        clist.add(new Comprador("t", "t", "t", 100.00));
+        cpersistence.save(clist);
         
         TelaLogin login = new TelaLogin();
         login.desenha();

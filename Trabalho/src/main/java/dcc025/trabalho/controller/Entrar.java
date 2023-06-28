@@ -37,7 +37,7 @@ public class Entrar  implements ActionListener{
             Comprador comprador = null;
             for(Comprador aux: compradores){
                 if(aux.getNome().equals(info[0]) && aux.getEmail().equals(info[1]) && aux.getSenha().equals(info[2])){
-                    comprador = new Comprador(info[0], info[1], info[2], aux.getSaldo());
+                    comprador = aux;
                 }
             }
             if(comprador==null){
@@ -51,8 +51,9 @@ public class Entrar  implements ActionListener{
             List<Vendedor> vendedores = persistence.findAll();
             Vendedor vendedor = null;
             for(Vendedor aux: vendedores){
-                if(aux.getNome().equals(info[0]) && aux.getEmail().equals(info[1]) && aux.getSenha().equals(info[2]))
-                    vendedor = new Vendedor(info[0], info[1], info[2]);
+                if(aux.getNome().equals(info[0]) && aux.getEmail().equals(info[1]) && aux.getSenha().equals(info[2])){
+                    vendedor = aux;
+                }
             }
             if(vendedor==null){
                 JOptionPane.showMessageDialog(null,"Login inválido!");
