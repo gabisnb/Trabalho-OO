@@ -30,6 +30,7 @@ public class TelaVendedor extends Tela{
         
         DefaultListModel<Produto> model = new DefaultListModel<>();
         jlistProdutos = new JList<>(model);
+        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
     }
     
     public void desenha(){
@@ -117,15 +118,20 @@ public class TelaVendedor extends Tela{
     }
 
     public void addProduto(Produto produto){
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        java.util.List<Produto> produtoAdd = new ArrayList<>();
+        produtoAdd.add(produto);
+        persistence.save(produtoAdd);
+        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
 
-        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        /*DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         try {
             model.addElement(produto);
             carregaProdutosBanco(usuario.getProdutosByVendedorID(usuario.getId()));
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Houve um erro!");
-        }
+        }*/
     }
     
     public void salvar(){
@@ -147,7 +153,7 @@ public class TelaVendedor extends Tela{
 //        }
 //    }
     public void abrirAddProduto(){
-        AddProduto telaAddProd = new AddProduto(this, usuario);
+        AddProduto telaAddProd = new AddProduto(this, usuario.getId());
         telaAddProd.desenha();
     }
     

@@ -7,20 +7,22 @@ package dcc025.trabalho.Usuario;
 import dcc025.trabalho.Usuario.Pessoa;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
+import dcc025.trabalho.persistence.VendedorPersistence;
 
 
 import java.util.*;
 
 public class Vendedor extends Pessoa {
-    private static int user_id = 1;
+
     private final int id;
     private double saldo_loja;
 
     public Vendedor(String nome, String email, String senha) {
 
         super(nome, email, senha);
-        this.id = user_id++;
+        this.id = createID() + 1;
 
     }
     public String getId(){ return Integer.toString(id); }
@@ -50,6 +52,11 @@ public class Vendedor extends Pessoa {
         String[] id = product_id.split("x");
 
         return id[0];
+    }
+
+    private int createID(){
+        Persistence<Vendedor> all = new VendedorPersistence();
+        return all.findAll().size();
     }
     
     @Override
