@@ -25,7 +25,7 @@ public class AddProduto extends Tela{
     private int quantidade = 0;
     private static int productId = 1;
     
-    private final Vendedor vendedor;
+    private final String vender_id;
     private final TelaVendedor telaAnterior;
     
     private JComboBox<Cor> cbCor;
@@ -33,12 +33,12 @@ public class AddProduto extends Tela{
     private JComboBox<SubTipoProduto> cbSubTipo;
     private ArrayList<JTextField> tf;
     
-    public AddProduto(TelaVendedor telaVendedor, Vendedor vend){
+    public AddProduto(TelaVendedor telaVendedor, String vender_id){
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
         tf = new ArrayList<>();
         telaAnterior = telaVendedor;
-        vendedor = vend;
+        this.vender_id = vender_id;
         productId++;
     }
     
@@ -332,7 +332,7 @@ public class AddProduto extends Tela{
         preco = Double.parseDouble(input);
         input = tf.get(1).getText();
         quantidade = Integer.parseInt(input);
-        return new Produto(preco, quantidade, qCor, tipo, subtipo, this.vendedor.getId() + "x" + productId);
+        return new Produto(preco, quantidade, qCor, tipo, subtipo, vender_id);
     }
     
     public void adicionarProduto(){

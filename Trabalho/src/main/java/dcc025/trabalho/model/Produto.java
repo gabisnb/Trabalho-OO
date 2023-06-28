@@ -5,6 +5,8 @@
 package dcc025.trabalho.model;
 import java.util.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.persistence.Persistence;
+import dcc025.trabalho.persistence.ProdutoPersistence;
 
 public class Produto{
     protected double preco;
@@ -14,14 +16,14 @@ public class Produto{
     protected SubTipoProduto subtipo;
     protected final String product_id;
 
-    public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String id)
+    public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String vender_id)
     {
         this.preco = preco;
         this.quantidadeTotal = quantidade;
         this.cor = cor;
         this.tipo = tipo;
         this.subtipo = subtipo;
-        this.product_id = id;
+        this.product_id = createId(vender_id);
     }
 
     public String getProduct_id() {
@@ -44,7 +46,17 @@ public class Produto{
      
     public String getTipo(){return this.tipo.toString();}
     public String setSubTipo(){return this.subtipo.toString();}
-    
+
+    private String createId(String vender_id){
+        Persistence<Produto> allProdutos = new ProdutoPersistence();
+        Random random = new Random();
+        int id = random.nextInt(1000);
+        for(Produto produto : allProdutos.findAll()){
+            if(produto.getProduct_id().equals(Integer.toString(id)))
+                createId(vender_id);
+        }
+        return vender_id + "x" + id;
+    }
     @Override
     public String toString(){
         return this.subtipo.name() + "    Cor: " + this.cor + "    Preço: " + this.preco + "    Quantidade: " + this.quantidadeTotal;
