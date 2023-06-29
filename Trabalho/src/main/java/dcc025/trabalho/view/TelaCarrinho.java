@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
@@ -56,17 +52,13 @@ public class TelaCarrinho extends Tela{
         
         //Botão Voltar
         botoes.add(new JButton("Voltar"));
-        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                tela.dispose();
-                telaComp.abrir();
-            }
+        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
+            tela.dispose();
+            telaComp.abrir();
         });
         
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                abrirPagamento();
-            }
+        botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
+            abrirPagamento();
         });
         
         JPanel painelAux = new JPanel();
@@ -77,12 +69,10 @@ public class TelaCarrinho extends Tela{
 
         //Botão Sair
         botoes.add(new JButton("Sair"));
-        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                tela.dispose();
-                telaComp.fechar();
-                menu.abrir();
-            }
+        botoes.get(2).addActionListener((java.awt.event.ActionEvent e) -> {
+            tela.dispose();
+            telaComp.fechar();
+            menu.abrir();
         });
         
         JPanel bpainel = new JPanel();

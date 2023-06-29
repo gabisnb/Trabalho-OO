@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Vendedor;
@@ -53,12 +49,14 @@ public class TelaVendedor extends Tela{
         labels.add(new JLabel("Email: " + usuario.getEmail()));
         
         botoes.add(new JButton("Adicionar Produto"));
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                abrirAddProduto();
-            }
+        botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
+            abrirAddProduto();
         });
+        
         botoes.add(new JButton("Remover Produto"));
+        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
+            removeProduto(jlistProdutos.getSelectedValue());
+        });
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -70,11 +68,9 @@ public class TelaVendedor extends Tela{
         
         //Botão Sair
         botoes.add(new JButton("Sair"));
-        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                fechar();
-                menu.abrir();
-            }
+        botoes.get(2).addActionListener((java.awt.event.ActionEvent e) -> {
+            fechar();
+            menu.abrir();
         });
         
         bpainel.add(botoes.get(2));
@@ -114,17 +110,24 @@ public class TelaVendedor extends Tela{
 
         persistence.save(allProducts);
         carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
-
     }
     
     public void removeProduto(Produto produto){
         ProdutoPersistence persistence = new ProdutoPersistence();
         java.util.List<Produto> allProducts = persistence.findAll();
-
-        allProducts.remove(produto);
+        
+        int index = 0;
+        
+        for(Produto product : allProducts)
+            if(product == produto)
+                index = allProducts.indexOf(product);
+        
+        allProducts.remove(index);
 
         persistence.save(allProducts);
+        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
     }
+    
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario.getId());
         telaAddProd.desenha();
@@ -137,7 +140,4 @@ public class TelaVendedor extends Tela{
     public void fechar(){
         tela.dispose();
     }
-    
-    
-    
 }

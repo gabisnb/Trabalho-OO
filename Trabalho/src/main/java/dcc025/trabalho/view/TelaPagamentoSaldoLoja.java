@@ -8,7 +8,6 @@ import java.util.*;
 import javax.swing.*;
 
 
-
 public class TelaPagamentoSaldoLoja extends Tela{
     
     private final Comprador usuario;

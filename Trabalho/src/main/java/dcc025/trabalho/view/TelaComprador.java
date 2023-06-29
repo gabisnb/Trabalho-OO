@@ -57,19 +57,15 @@ public class TelaComprador extends Tela{
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
         //Configuração
-        botoes.get(0).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                adicionarSaldo();
-            }
+        botoes.get(0).addActionListener((ActionEvent e) -> {
+            adicionarSaldo();
         });
         
         //Botão Carrinho de Compras
         botoes.add(new JButton("Carrinho de Compras"));
         //Configuração
-        botoes.get(1).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirCarrinho();
-            }
+        botoes.get(1).addActionListener((ActionEvent e) -> {
+            abrirCarrinho();
         });
         
         JPanel painelAux = new JPanel();
@@ -83,15 +79,13 @@ public class TelaComprador extends Tela{
         //Botão Sair
         botoes.add(new JButton("Sair"));
         //Configuração
-        botoes.get(2).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fechar();
-                
-                //Salvando dados
-                salvar();
-                
-                menu.abrir();
-            }
+        botoes.get(2).addActionListener((ActionEvent e) -> {
+            fechar();
+            
+            //Salvando dados
+            salvar();
+            
+            menu.abrir();
         });
         
         //Adicionando o botão no bpainel

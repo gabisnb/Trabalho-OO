@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.util.*;
 import javax.swing.*;
 
-
 public class TelaPagamento extends Tela{
     
     private final Comprador usuario;
