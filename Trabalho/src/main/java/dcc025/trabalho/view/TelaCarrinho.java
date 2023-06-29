@@ -10,7 +10,6 @@ import javax.swing.*;
 public class TelaCarrinho extends Tela{
     
     private Comprador usuario;
-    private java.util.List<Produto> carrinho;
     
     private TelaComprador telaComp;
     
@@ -18,7 +17,6 @@ public class TelaCarrinho extends Tela{
 
     protected TelaCarrinho(Comprador comp, TelaComprador tela) {
         usuario = comp;
-        carrinho = usuario.getProdutos();
         telaComp = tela;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
@@ -34,8 +32,7 @@ public class TelaCarrinho extends Tela{
         
         desenhaMenu();
         try{
-            carrinho = usuario.getProdutos();
-            carregaCarrinhoBanco(carrinho);
+            carregaCarrinhoBanco(usuario.getProdutos());
         }
         catch(NullPointerException e){System.out.println("Carrinho vazio!");}
         
@@ -111,9 +108,11 @@ public class TelaCarrinho extends Tela{
         for (Produto c: carrinho) {
             model.addElement(c);
         }
+        labels.get(3).setText("Valor Total: " + usuario.getCarrinho().getTotalPagar());
     }
     
     protected void abrir(){
         tela.setVisible(true);
+        carregaCarrinhoBanco(usuario.getProdutos());
     }
 }
