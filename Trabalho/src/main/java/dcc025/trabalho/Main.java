@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-       VendedorPersistence persistence =  new VendedorPersistence();
+       /*VendedorPersistence persistence =  new VendedorPersistence();
        List<Vendedor> list = new ArrayList();
         list.add(new Vendedor("t", "t", "t"));
 
@@ -20,7 +20,7 @@ public class Main {
         CompradorPersistence cpersistence =  new CompradorPersistence();
         List<Comprador> clist = new ArrayList();
         clist.add(new Comprador("t", "t", "t", 100.00));
-        cpersistence.save(clist);
+        cpersistence.save(clist);*/
         
         TelaLogin login = new TelaLogin();
         login.desenha();

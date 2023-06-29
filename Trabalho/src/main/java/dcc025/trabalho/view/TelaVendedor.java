@@ -73,7 +73,6 @@ public class TelaVendedor extends Tela{
         botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 fechar();
-                salvar();
                 menu.abrir();
             }
         });
@@ -100,62 +99,32 @@ public class TelaVendedor extends Tela{
     
     public void carregaProdutosBanco(java.util.List<Produto> produtos){
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-        
+        model.clear();
         for (Produto c: produtos) {
             model.addElement(c);
         }
     }
-    
-    public java.util.List<Produto> listaProdutos(){
-        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-        java.util.List<Produto> produtos = new ArrayList<>();
-
-        for (int i = 0; i < model.size(); i++) {
-            produtos.add(model.get(i));
-        }
-
-        return produtos;
-    }
-    
-    public void carrega(java.util.List<Produto> produtos){
-
-        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-
-        for (Produto p: produtos) {
-            model.addElement(p);
-        }
-    }
 
     public void addProduto(Produto produto){
-        ProdutoPersistence persistence = new ProdutoPersistence();
-        java.util.List<Produto> produtoAdd = new ArrayList<>();
-        produtoAdd.add(produto);
-        persistence.save(produtoAdd);
+
+        Persistence<Produto> persistence = new ProdutoPersistence();
+        java.util.List<Produto> allProducts = persistence.findAll();
+
+        allProducts.add(produto);
+
+        persistence.save(allProducts);
         carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
 
-        /*DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-        try {
-            model.addElement(produto);
-            //carrega(listaProdutos());
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Houve um erro!");
-        }*/
     }
     
-    public void salvar(){
-        //Salvando dados
-        Persistence<Produto> persistence = new ProdutoPersistence();
-        java.util.List<Produto> todosProdutos = persistence.findAll();
-        
-        for(Produto p: listaProdutos()){
-            if(!todosProdutos.contains(p))
-                todosProdutos.add(p);
-        }
-        
-        persistence.save(todosProdutos);
+    public void removeProduto(Produto produto){
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        java.util.List<Produto> allProducts = persistence.findAll();
+
+        allProducts.remove(produto);
+
+        persistence.save(allProducts);
     }
-    
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario.getId());
         telaAddProd.desenha();
