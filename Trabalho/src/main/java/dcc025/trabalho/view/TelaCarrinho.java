@@ -13,15 +13,13 @@ public class TelaCarrinho extends Tela{
     private CarrinhoCompras carrinho;
     
     private TelaComprador telaComp;
-    private TelaLogin menu;
     
     private JList<Produto> jlistProdutos;
 
-    protected TelaCarrinho(Comprador comp, TelaComprador tela, TelaLogin login) {
+    protected TelaCarrinho(Comprador comp, TelaComprador tela) {
         usuario = comp;
         carrinho = usuario.getCarrinho();
         telaComp = tela;
-        menu = login;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
     }
@@ -60,7 +58,7 @@ public class TelaCarrinho extends Tela{
         //Botão Voltar
         botoes.add(new JButton("Remover do Carrinho"));
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
-//            usuario.removeProdutoCarrinho(, );
+            usuario.removeProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
         });
         
         JPanel painelAux = new JPanel();

@@ -155,7 +155,7 @@ public class TelaComprador extends Tela{
     }
     
     public void abrirCarrinho(){
-        TelaCarrinho carrinho = new TelaCarrinho(usuario, this, menu);
+        TelaCarrinho carrinho = new TelaCarrinho(usuario, this);
         carrinho.desenha();
         tela.setVisible(false);
     }
