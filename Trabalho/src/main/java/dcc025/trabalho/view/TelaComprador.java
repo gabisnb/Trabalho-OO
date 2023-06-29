@@ -2,18 +2,16 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
 import dcc025.trabalho.controller.GerenciaCompradores;
-import java.awt.*;
-import java.util.ArrayList;
-import javax.swing.*;
-
 import dcc025.trabalho.controller.GerenciarVendedores;
-
-
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
+
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -35,7 +33,6 @@ public class TelaComprador extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.addWindowListener(new GerenciaCompradores(this));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setLocationRelativeTo(null);
@@ -74,12 +71,18 @@ public class TelaComprador extends Tela{
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
         
+        //Botao de Acesso a Loja do Vendedor
+        botoes.add(new JButton("Acessar Loja"));
+        botoes.get(2).addActionListener((ActionEvent e) -> {
+            abrirLoja();
+        });
+        
         JPanel bpainel = new JPanel();
         
         //Botão Sair
         botoes.add(new JButton("Sair"));
         //Configuração
-        botoes.get(2).addActionListener((ActionEvent e) -> {
+        botoes.get(3).addActionListener((ActionEvent e) -> {
             fechar();
             
             //Salvando dados
@@ -89,7 +92,8 @@ public class TelaComprador extends Tela{
         });
         
         //Adicionando o botão no bpainel
-        bpainel.add(botoes.get(2), BorderLayout.PAGE_END);
+        bpainel.add(botoes.get(3), BorderLayout.PAGE_END);
+        bpainel.add(botoes.get(2), BorderLayout.SOUTH);
         
         painel.add(bpainel, BorderLayout.SOUTH);
 

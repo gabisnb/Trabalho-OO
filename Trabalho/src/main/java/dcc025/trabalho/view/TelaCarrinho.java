@@ -49,16 +49,14 @@ public class TelaCarrinho extends Tela{
                 
         //Botão Comprar
         botoes.add(new JButton("Comprar"));
-        
-        //Botão Voltar
-        botoes.add(new JButton("Voltar"));
-        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
-            tela.dispose();
-            telaComp.abrir();
-        });
-        
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
             abrirPagamento();
+        });
+        
+        //Botão Voltar
+        botoes.add(new JButton("Remover do Carrinho"));
+        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
+//            usuario.removeProdutoCarrinho(, );
         });
         
         JPanel painelAux = new JPanel();
@@ -67,12 +65,11 @@ public class TelaCarrinho extends Tela{
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
 
-        //Botão Sair
-        botoes.add(new JButton("Sair"));
+        //Botão Voltar
+        botoes.add(new JButton("Voltar"));
         botoes.get(2).addActionListener((java.awt.event.ActionEvent e) -> {
             tela.dispose();
-            telaComp.fechar();
-            menu.abrir();
+            telaComp.abrir();
         });
         
         JPanel bpainel = new JPanel();
