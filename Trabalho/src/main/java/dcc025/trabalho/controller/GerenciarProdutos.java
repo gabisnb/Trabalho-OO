@@ -27,8 +27,8 @@ public class GerenciarProdutos implements WindowListener{
 
     @Override
     public void windowOpened(WindowEvent e) {
-        List<Produto> produtos = vendedor.getProdutosByVendedorID(vendedor.getId());
-        tela.carregaProdutosBanco(produtos);
+        //List<Produto> produtos = vendedor.getProdutosByVendedorID(vendedor.getId());
+        //tela.carregaProdutosBanco(produtos);
     }
 
     @Override

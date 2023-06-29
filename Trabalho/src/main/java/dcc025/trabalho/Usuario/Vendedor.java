@@ -58,7 +58,10 @@ public class Vendedor extends Pessoa {
 
     private int createID(){
         Persistence<Vendedor> all = new VendedorPersistence();
-        return all.findAll().size();
+        List<Vendedor> allVender = all.findAll();
+
+        if (allVender.isEmpty()) return 0;
+        return allVender.get(allVender.size() - 1).id;
     }
     
     @Override
