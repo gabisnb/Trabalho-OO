@@ -35,9 +35,7 @@ public class CarrinhoCompras {
         catch(ProductAlreadyShoppingCart e){
             carrinho.put(produto.getProduct_id(), carrinho.get(produto.getProduct_id())+1);
         }
-        finally{
-            totalPagar += produto.getPreco();
-        }
+        totalPagar += produto.getPreco();
     }
     
     public void checkException(String s) throws ProductAlreadyShoppingCart{
@@ -96,9 +94,26 @@ public class CarrinhoCompras {
     public List<Produto> getProdutos(){
         ProdutoPersistence persistence = new ProdutoPersistence();
         List<Produto> produtos = new ArrayList();
+        
+        List<String> invalido = new ArrayList();
+        this.totalPagar = 0;
+        
         for(String s: this.carrinho.keySet()){
-            System.out.println(s);
-            produtos.add(persistence.getProductbyID(s));
+            Produto produto = persistence.getProductbyID(s);
+            if(produto!=null){
+                produto.setQuantidade(this.carrinho.getOrDefault(s, 1));
+                produtos.add(produto);
+                totalPagar += produto.getPreco()*produto.getQuantidade();
+                System.out.println(s);
+            }
+            else{
+                System.out.println( "Tem que apagar: "+s);
+                invalido.add(s);
+            }
+        }
+        
+        for(String s: invalido){
+            this.carrinho.remove(s);
         }
         return produtos;
     }

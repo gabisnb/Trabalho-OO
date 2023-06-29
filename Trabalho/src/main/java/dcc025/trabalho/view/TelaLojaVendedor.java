@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class TelaLojaVendedor extends Tela{
-    private final Vendedor vendedor;
+    private Vendedor vendedor;
     private Comprador comprador;
     
     private TelaComprador telaAnterior;

@@ -10,7 +10,7 @@ import javax.swing.*;
 public class TelaCarrinho extends Tela{
     
     private Comprador usuario;
-    private CarrinhoCompras carrinho;
+    private java.util.List<Produto> carrinho;
     
     private TelaComprador telaComp;
     
@@ -18,7 +18,7 @@ public class TelaCarrinho extends Tela{
 
     protected TelaCarrinho(Comprador comp, TelaComprador tela) {
         usuario = comp;
-        carrinho = usuario.getCarrinho();
+        carrinho = usuario.getProdutos();
         telaComp = tela;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
@@ -34,7 +34,8 @@ public class TelaCarrinho extends Tela{
         
         desenhaMenu();
         try{
-            carregaCarrinhoBanco(this.usuario.getProdutos());
+            carrinho = usuario.getProdutos();
+            carregaCarrinhoBanco(carrinho);
         }
         catch(NullPointerException e){System.out.println("Carrinho vazio!");}
         
@@ -47,7 +48,7 @@ public class TelaCarrinho extends Tela{
         labels.add(new JLabel("Nome: " + usuario.getNome()));
         labels.add(new JLabel("Email: " + usuario.getEmail()));
         labels.add(new JLabel("Saldo: " + usuario.getSaldo()));
-        labels.add(new JLabel("Valor Total: " + carrinho.getTotalPagar()));
+        labels.add(new JLabel("Valor Total: " + usuario.getCarrinho().getTotalPagar()));
                 
         //Botão Comprar
         botoes.add(new JButton("Comprar"));
@@ -59,6 +60,7 @@ public class TelaCarrinho extends Tela{
         botoes.add(new JButton("Remover do Carrinho"));
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
             usuario.removeProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            carregaCarrinhoBanco(usuario.getProdutos());
         });
         
         JPanel painelAux = new JPanel();

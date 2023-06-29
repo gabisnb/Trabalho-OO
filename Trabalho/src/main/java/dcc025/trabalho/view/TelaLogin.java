@@ -61,24 +61,6 @@ public class TelaLogin extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    public void entrar(){
-        String nome = tf.get(0).getText();
-        String email = tf.get(1).getText();
-        String senha = tf.get(2).getText();
-        int opcao = cbEscolha.getSelectedIndex();
-        if(opcao==0){
-            //implementar verificação de dados
-//            TelaComprador comprador = new TelaComprador(this, new Comprador(nome, email, senha));
-//            comprador.desenha();
-        }
-        else{
-            //implementar verificação de dados
-            TelaVendedor vendedor = new TelaVendedor(this, new Vendedor(nome, email, senha));
-            vendedor.desenha();
-        }
-        tela.setVisible(false);
-    }
-    
     public void entrarVendedor(Vendedor vendedor){
         TelaVendedor telaVendedor = new TelaVendedor(this, vendedor);
         telaVendedor.desenha();
