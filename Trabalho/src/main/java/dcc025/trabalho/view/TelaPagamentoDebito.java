@@ -32,7 +32,7 @@ public class TelaPagamentoDebito extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Pagamento em Debito");
+        JPanel painel = configuraPainelMain("Pagamento em Debito");
         
         labels.add(new JLabel("Instituicao Financeira: "));
         labels.add(new JLabel("Nome Completo: "));

@@ -51,7 +51,7 @@ public class TelaLojaVendedor extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Loja");
+        JPanel painel = configuraPainelMain("Loja");
         
         labels.add(new JLabel("Nome: " + usuario.getNome()));
 //        labels.add(new JLabel("Email: " + usuario.getEmail()));

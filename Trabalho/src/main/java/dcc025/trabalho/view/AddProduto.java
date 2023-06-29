@@ -43,7 +43,7 @@ public class AddProduto extends Tela{
     }
     
     @Override
-    protected JPanel ConfiguraPainelMain(String nome){
+    protected JPanel configuraPainelMain(String nome){
         JPanel painel = new JPanel();
         painel.setPreferredSize(new Dimension(LARGURA, ALTURA-(ALTURA/3)));
         painel.setBorder(BorderFactory.createTitledBorder(nome));
@@ -65,7 +65,7 @@ public class AddProduto extends Tela{
     }
     
     private void desenhaMenu(){
-        JPanel painel = ConfiguraPainelMain("Adicionar Produto");
+        JPanel painel = configuraPainelMain("Adicionar Produto");
         
         //Cria labels
         labels.add(new JLabel("Tipo: "));
@@ -326,6 +326,82 @@ public class AddProduto extends Tela{
                         setTipoEletrodomesticoMaquina();
                         break;
                 }
+                break;
+                
+            case MOVEL:
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoMovelAssento();
+                        break;
+                    case 2:
+                        setTipoMovelMesa();
+                        break;
+                    case 3:
+                        setTipoMovelEstante();
+                        break;
+                    case 4:
+                        setTipoMovelQuadro();
+                        break;
+                    case 5:
+                        setTipoMovelLuminaria();
+                        break;
+                    case 6:
+                        setTipoMovelArmario();
+                        break;
+                    case 7:
+                        setTipoMovelCama();
+                        break;
+                }
+                break;
+            
+            case MATERIAL_ESCRITORIO:
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoEscritorioCaneta();
+                        break;
+                    case 2:
+                        setTipoEscritorioLapis();
+                        break;
+                    case 3:
+                        setTipoEscritorioBorracha();
+                        break;
+                    case 4:
+                        setTipoEscritorioPapel();
+                        break;
+                    case 5:
+                        setTipoEscritorioClipes();
+                        break;
+                }
+                break;
+                
+            case ROUPAS:
+                switch(selected){
+                    case 0:
+                        subtipo = SubTipoProduto.N_A;
+                        break;
+                    case 1:
+                        setTipoRoupaSapato();
+                        break;
+                    case 2:
+                        setTipoRoupaCalca();
+                        break;
+                    case 3:
+                        setTipoRoupaBlusa();
+                        break;
+                    case 4:
+                        setTipoRoupaConjunto();
+                        break;
+                    case 5:
+                        setTipoRoupaAcessorio();
+                        break;
+                }
+                break;
         }
         
         String input = tf.get(0).getText();
