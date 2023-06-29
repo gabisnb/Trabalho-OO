@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
@@ -19,6 +15,8 @@ import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TelaComprador extends Tela{
     
@@ -167,28 +165,11 @@ public class TelaComprador extends Tela{
             model.addElement(v);
         }
     }
-//    
-//    public java.util.List<Produto> listaProdutos(){
-//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-//        java.util.List<Produto> produtos = new ArrayList<>();
-//
-//        for (int i = 0; i < model.size(); i++) {
-//            produtos.add(model.get(i));
-//        }
-//
-//        return produtos;
-//    }
-//
-//    public void addProduto(Produto produto){
-//
-//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-//        try {
-//            model.addElement(produto);
-//            carregaProdutos(usuario.getProdutosByVendedorID(usuario.getId()));
-//        }
-//        catch(Exception e){
-//            JOptionPane.showMessageDialog(null, "Houve um erro!");
-//        }
-//    }
+    
+    public void abrirLoja(){
+        Vendedor vendedor = jlistVendedores.getSelectedValue();
+        TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor);
+        telaLoja.desenha();
+    }
     
 }

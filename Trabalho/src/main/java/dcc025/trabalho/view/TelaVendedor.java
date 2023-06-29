@@ -30,7 +30,6 @@ public class TelaVendedor extends Tela{
         
         DefaultListModel<Produto> model = new DefaultListModel<>();
         jlistProdutos = new JList<>(model);
-        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
     }
     
     public void desenha(){
@@ -43,6 +42,7 @@ public class TelaVendedor extends Tela{
         
         desenhaMenu();
         
+        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
         tela.pack();
     }
     

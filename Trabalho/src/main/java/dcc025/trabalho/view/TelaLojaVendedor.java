@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Vendedor;
@@ -19,10 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-/**
- *
- * @author joaov
- */
+
 public class TelaLojaVendedor extends Tela{
     private final Vendedor usuario;
     
@@ -46,6 +39,7 @@ public class TelaLojaVendedor extends Tela{
         tela.setLayout(new BorderLayout());
         
         desenhaMenu();
+        carregaProdutos(Vendedor.getProdutosByVendedorID(usuario.getId()));
         
         tela.pack();
     }
@@ -54,7 +48,6 @@ public class TelaLojaVendedor extends Tela{
         JPanel painel = configuraPainelMain("Loja");
         
         labels.add(new JLabel("Nome: " + usuario.getNome()));
-//        labels.add(new JLabel("Email: " + usuario.getEmail()));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -73,7 +66,7 @@ public class TelaLojaVendedor extends Tela{
         //Botão Sair
         botoes.add(new JButton("Sair"));
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
-            tela.dispose();
+            this.tela.dispose();
         });
         
         for(JButton botao : botoes)
@@ -103,7 +96,7 @@ public class TelaLojaVendedor extends Tela{
     
     public void carregaProdutos(java.util.List<Produto> produtos){
         DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-        
+        model.clear();
         for (Produto c: produtos) {
             model.addElement(c);
         }
