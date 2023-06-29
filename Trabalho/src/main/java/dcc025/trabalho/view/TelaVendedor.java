@@ -16,7 +16,7 @@ import javax.swing.*;
 
 public class TelaVendedor extends Tela{
     
-    private final Vendedor usuario;
+    private Vendedor usuario;
     
     private TelaLogin menu;
     
@@ -116,6 +116,15 @@ public class TelaVendedor extends Tela{
 
         return produtos;
     }
+    
+    public void carrega(java.util.List<Produto> produtos){
+
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+
+        for (Produto p: produtos) {
+            model.addElement(p);
+        }
+    }
 
     public void addProduto(Produto produto){
         ProdutoPersistence persistence = new ProdutoPersistence();
@@ -127,7 +136,7 @@ public class TelaVendedor extends Tela{
         /*DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
         try {
             model.addElement(produto);
-            carregaProdutosBanco(usuario.getProdutosByVendedorID(usuario.getId()));
+            //carrega(listaProdutos());
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Houve um erro!");
@@ -137,21 +146,16 @@ public class TelaVendedor extends Tela{
     public void salvar(){
         //Salvando dados
         Persistence<Produto> persistence = new ProdutoPersistence();
-        java.util.List<Produto> produtos =  listaProdutos();
+        java.util.List<Produto> todosProdutos = persistence.findAll();
         
-        persistence.save(produtos);
+        for(Produto p: listaProdutos()){
+            if(!todosProdutos.contains(p))
+                todosProdutos.add(p);
+        }
+        
+        persistence.save(todosProdutos);
     }
-//
-//    public void removerContato(){
-//
-//        int selectedIndex = jlContatos.getSelectedIndex();
-//
-//        if(selectedIndex != -1){
-//
-//            DefaultListModel<Contato> model = (DefaultListModel<Contato>)jlContatos.getModel();
-//            model.remove(selectedIndex);
-//        }
-//    }
+    
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario.getId());
         telaAddProd.desenha();
@@ -162,8 +166,9 @@ public class TelaVendedor extends Tela{
     }
     
     public void fechar(){
-        //salvar informações no banco
         tela.dispose();
     }
+    
+    
     
 }

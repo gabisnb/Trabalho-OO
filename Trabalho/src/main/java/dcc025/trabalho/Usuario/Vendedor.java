@@ -25,7 +25,7 @@ public class Vendedor extends Pessoa {
         this.id = createID() + 1;
 
     }
-    public String getId(){ return Integer.toString(id); }
+    public String getId(){ return Integer.toString(this.id); }
 
     public void adicionaSaldo(double valor){
         saldo_loja += valor;
@@ -42,8 +42,10 @@ public class Vendedor extends Pessoa {
         List<Produto> sameIdProducts = new ArrayList<>();
 
         for(Produto produto : allProducts){
-            if(separateProductId(produto.getProduct_id()).equals(vender_id))
+            if(separateProductId(produto.getProduct_id()).equals(vender_id)){
                 sameIdProducts.add(produto);
+                System.out.println(produto.getProduct_id() + ", " + vender_id);
+            }
         }
         return sameIdProducts;
     }
