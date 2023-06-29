@@ -1,10 +1,10 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
+
 import java.awt.BorderLayout;
 import java.util.*;
 import javax.swing.*;
-
 
 public class TelaPagamento extends Tela{
     

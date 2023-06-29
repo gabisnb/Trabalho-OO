@@ -1,24 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
-import dcc025.trabalho.controller.GerenciaCompradores;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
 import dcc025.trabalho.controller.GerenciarVendedores;
-
-
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
+
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TelaComprador extends Tela{
     
@@ -37,7 +36,6 @@ public class TelaComprador extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.addWindowListener(new GerenciaCompradores(this));
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA);
         tela.setLocationRelativeTo(null);
@@ -59,19 +57,15 @@ public class TelaComprador extends Tela{
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
         //Configuração
-        botoes.get(0).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                adicionarSaldo();
-            }
+        botoes.get(0).addActionListener((ActionEvent e) -> {
+            adicionarSaldo();
         });
         
         //Botão Carrinho de Compras
         botoes.add(new JButton("Carrinho de Compras"));
         //Configuração
-        botoes.get(1).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirCarrinho();
-            }
+        botoes.get(1).addActionListener((ActionEvent e) -> {
+            abrirCarrinho();
         });
         
         JPanel painelAux = new JPanel();
@@ -80,24 +74,29 @@ public class TelaComprador extends Tela{
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
         
+        //Botao de Acesso a Loja do Vendedor
+        botoes.add(new JButton("Acessar Loja"));
+        botoes.get(2).addActionListener((ActionEvent e) -> {
+            abrirLoja();
+        });
+        
         JPanel bpainel = new JPanel();
         
         //Botão Sair
         botoes.add(new JButton("Sair"));
         //Configuração
-        botoes.get(2).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fechar();
-                
-                //Salvando dados
-                salvar();
-                
-                menu.abrir();
-            }
+        botoes.get(3).addActionListener((ActionEvent e) -> {
+            fechar();
+            //Salvando dados
+            salvar();
+            
+            fechar();
+            menu.abrir();
         });
         
         //Adicionando o botão no bpainel
-        bpainel.add(botoes.get(2), BorderLayout.PAGE_END);
+        bpainel.add(botoes.get(3), BorderLayout.PAGE_END);
+        bpainel.add(botoes.get(2), BorderLayout.SOUTH);
         
         painel.add(bpainel, BorderLayout.SOUTH);
 
@@ -131,6 +130,7 @@ public class TelaComprador extends Tela{
     public void carrega(){
         //Salvando dados
         salvar();
+        
         //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
@@ -155,7 +155,7 @@ public class TelaComprador extends Tela{
     }
     
     public void abrirCarrinho(){
-        TelaCarrinho carrinho = new TelaCarrinho(usuario, this, menu);
+        TelaCarrinho carrinho = new TelaCarrinho(usuario, this);
         carrinho.desenha();
         tela.setVisible(false);
     }
@@ -167,28 +167,11 @@ public class TelaComprador extends Tela{
             model.addElement(v);
         }
     }
-//    
-//    public java.util.List<Produto> listaProdutos(){
-//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-//        java.util.List<Produto> produtos = new ArrayList<>();
-//
-//        for (int i = 0; i < model.size(); i++) {
-//            produtos.add(model.get(i));
-//        }
-//
-//        return produtos;
-//    }
-//
-//    public void addProduto(Produto produto){
-//
-//        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
-//        try {
-//            model.addElement(produto);
-//            carregaProdutos(usuario.getProdutosByVendedorID(usuario.getId()));
-//        }
-//        catch(Exception e){
-//            JOptionPane.showMessageDialog(null, "Houve um erro!");
-//        }
-//    }
+    
+    public void abrirLoja(){
+        Vendedor vendedor = jlistVendedores.getSelectedValue();
+        TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor, this.usuario);
+        telaLoja.desenha();
+    }
     
 }

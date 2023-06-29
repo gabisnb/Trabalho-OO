@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
@@ -17,15 +13,13 @@ public class TelaCarrinho extends Tela{
     private CarrinhoCompras carrinho;
     
     private TelaComprador telaComp;
-    private TelaLogin menu;
     
     private JList<Produto> jlistProdutos;
 
-    protected TelaCarrinho(Comprador comp, TelaComprador tela, TelaLogin login) {
+    protected TelaCarrinho(Comprador comp, TelaComprador tela) {
         usuario = comp;
         carrinho = usuario.getCarrinho();
         telaComp = tela;
-        menu = login;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
     }
@@ -39,6 +33,10 @@ public class TelaCarrinho extends Tela{
         tela.setLayout(new BorderLayout());
         
         desenhaMenu();
+        try{
+            carregaCarrinhoBanco(this.usuario.getProdutos());
+        }
+        catch(NullPointerException e){System.out.println("Carrinho vazio!");}
         
         tela.pack();
     }
@@ -53,20 +51,14 @@ public class TelaCarrinho extends Tela{
                 
         //Botão Comprar
         botoes.add(new JButton("Comprar"));
-        
-        //Botão Voltar
-        botoes.add(new JButton("Voltar"));
-        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                tela.dispose();
-                telaComp.abrir();
-            }
+        botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
+            abrirPagamento();
         });
         
-        botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                abrirPagamento();
-            }
+        //Botão Voltar
+        botoes.add(new JButton("Remover do Carrinho"));
+        botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
+            usuario.removeProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
         });
         
         JPanel painelAux = new JPanel();
@@ -75,14 +67,11 @@ public class TelaCarrinho extends Tela{
         painelAux.add(desenhaBotoes(botoes));
         painel.add(painelAux, BorderLayout.CENTER);
 
-        //Botão Sair
-        botoes.add(new JButton("Sair"));
-        botoes.get(2).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                tela.dispose();
-                telaComp.fechar();
-                menu.abrir();
-            }
+        //Botão Voltar
+        botoes.add(new JButton("Voltar"));
+        botoes.get(2).addActionListener((java.awt.event.ActionEvent e) -> {
+            tela.dispose();
+            telaComp.abrir();
         });
         
         JPanel bpainel = new JPanel();
@@ -92,10 +81,34 @@ public class TelaCarrinho extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
+    @Override
+    protected JPanel desenhaLista(String string){
+
+        JPanel painel = new JPanel();
+        painel.setBorder(BorderFactory.createTitledBorder(string));
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
+        painel.setLayout(new BorderLayout());
+
+        DefaultListModel<Produto> model = new DefaultListModel<>();
+
+        jlistProdutos = new JList<>(model);
+
+        painel.add(new JScrollPane(jlistProdutos), BorderLayout.CENTER);
+        return painel;
+    }
+    
     protected void abrirPagamento(){
         TelaPagamento telaPaga = new TelaPagamento(usuario, this);
         telaPaga.desenha();
         tela.setVisible(false);
+    }
+    
+    public void carregaCarrinhoBanco(java.util.List<Produto> carrinho){
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        model.clear();
+        for (Produto c: carrinho) {
+            model.addElement(c);
+        }
     }
     
     protected void abrir(){

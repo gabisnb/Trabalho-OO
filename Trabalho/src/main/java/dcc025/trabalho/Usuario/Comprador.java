@@ -10,6 +10,7 @@ import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.model.TiposProdutos;
 
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import java.util.List;
 
 public class Comprador extends Pessoa {
 
@@ -49,6 +50,10 @@ public class Comprador extends Pessoa {
             throw new SaldoInvalidoException();
         }
         this.saldo += saldo;
+    }
+    
+    public List<Produto> getProdutos(){
+        return carrinho.getProdutos();
     }
 
 }

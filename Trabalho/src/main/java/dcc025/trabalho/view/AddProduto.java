@@ -244,9 +244,6 @@ public class AddProduto extends Tela{
         //Adiciona itens default
         carregaCbEletrodomestico();
         
-        //Adiciona eventListener
-        
-        
         return cbSubTipo;
     }
     
@@ -305,103 +302,55 @@ public class AddProduto extends Tela{
     public Produto getProduto(){
         int selected = cbSubTipo.getSelectedIndex();
         switch(tipo){
-            case ELETRODOMESTICO:
+            case ELETRODOMESTICO -> {
                 switch(selected){
-                    case 0:
-                        subtipo = SubTipoProduto.N_A;
-                        break;
-                    case 1:
-                        setTipoEletrodomesticoGeladeira();
-                        break;
-                    case 2:
-                        setTipoEletrodomesticoFogao();
-                        break;
-                    case 3:
-                        setTipoEletrodomesticoComputador();
-                        break;
-                    case 4:
-                        setTipoEletrodomesticoTV();
-                        break;
-                    case 5:
-                        setTipoEletrodomesticoMaquina();
-                        break;
+                    case 0 -> subtipo = SubTipoProduto.N_A;
+                    case 1 -> setTipoEletrodomesticoGeladeira();
+                    case 2 -> setTipoEletrodomesticoFogao();
+                    case 3 -> setTipoEletrodomesticoComputador();
+                    case 4 -> setTipoEletrodomesticoTV();
+                    case 5 -> setTipoEletrodomesticoMaquina();
                 }
-                break;
+            }
+
                 
-            case MOVEL:
+            case MOVEL -> {
                 switch(selected){
-                    case 0:
-                        subtipo = SubTipoProduto.N_A;
-                        break;
-                    case 1:
-                        setTipoMovelAssento();
-                        break;
-                    case 2:
-                        setTipoMovelMesa();
-                        break;
-                    case 3:
-                        setTipoMovelEstante();
-                        break;
-                    case 4:
-                        setTipoMovelQuadro();
-                        break;
-                    case 5:
-                        setTipoMovelLuminaria();
-                        break;
-                    case 6:
-                        setTipoMovelArmario();
-                        break;
-                    case 7:
-                        setTipoMovelCama();
-                        break;
+                    case 0 -> subtipo = SubTipoProduto.N_A;
+                    case 1 -> setTipoMovelAssento();
+                    case 2 -> setTipoMovelMesa();
+                    case 3 -> setTipoMovelEstante();
+                    case 4 -> setTipoMovelQuadro();
+                    case 5 -> setTipoMovelLuminaria();
+                    case 6 -> setTipoMovelArmario();
+                    case 7 -> setTipoMovelCama();
                 }
-                break;
+            }
+
             
-            case MATERIAL_ESCRITORIO:
+            case MATERIAL_ESCRITORIO -> {
                 switch(selected){
-                    case 0:
-                        subtipo = SubTipoProduto.N_A;
-                        break;
-                    case 1:
-                        setTipoEscritorioCaneta();
-                        break;
-                    case 2:
-                        setTipoEscritorioLapis();
-                        break;
-                    case 3:
-                        setTipoEscritorioBorracha();
-                        break;
-                    case 4:
-                        setTipoEscritorioPapel();
-                        break;
-                    case 5:
-                        setTipoEscritorioClipes();
-                        break;
+                    case 0 -> subtipo = SubTipoProduto.N_A;
+                    case 1 -> setTipoEscritorioCaneta();
+                    case 2 -> setTipoEscritorioLapis();
+                    case 3 -> setTipoEscritorioBorracha();
+                    case 4 -> setTipoEscritorioPapel();
+                    case 5 -> setTipoEscritorioClipes();
                 }
-                break;
+            }
+
                 
-            case ROUPAS:
+            case ROUPAS -> {
                 switch(selected){
-                    case 0:
-                        subtipo = SubTipoProduto.N_A;
-                        break;
-                    case 1:
-                        setTipoRoupaSapato();
-                        break;
-                    case 2:
-                        setTipoRoupaCalca();
-                        break;
-                    case 3:
-                        setTipoRoupaBlusa();
-                        break;
-                    case 4:
-                        setTipoRoupaConjunto();
-                        break;
-                    case 5:
-                        setTipoRoupaAcessorio();
-                        break;
+                    case 0 -> subtipo = SubTipoProduto.N_A;
+                    case 1 -> setTipoRoupaSapato();
+                    case 2 -> setTipoRoupaCalca();
+                    case 3 -> setTipoRoupaBlusa();
+                    case 4 -> setTipoRoupaConjunto();
+                    case 5 -> setTipoRoupaAcessorio();
                 }
-                break;
+            }
+
         }
         
         String input = tf.get(0).getText();
@@ -418,16 +367,6 @@ public class AddProduto extends Tela{
     public void fechar(){
         tela.dispose();
     }
-    
-//    private void addCor(Cor cor, int quantidade){ qCor.put(cor, quantidade);}
-
-    
-//    private void getQuantidadeTotal()
-//    {
-//        for(Cor aux : Cor.values()){
-//            quantidade += qCor.get(aux);
-//        }
-//    }
 
 /////////////////////// - Sets para Tipo de Produto /////////////////////////////////////////////////
     private void setTipoRoupa(){tipo = TiposProdutos.ROUPAS;}
@@ -460,7 +399,4 @@ public class AddProduto extends Tela{
     private void setTipoEscritorioClipes(){subtipo = SubTipoProduto.CLIPES ;}
     private void setTipoEscritorioLapis(){subtipo = SubTipoProduto.LAPIS ;}
     private void setTipoEscritorioPapel(){subtipo = SubTipoProduto.PAPEL ;}
-    
-    
-
 }

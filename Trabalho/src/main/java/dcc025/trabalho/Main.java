@@ -16,12 +16,12 @@ public class Main {
        persistence.save(list);
         list.add(new Vendedor("a", "a", "a"));
         persistence.save(list);
-
-        CompradorPersistence cpersistence =  new CompradorPersistence();
-        List<Comprador> clist = new ArrayList();
-        clist.add(new Comprador("t", "t", "t", 100.00));
-        cpersistence.save(clist);*/
-        
+*/
+//        CompradorPersistence cpersistence =  new CompradorPersistence();
+//        List<Comprador> clist = new ArrayList();
+//        clist.add(new Comprador("t", "t", "t", 100.00));
+//        cpersistence.save(clist);
+//        
         TelaLogin login = new TelaLogin();
         login.desenha();
 //        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));
