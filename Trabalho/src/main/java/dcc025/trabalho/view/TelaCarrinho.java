@@ -35,6 +35,10 @@ public class TelaCarrinho extends Tela{
         tela.setLayout(new BorderLayout());
         
         desenhaMenu();
+        try{
+            carregaCarrinhoBanco(this.usuario.getProdutos());
+        }
+        catch(NullPointerException e){System.out.println("Carrinho vazio!");}
         
         tela.pack();
     }
@@ -79,10 +83,34 @@ public class TelaCarrinho extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
+    @Override
+    protected JPanel desenhaLista(String string){
+
+        JPanel painel = new JPanel();
+        painel.setBorder(BorderFactory.createTitledBorder(string));
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA/3));
+        painel.setLayout(new BorderLayout());
+
+        DefaultListModel<Produto> model = new DefaultListModel<>();
+
+        jlistProdutos = new JList<>(model);
+
+        painel.add(new JScrollPane(jlistProdutos), BorderLayout.CENTER);
+        return painel;
+    }
+    
     protected void abrirPagamento(){
         TelaPagamento telaPaga = new TelaPagamento(usuario, this);
         telaPaga.desenha();
         tela.setVisible(false);
+    }
+    
+    public void carregaCarrinhoBanco(java.util.List<Produto> carrinho){
+        DefaultListModel<Produto> model = (DefaultListModel<Produto>)jlistProdutos.getModel();
+        model.clear();
+        for (Produto c: carrinho) {
+            model.addElement(c);
+        }
     }
     
     protected void abrir(){

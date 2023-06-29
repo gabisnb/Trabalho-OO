@@ -1,7 +1,9 @@
 package dcc025.trabalho.view;
 
+import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -16,14 +18,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class TelaLojaVendedor extends Tela{
-    private final Vendedor usuario;
+    private final Vendedor vendedor;
+    private Comprador comprador;
     
     private TelaComprador telaAnterior;
     
     private JList<Produto> jlistProdutos;
     
-    public TelaLojaVendedor(TelaComprador telaAnterior, Vendedor vend) {
-        usuario = vend;
+    public TelaLojaVendedor(TelaComprador telaAnterior, Vendedor vend, Comprador compr) {
+        vendedor = vend;
+        comprador = compr;
         this.telaAnterior = telaAnterior;
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
@@ -38,7 +42,7 @@ public class TelaLojaVendedor extends Tela{
         tela.setLayout(new BorderLayout());
         
         desenhaMenu();
-        carregaProdutos(Vendedor.getProdutosByVendedorID(usuario.getId()));
+        carregaProdutos(Vendedor.getProdutosByVendedorID(vendedor.getId()));
         
         tela.pack();
     }
@@ -46,7 +50,7 @@ public class TelaLojaVendedor extends Tela{
     private void desenhaMenu(){
         JPanel painel = configuraPainelMain("Loja");
         
-        labels.add(new JLabel("Nome: " + usuario.getNome()));
+        labels.add(new JLabel("Nome: " + vendedor.getNome()));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -59,7 +63,8 @@ public class TelaLojaVendedor extends Tela{
         //Botao Adicionar no Carrinho
         botoes.add(new JButton("Adicionar Produto ao carrinho"));
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
-            //implementar a adição do produto no carrinho
+            this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            this.telaAnterior.salvar();
         });
         
         //Botão Sair

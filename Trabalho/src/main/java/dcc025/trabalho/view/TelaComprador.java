@@ -1,7 +1,10 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
-import dcc025.trabalho.controller.GerenciaCompradores;
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
 import dcc025.trabalho.controller.GerenciarVendedores;
 import dcc025.trabalho.exceptions.SaldoInvalidoException;
 import dcc025.trabalho.model.Produto;
@@ -84,10 +87,10 @@ public class TelaComprador extends Tela{
         //Configuração
         botoes.get(3).addActionListener((ActionEvent e) -> {
             fechar();
-            
             //Salvando dados
             salvar();
             
+            fechar();
             menu.abrir();
         });
         
@@ -127,6 +130,7 @@ public class TelaComprador extends Tela{
     public void carrega(){
         //Salvando dados
         salvar();
+        
         //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
@@ -166,7 +170,7 @@ public class TelaComprador extends Tela{
     
     public void abrirLoja(){
         Vendedor vendedor = jlistVendedores.getSelectedValue();
-        TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor);
+        TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor, this.usuario);
         telaLoja.desenha();
     }
     

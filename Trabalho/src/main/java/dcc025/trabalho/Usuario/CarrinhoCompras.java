@@ -4,7 +4,9 @@
  */
 package dcc025.trabalho.Usuario;
 
+import dcc025.trabalho.exceptions.ProductAlreadyShoppingCart;
 import dcc025.trabalho.model.Produto;
+import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 
@@ -26,10 +28,21 @@ public class CarrinhoCompras {
     public void insereProduto(String product_id, int quantidade){
         ProdutoPersistence persistence = new ProdutoPersistence();
         Produto produto = persistence.getProductbyID(product_id);
-
-        carrinho.put(produto.getProduct_id(), quantidade);
-
-        totalPagar += produto.getPreco() * quantidade;
+        try{
+            checkException(produto.getProduct_id());
+            carrinho.put(produto.getProduct_id(), quantidade);
+        }
+        catch(ProductAlreadyShoppingCart e){
+            carrinho.put(produto.getProduct_id(), carrinho.get(produto.getProduct_id())+1);
+        }
+        finally{
+            totalPagar += produto.getPreco();
+        }
+    }
+    
+    public void checkException(String s) throws ProductAlreadyShoppingCart{
+        if(carrinho.containsKey(s))
+            throw new ProductAlreadyShoppingCart();
     }
 
     public void removeProduto(String product_id, int quantidade)
@@ -78,6 +91,16 @@ public class CarrinhoCompras {
 
     public double getTotalPagar(){
         return totalPagar;
+    }
+    
+    public List<Produto> getProdutos(){
+        ProdutoPersistence persistence = new ProdutoPersistence();
+        List<Produto> produtos = new ArrayList();
+        for(String s: this.carrinho.keySet()){
+            System.out.println(s);
+            produtos.add(persistence.getProductbyID(s));
+        }
+        return produtos;
     }
 
 }
