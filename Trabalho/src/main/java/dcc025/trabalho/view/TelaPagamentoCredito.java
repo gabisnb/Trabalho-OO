@@ -1,6 +1,7 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoCredito;
+import dcc025.trabalho.exceptions.NumberParcelasException;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -38,22 +39,47 @@ public class TelaPagamentoCredito extends Tela{
         labels.add(new JLabel("Nome Completo: "));
         labels.add(new JLabel("Mes Expiracao: "));
         labels.add(new JLabel("Ano Expiracao: "));
+        labels.add(new JLabel("Numero de Parcelas: "));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
-        painelAux.add(desenhaTF(4, 20, tf));
+        painelAux.add(desenhaTF(5, 20, tf));
         painel.add(painelAux, BorderLayout.CENTER);
         
-        
+        //Botão cancelar
         botoes.add(new JButton("Cancelar"));
         botoes.add(new JButton("Finalizar Pagamento"));
+        
+        //Configurações botões
         botoes.get(0).addActionListener((ActionEvent e) -> {
             tela.dispose();
             telaAnterior.abrir();
+        });
+        botoes.get(1).addActionListener((ActionEvent e) -> {
+            try{
+                finalizarPagamento();
+                tela.dispose();
+            }
+            catch(NumberParcelasException en){
+                JOptionPane.showMessageDialog(null, "Número de parcelas inválido");
+            }
+            catch(NumberFormatException en){
+                JOptionPane.showMessageDialog(null, "Mês/ano de expiração inválido");
+            }
         });
         
         painel.add(desenhaBotoes(botoes), BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
+    }
+    
+    public void finalizarPagamento() throws NumberFormatException, NumberParcelasException{
+        String nCartao = tf.get(0).getText();
+        String nome = tf.get(1).getText();
+        int mes = Integer.parseInt(tf.get(2).getText());
+        int ano = Integer.parseInt(tf.get(3).getText());
+        int quantParcelas = Integer.parseInt(tf.get(4).getText());
+        PagamentoCredito pagamento = new PagamentoCredito(nCartao, nome, mes, ano, quantParcelas);
+        telaAnterior.pagar();
     }
 }

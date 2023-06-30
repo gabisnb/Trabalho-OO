@@ -14,18 +14,16 @@ import dcc025.trabalho.Usuario.CarrinhoCompras;
 public class PagamentoSaldoLoja extends Pagamento {
     private double saldo;
 
-    public PagamentoSaldoLoja(Comprador atual) {
-        super(atual);
+    public PagamentoSaldoLoja() {
     }
     public void paga(double valor){ // valor = valor a pagar
-       
-        if(usuario.getSaldo()> valor){
-            saldo = usuario.getSaldo()- calculaDesconto(valor);
-            usuario.setSaldo(saldo);
-        }
-        else{
-            System.out.println("Saldo insuficiente");
-        }
+//        if(usuario.getSaldo()> valor){
+//            saldo = usuario.getSaldo()- calculaDesconto(valor);
+//            usuario.setSaldo(saldo);
+//        }
+//        else{
+//            System.out.println("Saldo insuficiente");
+//        }
     }
     public double calculaDesconto(double valor){
         valor = valor*0.9;

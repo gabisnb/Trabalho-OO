@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.controller;
 
 import dcc025.trabalho.Usuario.Comprador;
@@ -14,10 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author gabri
- */
 public class Entrar  implements ActionListener{
     
     private final TelaLogin tela;

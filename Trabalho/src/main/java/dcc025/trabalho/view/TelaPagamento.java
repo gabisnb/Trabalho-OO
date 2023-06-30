@@ -1,6 +1,9 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
+import dcc025.trabalho.controller.*;
+import dcc025.trabalho.exceptions.NumberParcelasException;
+import dcc025.trabalho.exceptions.SaldoInvalidoException;
 
 import java.awt.BorderLayout;
 import java.util.*;
@@ -36,10 +39,20 @@ public class TelaPagamento extends Tela{
     private void desenhaMenu(){
         JPanel painel = configuraPainelMain("Pagamento");
         
-        labels.add(new JLabel("Valor Total:       R$"+usuario.getCarrinho().getTotalPagar()));
-        labels.add(new JLabel("Valor por Credito: R$"));
-        labels.add(new JLabel("Valor por Debito:  R$"));
-        labels.add(new JLabel("Valor por Saldo:   R$"));
+        PagamentoDebito debito = new PagamentoDebito(usuario.getNome(), "", 0, 0, "0000-0");
+        PagamentoCredito credito = null;
+        try{
+        credito = new PagamentoCredito("", usuario.getNome(), 0, 0, 1);
+        }
+        catch(NumberParcelasException e){}
+        PagamentoSaldoLoja saldo = new PagamentoSaldoLoja();
+        
+        double valor = usuario.getCarrinho().getTotalPagar();
+        
+        labels.add(new JLabel("Valor Total:       R$" + valor));
+        labels.add(new JLabel("Valor por Crédito(1x): R$" + credito.calculaDesconto(valor)));
+        labels.add(new JLabel("Valor por Débito:  R$" + debito.calculaDesconto(valor)));
+        labels.add(new JLabel("Valor por Saldo:   R$" + saldo.calculaDesconto(valor)));
         
         cbEscolha = new JComboBox<>();
         cbEscolha.addItem("Metodo de Pagamento");
@@ -57,12 +70,11 @@ public class TelaPagamento extends Tela{
         botoes.add(new JButton("Ir para Pagamento"));
         
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
-            tela.dispose();
-            telaAnterior.abrir();
+            fechar();
         });
         
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
-            pagar();
+            abrirPagamento();
         });
         
         painel.add(desenhaBotoes(botoes), BorderLayout.PAGE_END);
@@ -70,7 +82,7 @@ public class TelaPagamento extends Tela{
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
     
-    private void pagar(){
+    private void abrirPagamento(){
         
         int opcao = cbEscolha.getSelectedIndex();
         
@@ -99,5 +111,14 @@ public class TelaPagamento extends Tela{
     
     protected void abrir(){
         tela.setVisible(true);
+    }
+    public void fechar(){
+        tela.dispose();
+        telaAnterior.abrir();
+    }
+    
+    public void pagar(){
+        this.usuario.comprarCarrinho();
+        fechar();
     }
 }

@@ -10,9 +10,8 @@ import dcc025.trabalho.Usuario.Comprador;
  */
 public abstract class Pagamento {
 
-    Comprador usuario;
-    public Pagamento(Comprador atual) {
-        this.usuario = atual;
+    public Pagamento() {
+        
     }   
     public abstract void paga(double valor);
     public abstract double calculaDesconto(double valor); 

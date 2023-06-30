@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.controller;
 
 import dcc025.trabalho.controller.Pagamento;
 import dcc025.trabalho.Usuario.Comprador;
-/**
- *
- * @author gabri
- */
+
 public class PagamentoDebito extends Pagamento {
     private final String nome;
     private final String instituicao;
@@ -17,8 +10,7 @@ public class PagamentoDebito extends Pagamento {
     private final int agencia; 
     private final String conta;
     
-    public PagamentoDebito(Comprador atual, String nome, String instituicao, int tipo, int agencia, String conta) {
-        super(atual);
+    public PagamentoDebito(String nome, String instituicao, int tipo, int agencia, String conta) {
         this.nome = nome; 
         this.instituicao = instituicao; 
         this.tipo = tipo;
