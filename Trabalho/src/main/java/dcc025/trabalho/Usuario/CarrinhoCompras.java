@@ -117,5 +117,7 @@ public class CarrinhoCompras {
         }
         return produtos;
     }
-
+    public int quantidadeEmCarrinho(String id){
+        return carrinho.get(id);
+    }
 }

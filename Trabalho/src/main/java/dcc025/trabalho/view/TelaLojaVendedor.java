@@ -2,6 +2,8 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.Usuario.Vendedor;
+import dcc025.trabalho.exceptions.ProductAlreadyShoppingCart;
+import dcc025.trabalho.exceptions.ProductLimitException;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.BorderLayout;
@@ -63,10 +65,21 @@ public class TelaLojaVendedor extends Tela{
         //Botao Adicionar no Carrinho
         botoes.add(new JButton("Adicionar Produto ao carrinho"));
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
-            this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
-            this.telaAnterior.salvar();
+            try {
+                checkProductMax(jlistProdutos.getSelectedValue());
+                this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+                this.telaAnterior.salvar();
+            }
+            catch (ProductLimitException ex){
+                JOptionPane.showMessageDialog(null, "Máximo de Inserção de Produto");
+            }
+            catch (NullPointerException ex){
+                this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+                this.telaAnterior.salvar();
+            }
         });
-        
+
+
         //Botão Sair
         botoes.add(new JButton("Sair"));
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
@@ -115,5 +128,11 @@ public class TelaLojaVendedor extends Tela{
         }
 
         return produtos;
+    }
+
+
+    public void checkProductMax(Produto produto) throws ProductLimitException {
+        if(produto.getQuantidade() <= comprador.getCarrinho().quantidadeEmCarrinho(produto.getProduct_id()))
+            throw new ProductLimitException();
     }
 }

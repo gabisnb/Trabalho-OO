@@ -7,6 +7,10 @@ import javax.swing.*;
 
 import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.controller.AdicionarProduto;
+import dcc025.trabalho.exceptions.InvalidProductException;
+import dcc025.trabalho.exceptions.NegativePriceException;
+import dcc025.trabalho.exceptions.NegativeQuantityException;
+import dcc025.trabalho.exceptions.ProductLimitException;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.persistence.Persistence;
@@ -24,7 +28,8 @@ public class AddProduto extends Tela{
     private double preco = 0;
     private int quantidade = 0;
     private static int productId = 1;
-    
+
+    private Produto novoProduto;
     private final String vender_id;
     private final TelaVendedor telaAnterior;
     
@@ -32,6 +37,7 @@ public class AddProduto extends Tela{
     private JComboBox<TiposProdutos> cbTipo;
     private JComboBox<SubTipoProduto> cbSubTipo;
     private ArrayList<JTextField> tf;
+
     
     public AddProduto(TelaVendedor telaVendedor, String vender_id){
         super.botoes = new ArrayList();
@@ -299,7 +305,7 @@ public class AddProduto extends Tela{
 
     private void setPreco(double preco){this.preco = preco;}
     
-    public Produto getProduto(){
+    public Produto getProduto() throws InvalidProductException {
         int selected = cbSubTipo.getSelectedIndex();
         switch(tipo){
             case ELETRODOMESTICO -> {
@@ -352,16 +358,29 @@ public class AddProduto extends Tela{
             }
 
         }
-        
-        String input = tf.get(0).getText();
-        preco = Double.parseDouble(input);
-        input = tf.get(1).getText();
-        quantidade = Integer.parseInt(input);
-        return new Produto(preco, quantidade, qCor, tipo, subtipo, vender_id);
+        try {
+            String input = tf.get(0).getText();
+            preco = Double.parseDouble(input);
+            input = tf.get(1).getText();
+            quantidade = Integer.parseInt(input);
+            return new Produto(preco, quantidade, qCor, tipo, subtipo, vender_id);
+       }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Insira valores válidos");
+            throw new InvalidProductException();
+       } catch (NegativePriceException e) {
+            JOptionPane.showMessageDialog(null, "Preço não pode ser 0 ou negativo");
+            throw new InvalidProductException();
+        } catch (NegativeQuantityException e) {
+            JOptionPane.showMessageDialog(null, "Quantidade não pode ser 0 ou negativo");
+            throw new InvalidProductException();
+        }
     }
-    
-    public void adicionarProduto(){
+
+    public void adicionarProduto() throws InvalidProductException {
+        if(getProduto() != null)
         this.telaAnterior.addProduto(getProduto());
+
+        else throw new InvalidProductException();
     }
     
     public void fechar(){

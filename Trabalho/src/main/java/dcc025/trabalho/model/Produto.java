@@ -4,6 +4,9 @@
  */
 package dcc025.trabalho.model;
 import java.util.*;
+
+import dcc025.trabalho.exceptions.NegativePriceException;
+import dcc025.trabalho.exceptions.NegativeQuantityException;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
@@ -16,9 +19,10 @@ public class Produto{
     protected SubTipoProduto subtipo;
     protected final String product_id;
 
-    public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String vender_id)
-    {
+    public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String vender_id) throws NegativePriceException, NegativeQuantityException {
+        if(preco <= 0) throw new NegativePriceException();
         this.preco = preco;
+        if(quantidade <= 0) throw new NegativeQuantityException();
         this.quantidadeTotal = quantidade;
         this.cor = cor;
         this.tipo = tipo;

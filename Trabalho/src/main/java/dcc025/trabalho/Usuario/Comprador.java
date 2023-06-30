@@ -56,4 +56,6 @@ public class Comprador extends Pessoa {
         return carrinho.getProdutos();
     }
 
+    public int quantidadeEmCarrinho(String id){ return carrinho.quantidadeEmCarrinho(id);}
+
 }
