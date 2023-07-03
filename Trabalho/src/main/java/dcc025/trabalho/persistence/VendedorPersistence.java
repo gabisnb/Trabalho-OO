@@ -62,4 +62,17 @@ public class VendedorPersistence implements Persistence <Vendedor>{
 
         return null;
     }
+    
+    public void remove(Vendedor vendedor){
+        List<Vendedor> all = findAll();
+        
+        int index = 0;
+        
+        for(Vendedor vende : all)
+            if(vende == vendedor)
+                index = all.indexOf(vende);
+        
+        all.remove(index);
+        save(all);
+    }
 }

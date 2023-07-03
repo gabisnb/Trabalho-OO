@@ -23,7 +23,7 @@ public class TelaComprador extends Tela{
     
     private TelaLogin menu;
     
-    private final Comprador usuario;
+    private Comprador usuario;
     
     private JList<Vendedor> jlistVendedores;
 
@@ -76,9 +76,13 @@ public class TelaComprador extends Tela{
         
         //Botao de Acesso a Loja do Vendedor
         botoes.add(new JButton("Acessar Loja"));
-        botoes.get(2).addActionListener((ActionEvent e) -> {
-            abrirLoja();
-        });
+        try{
+            botoes.get(2).addActionListener((ActionEvent e) -> {
+                abrirLoja();
+            });
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Selecione uma loja");
+        }
         
         JPanel bpainel = new JPanel();
         
@@ -86,7 +90,7 @@ public class TelaComprador extends Tela{
         botoes.add(new JButton("Sair"));
         //Configuração
         botoes.get(3).addActionListener((ActionEvent e) -> {
-            fechar();
+//            fechar();
             //Salvando dados
             salvar();
             
@@ -148,8 +152,18 @@ public class TelaComprador extends Tela{
     
     public void salvar(){
         //Salvando dados
-        Persistence<Comprador> persistence = new CompradorPersistence();
-        java.util.List<Comprador> comprador =  new ArrayList();
+        CompradorPersistence persistence = new CompradorPersistence();
+        java.util.List<Comprador> comprador =  persistence.findAll();
+        int index = 0;
+
+        for(Comprador aux: compradores){
+                    if(aux.getNome().equals(info[0]) && aux.getEmail().equals(info[1]) && aux.getSenha().equals(info[2])){
+                        comprador = aux;
+                    }
+                }
+        
+        comprador.remove(index);
+        
         comprador.add(this.usuario);
         persistence.save(comprador);
     }
@@ -169,9 +183,19 @@ public class TelaComprador extends Tela{
     }
     
     public void abrirLoja(){
-        Vendedor vendedor = jlistVendedores.getSelectedValue();
-        TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor, this.usuario);
-        telaLoja.desenha();
+        try{
+            Vendedor vendedor = jlistVendedores.getSelectedValue();
+            vendedorNull(vendedor);
+            TelaLojaVendedor telaLoja = new TelaLojaVendedor(this, vendedor, this.usuario);
+            telaLoja.desenha();
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Selecione uma loja");
+        }
+    }
+    
+    public void vendedorNull(Vendedor vendedor) throws NullPointerException{
+        if(vendedor == null)
+            throw new NullPointerException();
     }
     
 }

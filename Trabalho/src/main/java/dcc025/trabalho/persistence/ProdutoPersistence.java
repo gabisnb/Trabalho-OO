@@ -54,6 +54,18 @@ public class ProdutoPersistence implements Persistence <Produto>{
         }
         return null;
     }
-
-
+    
+    public void remove(Produto produto){
+        List<Produto> all = findAll();
+        
+        int index = 0;
+        
+        for(Produto product : all)
+            if(product == produto)
+                index = all.indexOf(product);
+        
+        all.remove(index);
+        save(all);
+    }
+    
 }
