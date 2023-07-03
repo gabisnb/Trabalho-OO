@@ -120,6 +120,7 @@ public class TelaComprador extends Tela{
     public void adicionarSaldo(){
         TelaAdicionaSaldo addSaldo = new TelaAdicionaSaldo(this, usuario);
         addSaldo.desenha();
+        tela.setVisible(false);
     }
 
     public void carrega(){

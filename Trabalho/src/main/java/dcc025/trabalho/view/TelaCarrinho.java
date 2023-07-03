@@ -102,6 +102,10 @@ public class TelaCarrinho extends Tela{
     }
     
     protected void abrirPagamento(){
+        if(this.usuario.getCarrinho().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Carrinho vazio!");
+            return;
+        }
         TelaPagamento telaPaga = new TelaPagamento(usuario, this);
         telaPaga.desenha();
         tela.setVisible(false);
@@ -120,5 +124,10 @@ public class TelaCarrinho extends Tela{
         tela.setVisible(true);
         carregaCarrinhoBanco(usuario.getProdutos());
         telaComp.salvar();
+    }
+    
+    public void recarregaSaldo(){
+        labels.get(2).setText("Saldo: " + df.format(usuario.getSaldo()));
+        telaComp.carrega();
     }
 }

@@ -36,7 +36,7 @@ public class TelaLojaVendedor extends Tela{
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        tela.setSize(LARGURA, ALTURA/2);
+        tela.setSize(LARGURA, ALTURA*2/3);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
@@ -45,6 +45,15 @@ public class TelaLojaVendedor extends Tela{
         carregaProdutos(Vendedor.getProdutosByVendedorID(vendedor.getId()));
         
         tela.pack();
+    }
+    
+    @Override
+    protected JPanel configuraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA*2/3));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
     }
     
     private void desenhaMenu(){

@@ -5,6 +5,7 @@ import dcc025.trabalho.controller.*;
 import dcc025.trabalho.exceptions.CartaoInvalidException;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.*;
 import javax.swing.*;
 
@@ -25,7 +26,7 @@ public class TelaPagamento extends Tela{
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setSize(LARGURA, ALTURA);
+        tela.setSize(LARGURA, ALTURA-100);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
@@ -33,6 +34,15 @@ public class TelaPagamento extends Tela{
         desenhaMenu();
         
         tela.pack();
+    }
+    
+    @Override
+    protected JPanel configuraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA, ALTURA-100));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
     }
     
     private void desenhaMenu(){
@@ -48,8 +58,8 @@ public class TelaPagamento extends Tela{
             credito = new PagamentoCredito("0000000000000", usuario.getNome(), 1, 2024, 1);
         }
         catch(CartaoInvalidException e){}
-        PagamentoSaldoLoja saldo = new PagamentoSaldoLoja();
         
+        PagamentoSaldoLoja saldo = new PagamentoSaldoLoja(this.usuario.getCarrinho().getTotalPagar());
         double valor = usuario.getCarrinho().getTotalPagar();
         
         labels.add(new JLabel("Valor Total:       R$" + df.format(valor)));
@@ -123,6 +133,7 @@ public class TelaPagamento extends Tela{
     public void pagar(){
         this.usuario.comprarCarrinho();
         JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
+        telaAnterior.recarregaSaldo();
         fechar();
     }
 }

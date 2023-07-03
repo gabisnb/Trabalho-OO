@@ -4,6 +4,7 @@ import dcc025.trabalho.controller.PagamentoDebito;
 import dcc025.trabalho.exceptions.NumberCartaoException;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class TelaPagamentoDebito extends Tela{
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setSize(LARGURA, ALTURA);
+        tela.setSize(LARGURA+75, ALTURA-100);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
@@ -30,6 +31,15 @@ public class TelaPagamentoDebito extends Tela{
         desenhaMenu();
         
         tela.pack();
+    }
+    
+    @Override
+    protected JPanel configuraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA+75, ALTURA-100));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
     }
     
     private void desenhaMenu(){

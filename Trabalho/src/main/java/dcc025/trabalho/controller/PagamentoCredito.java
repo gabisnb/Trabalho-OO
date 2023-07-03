@@ -30,9 +30,6 @@ public class PagamentoCredito extends Pagamento {
             throw new NumberParcelasException();
         this.parcelas = parcelas;
     }
-    public void paga(double valor){
-        System.out.println("Pagamento realizado no valor de " + calculaDesconto(valor));
-    }
     public double calculaDesconto(double valor){
         valor = this.parcelas*0.95 + valor;
         return valor;

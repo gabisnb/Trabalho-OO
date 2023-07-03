@@ -8,6 +8,8 @@ import dcc025.trabalho.exceptions.NumberCartaoException;
 import dcc025.trabalho.exceptions.NumberParcelasException;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -26,7 +28,7 @@ public class TelaPagamentoCredito extends Tela{
     public void desenha(){
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setSize(LARGURA, ALTURA);
+        tela.setSize(LARGURA+75, ALTURA-100);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
@@ -36,14 +38,23 @@ public class TelaPagamentoCredito extends Tela{
         tela.pack();
     }
     
+    @Override
+    protected JPanel configuraPainelMain(String nome){
+        JPanel painel = new JPanel();
+        painel.setPreferredSize(new Dimension(LARGURA+75, ALTURA-100));
+        painel.setBorder(BorderFactory.createTitledBorder(nome));
+        painel.setLayout(new BorderLayout());
+        return painel;
+    }
+    
     private void desenhaMenu(){
         JPanel painel = configuraPainelMain("Pagamento em Credito");
         
-        labels.add(new JLabel("Numero do Cartao(de 13 a 16 digitos): "));
+        labels.add(new JLabel("Nº do Cartao(13 a 16 digitos): "));
         labels.add(new JLabel("Nome Completo: "));
         labels.add(new JLabel("Mes Expiracao: "));
         labels.add(new JLabel("Ano Expiracao: "));
-        labels.add(new JLabel("Numero de Parcelas(1 a 12 parcelas): "));
+        labels.add(new JLabel("Nº de Parcelas(até 12x, 0.95 de taxa): "));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
