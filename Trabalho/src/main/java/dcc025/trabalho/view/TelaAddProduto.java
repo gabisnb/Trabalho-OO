@@ -5,7 +5,7 @@ import dcc025.trabalho.exceptions.InvalidProductException;
 import dcc025.trabalho.exceptions.NegativePriceException;
 import dcc025.trabalho.exceptions.NegativeQuantityException;
 import dcc025.trabalho.model.*;
-import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.Cor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;

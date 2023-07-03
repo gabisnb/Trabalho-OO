@@ -3,7 +3,7 @@ package dcc025.trabalho.model;
 import dcc025.trabalho.Usuario.Compare;
 import dcc025.trabalho.exceptions.NegativePriceException;
 import dcc025.trabalho.exceptions.NegativeQuantityException;
-import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
+import dcc025.trabalho.model.Cor;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.util.*;
