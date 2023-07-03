@@ -5,7 +5,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import dcc025.trabalho.controller.GerenciarVendedores;
 import dcc025.trabalho.exceptions.SaldoException;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
