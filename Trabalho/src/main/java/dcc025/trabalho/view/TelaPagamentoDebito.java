@@ -1,6 +1,8 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoDebito;
+import dcc025.trabalho.exceptions.CartaoInvalidException;
+import dcc025.trabalho.exceptions.NumberCartaoException;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -37,8 +39,8 @@ public class TelaPagamentoDebito extends Tela{
         labels.add(new JLabel("Instituicao Financeira: "));
         labels.add(new JLabel("Nome Completo: "));
         labels.add(new JLabel("Tipo da Conta: "));
-        labels.add(new JLabel("Agencia: "));
-        labels.add(new JLabel("Conta com Digito: "));
+        labels.add(new JLabel("Agencia(5 digitos): "));
+        labels.add(new JLabel("Conta(de 6 a 8 digitos): "));
         
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
@@ -53,9 +55,31 @@ public class TelaPagamentoDebito extends Tela{
             tela.dispose();
             telaAnterior.abrir();
         });
+        botoes.get(1).addActionListener((ActionEvent e) -> {
+            try{
+                finalizarPagamento();
+            }
+            catch(NumberCartaoException e1){
+                
+            }
+            catch(NumberFormatException e1){
+                
+            }
+        });
         
         painel.add(desenhaBotoes(botoes), BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
+    }
+    
+    public void finalizarPagamento() throws NumberCartaoException, NumberFormatException{
+        String instituicao = tf.get(0).getText();
+        String nome = tf.get(1).getText();
+        int tipo = Integer.parseInt(tf.get(2).getText());
+        String agencia = tf.get(3).getText();
+        String conta = tf.get(4).getText();
+        PagamentoDebito pagamento = new PagamentoDebito(nome, instituicao, tipo, agencia, conta);
+        telaAnterior.pagar();
+        tela.dispose();
     }
 }

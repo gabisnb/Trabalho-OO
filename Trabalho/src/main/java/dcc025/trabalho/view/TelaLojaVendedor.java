@@ -67,15 +67,13 @@ public class TelaLojaVendedor extends Tela{
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {
             try {
                 checkProductMax(jlistProdutos.getSelectedValue());
-                this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
-                this.telaAnterior.salvar();
+                adicionarProduto();
             }
             catch (ProductLimitException ex){
                 JOptionPane.showMessageDialog(null, "Máximo de Inserção de Produto");
             }
             catch (NullPointerException ex){
-                this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
-                this.telaAnterior.salvar();
+                adicionarProduto();
             }
         });
 
@@ -134,5 +132,11 @@ public class TelaLojaVendedor extends Tela{
     public void checkProductMax(Produto produto) throws ProductLimitException {
         if(produto.getQuantidade() <= comprador.getCarrinho().quantidadeEmCarrinho(produto.getProduct_id()))
             throw new ProductLimitException();
+    }
+    
+    public void adicionarProduto(){
+        this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+        this.telaAnterior.salvar();
+        JOptionPane.showMessageDialog(null, "Uma unidade do produto adicionado ao carrinho!");
     }
 }

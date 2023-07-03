@@ -2,8 +2,9 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.controller.*;
+import dcc025.trabalho.exceptions.CartaoInvalidException;
 import dcc025.trabalho.exceptions.NumberParcelasException;
-import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.exceptions.SaldoException;
 
 import java.awt.BorderLayout;
 import java.util.*;
@@ -39,20 +40,24 @@ public class TelaPagamento extends Tela{
     private void desenhaMenu(){
         JPanel painel = configuraPainelMain("Pagamento");
         
-        PagamentoDebito debito = new PagamentoDebito(usuario.getNome(), "", 0, 0, "0000-0");
+        PagamentoDebito debito = null;
+        try{
+            debito = new PagamentoDebito(usuario.getNome(), "a", 0, "00000", "000000");
+        }
+        catch(CartaoInvalidException e){}
         PagamentoCredito credito = null;
         try{
-        credito = new PagamentoCredito("", usuario.getNome(), 0, 0, 1);
+            credito = new PagamentoCredito("0000000000000", usuario.getNome(), 1, 2024, 1);
         }
-        catch(NumberParcelasException e){}
+        catch(CartaoInvalidException e){}
         PagamentoSaldoLoja saldo = new PagamentoSaldoLoja();
         
         double valor = usuario.getCarrinho().getTotalPagar();
         
-        labels.add(new JLabel("Valor Total:       R$" + valor));
-        labels.add(new JLabel("Valor por Crédito(1x): R$" + credito.calculaDesconto(valor)));
-        labels.add(new JLabel("Valor por Débito:  R$" + debito.calculaDesconto(valor)));
-        labels.add(new JLabel("Valor por Saldo:   R$" + saldo.calculaDesconto(valor)));
+        labels.add(new JLabel("Valor Total:       R$" + df.format(valor)));
+        labels.add(new JLabel("Valor por Crédito(1x): R$" + df.format(credito.calculaDesconto(valor))));
+        labels.add(new JLabel("Valor por Débito:  R$" + df.format(debito.calculaDesconto(valor))));
+        labels.add(new JLabel("Valor por Saldo:   R$" + df.format(saldo.calculaDesconto(valor))));
         
         cbEscolha = new JComboBox<>();
         cbEscolha.addItem("Metodo de Pagamento");
@@ -119,6 +124,7 @@ public class TelaPagamento extends Tela{
     
     public void pagar(){
         this.usuario.comprarCarrinho();
+        JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
         fechar();
     }
 }

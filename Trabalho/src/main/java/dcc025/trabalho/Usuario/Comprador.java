@@ -9,7 +9,8 @@ import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.model.TiposProdutos;
 
-import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.exceptions.SaldoException;
+import dcc025.trabalho.exceptions.NegativeSaldoException;
 import java.util.List;
 
 public class Comprador extends Pessoa {
@@ -45,9 +46,12 @@ public class Comprador extends Pessoa {
 
     public void comprarCarrinho(){carrinho.comprarTudo();}
 
-    public void adicionarSaldo(double saldo) throws SaldoInvalidoException {
+    public void adicionarSaldo(double saldo) throws SaldoException {
         if (saldo < 0) {
-            throw new SaldoInvalidoException();
+            throw new NegativeSaldoException();
+        }
+        if(saldo==0){
+            throw new SaldoException();
         }
         this.saldo += saldo;
     }

@@ -44,8 +44,8 @@ public class TelaCarrinho extends Tela{
         
         labels.add(new JLabel("Nome: " + usuario.getNome()));
         labels.add(new JLabel("Email: " + usuario.getEmail()));
-        labels.add(new JLabel("Saldo: " + usuario.getSaldo()));
-        labels.add(new JLabel("Valor Total: " + usuario.getCarrinho().getTotalPagar()));
+        labels.add(new JLabel("Saldo: " + df.format(usuario.getSaldo())));
+        labels.add(new JLabel("Valor Total: " + df.format(usuario.getCarrinho().getTotalPagar())));
                 
         //Botão Comprar
         botoes.add(new JButton("Comprar"));
@@ -56,8 +56,14 @@ public class TelaCarrinho extends Tela{
         //Botão Voltar
         botoes.add(new JButton("Remover do Carrinho"));
         botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
-            usuario.removeProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            try{
+                usuario.removeProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            }
+            catch(NullPointerException e1){
+                JOptionPane.showMessageDialog(null, "Selecione o produto que deseja remover!");
+            }
             carregaCarrinhoBanco(usuario.getProdutos());
+            telaComp.salvar();
         });
         
         JPanel painelAux = new JPanel();
@@ -108,11 +114,12 @@ public class TelaCarrinho extends Tela{
         for (Produto c: carrinho) {
             model.addElement(c);
         }
-        labels.get(3).setText("Valor Total: " + usuario.getCarrinho().getTotalPagar());
+        labels.get(3).setText("Valor Total: " + df.format(usuario.getCarrinho().getTotalPagar()));
     }
     
     protected void abrir(){
         tela.setVisible(true);
         carregaCarrinhoBanco(usuario.getProdutos());
+        telaComp.salvar();
     }
 }

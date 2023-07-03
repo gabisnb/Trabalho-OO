@@ -3,6 +3,7 @@ package dcc025.trabalho.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -14,6 +15,8 @@ public abstract class Tela {
     protected ArrayList<JButton> botoes;
     protected ArrayList<JLabel> labels;
     protected ArrayList<JTextField> tf;
+    
+    protected static final DecimalFormat df = new DecimalFormat("0.00");
     
     protected JPanel configuraPainelMain(String nome){
         JPanel painel = new JPanel();

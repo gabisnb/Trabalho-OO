@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import dcc025.trabalho.controller.GerenciarVendedores;
-import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.exceptions.SaldoException;
 import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
@@ -52,7 +52,7 @@ public class TelaComprador extends Tela{
         
         labels.add(new JLabel("Nome: "+usuario.getNome()));
         labels.add(new JLabel("Email: "+usuario.getEmail()));
-        labels.add(new JLabel("Saldo: "+usuario.getSaldo()));
+        labels.add(new JLabel("Saldo: "+df.format(usuario.getSaldo())));
         
         //Botão Adicionar Saldo
         botoes.add(new JButton("Aumentar Saldo"));
@@ -134,7 +134,7 @@ public class TelaComprador extends Tela{
         //Atualizando labels
         labels.get(0).setText("Nome: "+usuario.getNome());
         labels.get(1).setText("Email: "+usuario.getEmail());
-        labels.get(2).setText("Saldo: "+usuario.getSaldo());
+        labels.get(2).setText("Saldo: "+df.format(usuario.getSaldo()));
     }
     
     protected void abrir(){

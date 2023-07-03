@@ -5,8 +5,8 @@
 package dcc025.trabalho.exceptions;
 
 
-public class SaldoInvalidoException extends Exception {
-    public SaldoInvalidoException(){
+public class SaldoException extends Exception {
+    public SaldoException(){
         super("ERRO: saldo invalido");
     }
 }

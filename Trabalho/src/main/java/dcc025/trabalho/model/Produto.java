@@ -10,6 +10,7 @@ import dcc025.trabalho.exceptions.NegativeQuantityException;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
+import java.text.DecimalFormat;
 
 public class Produto{
     protected double preco;
@@ -18,6 +19,7 @@ public class Produto{
     protected TiposProdutos tipo;
     protected SubTipoProduto subtipo;
     protected final String product_id;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public Produto(double preco, int quantidade, Cor cor, TiposProdutos tipo, SubTipoProduto subtipo, String vender_id) throws NegativePriceException, NegativeQuantityException {
         if(preco <= 0) throw new NegativePriceException();
@@ -63,7 +65,7 @@ public class Produto{
     }
     @Override
     public String toString(){
-        return this.subtipo.name() + "    Cor: " + this.cor + "    Preço: " + this.preco + "    Quantidade: " + this.quantidadeTotal;
+        return this.subtipo.name() + "    Cor: " + this.cor + "    Preço: " + df.format(this.preco) + "    Quantidade: " + this.quantidadeTotal;
     }
     
 }

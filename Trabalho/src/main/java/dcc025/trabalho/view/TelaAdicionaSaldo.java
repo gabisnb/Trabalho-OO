@@ -1,7 +1,7 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.exceptions.SaldoInvalidoException;
+import dcc025.trabalho.exceptions.SaldoException;
 import dcc025.trabalho.model.*;
 
 import java.awt.*;
@@ -50,7 +50,7 @@ public class TelaAdicionaSaldo extends Tela{
         JPanel painel = configuraPainelMain("Adicionar Saldo");
         
         labels.add(new JLabel("Valor a ser adicionado: "));
-        labels.add(new JLabel("Verificação: "));
+        labels.add(new JLabel("CPF: "));
         
         JPanel panel = desenhaTF(2, 20, tf);
         
@@ -62,7 +62,6 @@ public class TelaAdicionaSaldo extends Tela{
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     adicionarSaldo();
-                    tela.dispose();
                 }
             }
 
@@ -83,7 +82,6 @@ public class TelaAdicionaSaldo extends Tela{
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 adicionarSaldo();
-                tela.dispose();
             }
         });
         botoes.get(0).addKeyListener(new java.awt.event.KeyListener() {
@@ -94,7 +92,6 @@ public class TelaAdicionaSaldo extends Tela{
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     adicionarSaldo();
-                    tela.dispose();
                 }
             }
 
@@ -111,15 +108,32 @@ public class TelaAdicionaSaldo extends Tela{
     public void adicionarSaldo(){
         try{
             String input = tf.get(0).getText();
+            if(input.isEmpty())
+                throw new NullPointerException();
             double saldo = Double.parseDouble(input);
+            
+            input = tf.get(1).getText();
+            if(input.isEmpty())
+                throw new NullPointerException();
+            double verificacao = Double.parseDouble(input);
+            if(input.length()!=11)
+                throw new Exception();
+            
             this.usuario.adicionarSaldo(saldo);
             this.tComprador.carrega();
+            tela.dispose();
         }
-        catch(NumberFormatException e){
-            //nada
+        catch(NullPointerException e1){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }
-        catch(SaldoInvalidoException e){
-            JOptionPane.showMessageDialog(null, "Valor inválido");
+        catch(NumberFormatException e1){
+            JOptionPane.showMessageDialog(null, "Formato de saldo/CPF inválido!");
+        }
+        catch(SaldoException e1){
+            JOptionPane.showMessageDialog(null, "Valor de saldo inválido!");
+        }
+        catch(Exception e1){
+            JOptionPane.showMessageDialog(null, "CPF inválido, deve conter 11 digitos!");
         }
     }
     
