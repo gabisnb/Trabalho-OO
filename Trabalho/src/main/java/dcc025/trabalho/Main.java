@@ -23,7 +23,7 @@ public class Main {
 //        cpersistence.save(clist);
 //        clist.add(new Comprador("a", "a", "a", 1000.00));
 //        cpersistence.save(clist);
-        
+//
         TelaLogin login = new TelaLogin();
         login.desenha();
 //        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));

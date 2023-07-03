@@ -13,7 +13,7 @@ import dcc025.trabalho.exceptions.SaldoException;
 import dcc025.trabalho.exceptions.NegativeSaldoException;
 import java.util.List;
 
-public class Comprador extends Pessoa {
+public class Comprador extends Pessoa implements Compare<Comprador> {
 
     private double saldo;
     private CarrinhoCompras carrinho;
@@ -61,5 +61,10 @@ public class Comprador extends Pessoa {
     }
 
     public int quantidadeEmCarrinho(String id){ return carrinho.quantidadeEmCarrinho(id);}
+
+    @Override
+    public boolean compare(Comprador item){
+        return item.getEmail().equals(this.getEmail()) && item.getSenha().equals(this.getSenha() )&& item.getNome().equals(this.getNome());
+    }
 
 }

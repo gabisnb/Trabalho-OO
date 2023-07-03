@@ -153,19 +153,19 @@ public class TelaComprador extends Tela{
     public void salvar(){
         //Salvando dados
         CompradorPersistence persistence = new CompradorPersistence();
-        java.util.List<Comprador> comprador =  persistence.findAll();
+        java.util.List<Comprador> compradores =  persistence.findAll();
         int index = 0;
 
         for(Comprador aux: compradores){
-                    if(aux.getNome().equals(info[0]) && aux.getEmail().equals(info[1]) && aux.getSenha().equals(info[2])){
-                        comprador = aux;
+                    if(usuario.compare(aux)){
+                        index = compradores.indexOf(aux);
                     }
                 }
         
-        comprador.remove(index);
+        compradores.remove(index);
         
-        comprador.add(this.usuario);
-        persistence.save(comprador);
+        compradores.add(this.usuario);
+        persistence.save(compradores);
     }
     
     public void abrirCarrinho(){

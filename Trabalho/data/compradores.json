@@ -1,1 +1,1 @@
-[{"saldo":1000.0,"carrinho":{"carrinho":{},"totalPagar":0.0},"nome":"a","email":"a","senha":"a"},{"saldo":1000.0,"carrinho":{"carrinho":{},"totalPagar":0.0},"nome":"a","email":"a","senha":"a"}]
+[{"saldo":1000.0,"carrinho":{"carrinho":{"1x775":1,"1x196":1},"totalPagar":2.0},"nome":"a","email":"a","senha":"a"},{"saldo":100.0,"carrinho":{"carrinho":{},"totalPagar":0.0},"nome":"t","email":"t","senha":"t"}]
