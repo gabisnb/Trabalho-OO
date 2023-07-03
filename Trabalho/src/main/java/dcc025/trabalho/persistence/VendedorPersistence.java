@@ -69,7 +69,7 @@ public class VendedorPersistence implements Persistence <Vendedor>{
         int index = 0;
         
         for(Vendedor vende : all)
-            if(vende == vendedor)
+            if(vendedor.compare(vende))
                 index = all.indexOf(vende);
         
         all.remove(index);

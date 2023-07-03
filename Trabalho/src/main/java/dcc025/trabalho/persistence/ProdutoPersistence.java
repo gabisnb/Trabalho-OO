@@ -61,7 +61,7 @@ public class ProdutoPersistence implements Persistence <Produto>{
         int index = 0;
         
         for(Produto product : all)
-            if(product == produto)
+            if(produto.compare(product))
                 index = all.indexOf(product);
         
         all.remove(index);

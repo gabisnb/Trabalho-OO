@@ -9,14 +9,14 @@ public class Main {
 
     public static void main(String[] args) {
         
-       /*VendedorPersistence persistence =  new VendedorPersistence();
+       VendedorPersistence persistence =  new VendedorPersistence();
        List<Vendedor> list = new ArrayList();
         list.add(new Vendedor("t", "t", "t"));
 
        persistence.save(list);
         list.add(new Vendedor("a", "a", "a"));
         persistence.save(list);
-*/
+
 //        CompradorPersistence cpersistence =  new CompradorPersistence();
 //        List<Comprador> clist = new ArrayList();
 //        clist.add(new Comprador("t", "t", "t", 100.00));
