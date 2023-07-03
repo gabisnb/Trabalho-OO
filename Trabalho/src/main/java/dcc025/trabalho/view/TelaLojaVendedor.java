@@ -142,8 +142,13 @@ public class TelaLojaVendedor extends Tela{
     }
     
     public void adicionarProduto(){
-        this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
-        this.telaAnterior.salvar();
-        JOptionPane.showMessageDialog(null, "Uma unidade do produto adicionado ao carrinho!");
+        try{
+            this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            this.telaAnterior.salvar();
+            JOptionPane.showMessageDialog(null, "Uma unidade do produto adicionado ao carrinho!");
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Selecione o produto que deseja adicionar ao carrinho!");
+        }
     }
 }
