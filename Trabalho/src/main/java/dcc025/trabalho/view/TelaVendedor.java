@@ -119,7 +119,7 @@ public class TelaVendedor extends Tela{
         int index = 0;
         
         for(Produto product : allProducts)
-            if(product == produto)
+            if(produto.compare(product))
                 index = allProducts.indexOf(product);
         
         allProducts.remove(index);

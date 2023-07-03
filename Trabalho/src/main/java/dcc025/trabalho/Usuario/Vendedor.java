@@ -14,7 +14,7 @@ import dcc025.trabalho.persistence.VendedorPersistence;
 
 import java.util.*;
 
-public class Vendedor extends Pessoa {
+public class Vendedor extends Pessoa implements Compare<Vendedor>{
 
     private final int id;
     private double saldo_loja;
@@ -67,5 +67,10 @@ public class Vendedor extends Pessoa {
     @Override
     public String toString(){
         return "Loja de " +  this.getNome();
+    }
+
+    @Override
+    public boolean compare(Vendedor item) {
+        return this.getId().equals(item.getId());
     }
 }

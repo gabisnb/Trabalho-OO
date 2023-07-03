@@ -21,7 +21,9 @@ public class Main {
 //        List<Comprador> clist = new ArrayList();
 //        clist.add(new Comprador("t", "t", "t", 100.00));
 //        cpersistence.save(clist);
-//        
+//        clist.add(new Comprador("a", "a", "a", 1000.00));
+//        cpersistence.save(clist);
+//
         TelaLogin login = new TelaLogin();
         login.desenha();
 //        TelaCompra compra = new TelaCompra(login, new Comprador("teste", "teste", "teste"));

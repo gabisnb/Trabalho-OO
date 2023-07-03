@@ -63,28 +63,52 @@ public class CarrinhoCompras {
 
     public void comprarTudo()
     {
+        VendedorPersistence vendedorPers = new VendedorPersistence();
         ProdutoPersistence persistence = new ProdutoPersistence();
-        List<Produto> allProducts = new ArrayList<>();
-        allProducts = persistence.findAll();
-
-        for (Produto produto : allProducts)
-        {
+        
+        for(String id : carrinho.keySet()){
             try{
-                if(carrinho.containsKey(produto.getProduct_id()))
-                {
-                    VendedorPersistence vendedorPers = new VendedorPersistence();
-                    Vendedor vendedor = vendedorPers.findVendedorByProductID(produto.getProduct_id());
-                    vendedor.adicionaSaldo(produto.getPreco() * carrinho.get(produto.getProduct_id()));
+                Produto produto = persistence.getProductbyID(id);
+                Vendedor vendedor = vendedorPers.findVendedorByProductID(id);
+                List<Vendedor> allV = vendedorPers.findAll();
+
+                int index1 = 0;
+
+                for(Vendedor vend : allV)
+                    if(vendedor.compare(vend))
+                        index1 = allV.indexOf(vend);
+
+                allV.remove(index1);
+                vendedorPers.remove(vendedor);
+
+                vendedor.adicionaSaldo(produto.getPreco() * carrinho.get(id));
+                allV.add(vendedor);
+                vendedorPers.save(allV);
+
+                if(produto.getQuantidade() - carrinho.get(id) > 0){
+                    List<Produto> all = persistence.findAll();
+
+                    int index = 0;
+
+                    for(Produto product : all)
+                        if(produto.compare(product))
+                            index = all.indexOf(product);
+
+                    all.remove(index);
+                    persistence.remove(produto);
+                    produto.setQuantidade(produto.getQuantidade() - carrinho.get(id) );
+                    all.add(produto);
+                    persistence.save(all);
                 }
-            } catch (NullPointerException e){
-                JOptionPane.showMessageDialog(null, "Produto esgotado");
+                else{
+                    persistence.remove(produto);
+                }
+            }catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "Produto Esgotado");
             }
-            finally {
-                carrinho.remove(produto.getProduct_id());
-            }
+            carrinho.remove(id);
         }
-        allProducts.clear();
-        allProducts = null;
+    carrinho.clear();
     }
 
     public double getTotalPagar(){
@@ -92,30 +116,54 @@ public class CarrinhoCompras {
     }
     
     public List<Produto> getProdutos(){
+//        ProdutoPersistence persistence = new ProdutoPersistence();
+//        List<Produto> produtos = new ArrayList();
+//
+//        List<String> invalido = new ArrayList();
+//        this.totalPagar = 0;
+//
+//        for(String s: this.carrinho.keySet()){
+//            Produto produto = persistence.getProductbyID(s);
+//            if(produto!=null){
+//                produto.setQuantidade(this.carrinho.getOrDefault(s, 1));
+//                produtos.add(produto);
+//                totalPagar += produto.getPreco()*produto.getQuantidade();
+//                System.out.println(s);
+//            }
+//            else{
+//                System.out.println( "Tem que apagar: "+s);
+//                invalido.add(s);
+//            }
+//        }
+//
+//        for(String s: invalido){
+//            this.carrinho.remove(s);
+//        }
+//        return produtos;
         ProdutoPersistence persistence = new ProdutoPersistence();
-        List<Produto> produtos = new ArrayList();
-        
-        List<String> invalido = new ArrayList();
+        List<Produto> produtos = new ArrayList<>();
         this.totalPagar = 0;
-        
-        for(String s: this.carrinho.keySet()){
-            Produto produto = persistence.getProductbyID(s);
-            if(produto!=null){
-                produto.setQuantidade(this.carrinho.getOrDefault(s, 1));
-                produtos.add(produto);
-                totalPagar += produto.getPreco()*produto.getQuantidade();
-                System.out.println(s);
+        try {
+            for (String s : this.carrinho.keySet()) {
+                try {
+                    Produto produto = persistence.getProductbyID(s);
+                    checkNull(produto);
+                    produto.setQuantidade(this.carrinho.getOrDefault(s, 1));
+                    produtos.add(produto);
+                    totalPagar += produto.getPreco() * produto.getQuantidade();
+                } catch (NullPointerException ex) {
+                    JOptionPane.showMessageDialog(null, "Alguns produtos esgotaram desde a última vez que esteve por aqui :(");
+                    carrinho.remove(s);
+                }
             }
-            else{
-                System.out.println( "Tem que apagar: "+s);
-                invalido.add(s);
-            }
-        }
-        
-        for(String s: invalido){
-            this.carrinho.remove(s);
+        }catch (ConcurrentModificationException ex){
+
         }
         return produtos;
+    }
+
+    public void checkNull(Produto produto){
+        if(produto == null) throw new NullPointerException();
     }
     public int quantidadeEmCarrinho(String id){
         return carrinho.get(id);

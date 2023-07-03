@@ -5,6 +5,7 @@
 package dcc025.trabalho.model;
 import java.util.*;
 
+import dcc025.trabalho.Usuario.Compare;
 import dcc025.trabalho.exceptions.NegativePriceException;
 import dcc025.trabalho.exceptions.NegativeQuantityException;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
@@ -12,7 +13,7 @@ import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.text.DecimalFormat;
 
-public class Produto{
+public class Produto implements Compare<Produto> {
     protected double preco;
     protected int quantidadeTotal;
     protected Cor cor;
@@ -67,5 +68,9 @@ public class Produto{
     public String toString(){
         return this.subtipo.name() + "    Cor: " + this.cor + "    Preço: " + df.format(this.preco) + "    Quantidade: " + this.quantidadeTotal;
     }
-    
+
+    @Override
+    public boolean compare(Produto item) {
+        return item.getProduct_id() == this.getProduct_id();
+    }
 }
