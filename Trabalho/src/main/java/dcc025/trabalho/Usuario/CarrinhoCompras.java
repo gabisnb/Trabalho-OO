@@ -120,4 +120,8 @@ public class CarrinhoCompras {
     public int quantidadeEmCarrinho(String id){
         return carrinho.get(id);
     }
+    
+    public boolean isEmpty(){
+        return this.carrinho.isEmpty();
+    }
 }

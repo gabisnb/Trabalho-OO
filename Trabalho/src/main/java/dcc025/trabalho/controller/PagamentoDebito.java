@@ -23,9 +23,6 @@ public class PagamentoDebito extends Pagamento {
         this.conta = conta;
     }
     
-    public void paga(double valor){
-        System.out.println("Pagamento efetuado no valor de "+ calculaDesconto(valor));
-    }
     public double calculaDesconto(double valor){
         valor = valor*0.95;
         return valor;

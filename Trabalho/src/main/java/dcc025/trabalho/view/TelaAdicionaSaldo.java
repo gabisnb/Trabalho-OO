@@ -35,7 +35,7 @@ public class TelaAdicionaSaldo extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA/2);
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
@@ -53,22 +53,7 @@ public class TelaAdicionaSaldo extends Tela{
         labels.add(new JLabel("CPF: "));
         
         JPanel panel = desenhaTF(2, 20, tf);
-        
-        tf.get(0).addKeyListener(new java.awt.event.KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-            
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    adicionarSaldo();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
-        
+                
         JPanel painelAux = new JPanel();
         painelAux.add(desenhaLabel(labels));
         painelAux.add(panel);
@@ -76,30 +61,23 @@ public class TelaAdicionaSaldo extends Tela{
         
         JPanel bpainel = new JPanel();
         
-        //Botão Entrar
+        botoes.add(new JButton("Voltar"));
         botoes.add(new JButton("Confirmar"));
         //Configuração
         botoes.get(0).addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                tComprador.abrir();
+                tela.dispose();
+            }
+        });
+        botoes.get(1).addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
                 adicionarSaldo();
             }
         });
-        botoes.get(0).addKeyListener(new java.awt.event.KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-            
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    adicionarSaldo();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
         
         bpainel.add(botoes.get(0));
+        bpainel.add(botoes.get(1));
         painel.add(bpainel, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
@@ -121,6 +99,7 @@ public class TelaAdicionaSaldo extends Tela{
             
             this.usuario.adicionarSaldo(saldo);
             this.tComprador.carrega();
+            this.tComprador.abrir();
             tela.dispose();
         }
         catch(NullPointerException e1){

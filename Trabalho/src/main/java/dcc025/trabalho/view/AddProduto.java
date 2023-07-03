@@ -59,7 +59,7 @@ public class AddProduto extends Tela{
     
     public void desenha(){
         tela = new JFrame();
-        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setSize(LARGURA, ALTURA-(ALTURA/3));
         tela.setLocationRelativeTo(null);
         tela.setVisible(true);
@@ -385,6 +385,7 @@ public class AddProduto extends Tela{
     
     public void fechar(){
         tela.dispose();
+        telaAnterior.abrir();
     }
 
 /////////////////////// - Sets para Tipo de Produto /////////////////////////////////////////////////

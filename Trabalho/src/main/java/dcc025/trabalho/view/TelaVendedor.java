@@ -131,6 +131,7 @@ public class TelaVendedor extends Tela{
     public void abrirAddProduto(){
         AddProduto telaAddProd = new AddProduto(this, usuario.getId());
         telaAddProd.desenha();
+        tela.setVisible(false);
     }
     
     public void abrir(){
