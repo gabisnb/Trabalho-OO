@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.Usuario;
 
 import dcc025.trabalho.exceptions.ProductAlreadyShoppingCart;
 import dcc025.trabalho.model.Produto;
-import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 
 import javax.swing.JOptionPane;
 
-import javax.swing.*;
 import java.util.*;
 
 public class CarrinhoCompras {

@@ -3,8 +3,6 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.controller.*;
 import dcc025.trabalho.exceptions.CartaoInvalidException;
-import dcc025.trabalho.exceptions.NumberParcelasException;
-import dcc025.trabalho.exceptions.SaldoException;
 
 import java.awt.BorderLayout;
 import java.util.*;

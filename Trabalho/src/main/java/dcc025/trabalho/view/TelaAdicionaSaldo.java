@@ -2,7 +2,6 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.exceptions.SaldoException;
-import dcc025.trabalho.model.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

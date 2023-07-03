@@ -3,7 +3,6 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.*;
 import dcc025.trabalho.model.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.*;
 

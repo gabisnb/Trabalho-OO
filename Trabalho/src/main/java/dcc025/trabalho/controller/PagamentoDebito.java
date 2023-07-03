@@ -1,7 +1,5 @@
 package dcc025.trabalho.controller;
 
-import dcc025.trabalho.controller.Pagamento;
-import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.exceptions.NumberCartaoException;
 
 public class PagamentoDebito extends Pagamento {

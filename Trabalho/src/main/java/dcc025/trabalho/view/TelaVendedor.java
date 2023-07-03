@@ -7,7 +7,6 @@ import dcc025.trabalho.persistence.ProdutoPersistence;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 import javax.swing.*;
 
 public class TelaVendedor extends Tela{
@@ -129,7 +128,7 @@ public class TelaVendedor extends Tela{
     }
     
     public void abrirAddProduto(){
-        AddProduto telaAddProd = new AddProduto(this, usuario.getId());
+        TelaAddProduto telaAddProd = new TelaAddProduto(this, usuario.getId());
         telaAddProd.desenha();
     }
     

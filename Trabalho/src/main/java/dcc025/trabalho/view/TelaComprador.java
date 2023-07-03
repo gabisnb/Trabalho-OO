@@ -1,22 +1,14 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.*;
-import java.awt.*;
-import java.util.ArrayList;
-import javax.swing.*;
-
-import dcc025.trabalho.exceptions.SaldoException;
-import dcc025.trabalho.model.Produto;
 import dcc025.trabalho.persistence.CompradorPersistence;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
+import java.util.ArrayList;
 import java.awt.event.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 public class TelaComprador extends Tela{
     

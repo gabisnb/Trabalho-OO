@@ -2,10 +2,8 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.Usuario.Vendedor;
-import dcc025.trabalho.exceptions.ProductAlreadyShoppingCart;
 import dcc025.trabalho.exceptions.ProductLimitException;
 import dcc025.trabalho.model.Produto;
-import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;

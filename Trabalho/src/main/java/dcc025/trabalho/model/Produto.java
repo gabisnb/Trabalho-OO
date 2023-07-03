@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dcc025.trabalho.model;
-import java.util.*;
 
 import dcc025.trabalho.Usuario.Compare;
 import dcc025.trabalho.exceptions.NegativePriceException;
@@ -11,6 +6,7 @@ import dcc025.trabalho.exceptions.NegativeQuantityException;
 import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
+import java.util.*;
 import java.text.DecimalFormat;
 
 public class Produto implements Compare<Produto> {

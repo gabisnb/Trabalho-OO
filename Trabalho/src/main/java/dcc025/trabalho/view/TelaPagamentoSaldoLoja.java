@@ -1,7 +1,6 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.controller.PagamentoSaldoLoja;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
