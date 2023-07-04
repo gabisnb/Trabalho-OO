@@ -67,6 +67,6 @@ public class Produto implements Compare<Produto> {
 
     @Override
     public boolean compare(Produto item) {
-        return item.getProduct_id() == this.getProduct_id();
+        return item.getProduct_id().equals(getProduct_id());
     }
 }

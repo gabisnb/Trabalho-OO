@@ -131,9 +131,17 @@ public class TelaPagamento extends Tela{
     }
     
     public void pagar(){
-        this.usuario.comprarCarrinho();
-        JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
-        telaAnterior.recarregaSaldo();
-        fechar();
+        try{
+            this.usuario.comprarCarrinho();
+            JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
+            telaAnterior.recarregaSaldo();
+            fechar();
+        }
+        catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Erro: problemas com banco de dados!");
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Produto esgotado!");
+        }
     }
 }

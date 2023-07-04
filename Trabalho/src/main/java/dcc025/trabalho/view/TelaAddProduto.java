@@ -230,6 +230,9 @@ public class TelaAddProduto extends Tela{
                         setTipoRoupa();
                         carregaCbRoupa();
                         break;
+                    default:
+                        tipo = TiposProdutos.N_A;
+                        carregaCbNA();
                 }
             }
         });
@@ -294,6 +297,13 @@ public class TelaAddProduto extends Tela{
         cbSubTipo.addItem(SubTipoProduto.BLUSA);
         cbSubTipo.addItem(SubTipoProduto.CONJUNTO);
         cbSubTipo.addItem(SubTipoProduto.ACESSORIOS);
+    }
+    
+    public void carregaCbNA(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
     }
 
     private void setPreco(double preco){this.preco = preco;}
