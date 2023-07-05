@@ -5,23 +5,22 @@ import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
 import dcc025.trabalho.persistence.VendedorPersistence;
 
-
 import java.util.*;
 
 public class Vendedor extends Pessoa implements Compare<Vendedor>{
 
     private final int id;
-    private double saldo_loja;
     private static int n_vendedores;
 
     public Vendedor(String nome, String email, String senha) {
         super(nome, email, senha);
+        super.setSaldo(0);
         this.id = n_vendedores++;
     }
     public String getId(){ return Integer.toString(this.id); }
 
-    public void adicionaSaldo(double valor){
-        saldo_loja += valor;
+    public void adicionarSaldo(double valor){
+        super.setSaldo(getSaldo() + valor);
     }
     
     //Função adicionada apenas para testagem da adição de produto, mudar depois
@@ -29,7 +28,7 @@ public class Vendedor extends Pessoa implements Compare<Vendedor>{
 
     public static List<Produto> getProdutosByVendedorID(String vender_id){
         ProdutoPersistence persistence = new ProdutoPersistence();
-        List<Produto> allProducts = new ArrayList<>();
+        List<Produto> allProducts;
         allProducts = persistence.findAll();
 
         List<Produto> sameIdProducts = new ArrayList<>();

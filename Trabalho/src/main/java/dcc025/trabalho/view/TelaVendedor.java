@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 public class TelaVendedor extends Tela {
 
 	private Vendedor usuario;
-
+        
 	private TelaLogin menu;
 
 	private JList<Produto> jlistProdutos;
