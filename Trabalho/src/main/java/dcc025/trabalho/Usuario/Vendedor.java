@@ -12,10 +12,9 @@ public class Vendedor extends Pessoa implements Compare<Vendedor>{
     private final int id;
 
     public Vendedor(String nome, String email, String senha) {
-
         super(nome, email, senha);
+        super.setSaldo(0);
         this.id = createID() + 1;
-
     }
     public String getId(){ return Integer.toString(this.id); }
 
