@@ -1,7 +1,6 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.controller.PagamentoDebito;
-import dcc025.trabalho.exceptions.CartaoInvalidException;
 import dcc025.trabalho.exceptions.NumberCartaoException;
 
 import java.awt.BorderLayout;

@@ -2,10 +2,8 @@ package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.Usuario.Vendedor;
-import dcc025.trabalho.exceptions.ProductAlreadyShoppingCart;
 import dcc025.trabalho.exceptions.ProductLimitException;
 import dcc025.trabalho.model.Produto;
-import dcc025.trabalho.persistence.ProdutoPersistence;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -144,8 +142,13 @@ public class TelaLojaVendedor extends Tela{
     }
     
     public void adicionarProduto(){
-        this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
-        this.telaAnterior.salvar();
-        JOptionPane.showMessageDialog(null, "Uma unidade do produto adicionado ao carrinho!");
+        try{
+            this.comprador.adicionarProdutoCarrinho(jlistProdutos.getSelectedValue().getProduct_id(), 1);
+            this.telaAnterior.salvar();
+            JOptionPane.showMessageDialog(null, "Uma unidade do produto adicionado ao carrinho!");
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Selecione o produto que deseja adicionar ao carrinho!");
+        }
     }
 }
