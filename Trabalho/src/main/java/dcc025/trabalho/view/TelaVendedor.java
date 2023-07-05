@@ -42,8 +42,11 @@ public class TelaVendedor extends Tela {
 	}
 
 	private void desenhaMenu() {
-		JPanel painel = configuraPainelMain("Vendedor");
-
+		JPanel painel = configuraPainelMain("");
+		JLabel labelVendedor = new JLabel("VENDEDOR");
+		labelVendedor.setHorizontalAlignment(JLabel.CENTER);
+		labelVendedor.setFont(labelVendedor.getFont().deriveFont(Font.BOLD, 20f));
+		painel.add(labelVendedor, BorderLayout.NORTH);
 		labels.add(new JLabel("Nome: " + usuario.getNome()));
 		labels.add(new JLabel("Email: " + usuario.getEmail()));
 
