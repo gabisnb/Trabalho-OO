@@ -8,6 +8,7 @@ import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.model.*;
 import dcc025.trabalho.persistence.Persistence;
 import dcc025.trabalho.persistence.ProdutoPersistence;
+import javax.swing.border.EmptyBorder;
 
 public class TelaVendedor extends Tela {
 
@@ -43,9 +44,11 @@ public class TelaVendedor extends Tela {
 
 	private void desenhaMenu() {
 		JPanel painel = configuraPainelMain("");
+		painel.setBorder(new EmptyBorder(20, 0, 0, 0));
 		JLabel labelVendedor = new JLabel("VENDEDOR");
 		labelVendedor.setHorizontalAlignment(JLabel.CENTER);
 		labelVendedor.setFont(labelVendedor.getFont().deriveFont(Font.BOLD, 20f));
+
 		painel.add(labelVendedor, BorderLayout.NORTH);
 		labels.add(new JLabel("Nome: " + usuario.getNome()));
 		labels.add(new JLabel("Email: " + usuario.getEmail()));
