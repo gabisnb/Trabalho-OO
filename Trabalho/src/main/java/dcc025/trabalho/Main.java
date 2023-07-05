@@ -20,9 +20,10 @@ public class Main {
         VendedorPersistence persistence =  new VendedorPersistence();
         if(persistence.findAll().isEmpty()){
             List<Vendedor> list = new ArrayList();
-            list.add(new Vendedor("Rodrigo", "rodrigomarques@gmail.com", "2365Gb3"));
-            list.add(new Vendedor("Julia", "juliaasilva@hotmail.com", "@beatrix453"));
-            list.add(new Vendedor("Bernardo", "becoelho@yahoo.com.br", "123@01094"));
+            list.add(new Vendedor("Rodrigo", "rodrigomarques@gmail.com", "2365"));
+            list.add(new Vendedor("Julia", "juliaasilva@hotmail.com", "bea453"));
+            list.add(new Vendedor("Bernardo", "becoelho@yahoo.com.br", "123@0"));
+            list.add(new Vendedor("adm", "adm", "adm"));
             persistence.save(list);
             ProdutoPersistence ppersistence = new ProdutoPersistence();
             if(ppersistence.findAll().isEmpty()){
@@ -44,9 +45,10 @@ public class Main {
         CompradorPersistence cpersistence =  new CompradorPersistence();
         if(cpersistence.findAll().isEmpty()){
             List<Comprador> clist = new ArrayList();
-            clist.add(new Comprador("Thiago", "thiagofernandes@hotmail.com", "45sist89&", 100.00));
-            clist.add(new Comprador("Alessandra", "alebatista@yahoo.com.br", "abc65037A", 235.00));
-            clist.add(new Comprador("Fernanda", "fernandatrib@gmail.com", "0098h56", 0));
+            clist.add(new Comprador("Thiago", "thiagofernandes@hotmail.com", "45sist", 100.00));
+            clist.add(new Comprador("Alessandra", "alebatista@yahoo.com.br", "abc650", 235.00));
+            clist.add(new Comprador("Fernanda", "fernandatrib@gmail.com", "98h56", 0));
+            clist.add(new Comprador("adm", "adm", "adm", 10000.00));
             cpersistence.save(clist);
         }
         

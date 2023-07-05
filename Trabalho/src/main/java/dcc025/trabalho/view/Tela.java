@@ -14,7 +14,7 @@ public abstract class Tela {
     
     protected ArrayList<JButton> botoes;
     protected ArrayList<JLabel> labels;
-    protected ArrayList<JTextField> tfz;
+    protected ArrayList<JTextField> tf;
     
     protected static final DecimalFormat df = new DecimalFormat("0.00");
     
