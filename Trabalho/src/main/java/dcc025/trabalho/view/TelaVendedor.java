@@ -46,6 +46,7 @@ public class TelaVendedor extends Tela{
         
         labels.add(new JLabel("Nome: " + usuario.getNome()));
         labels.add(new JLabel("Email: " + usuario.getEmail()));
+        labels.add(new JLabel("Saldo da Loja: "+ usuario.getSaldo()));
         
         botoes.add(new JButton("Adicionar Produto"));
         botoes.get(0).addActionListener((java.awt.event.ActionEvent e) -> {

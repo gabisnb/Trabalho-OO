@@ -1,28 +1,19 @@
 package dcc025.trabalho.Usuario;
 
 import dcc025.trabalho.model.Produto;
-
 import dcc025.trabalho.exceptions.SaldoException;
 import dcc025.trabalho.exceptions.NegativeSaldoException;
+
 import java.util.List;
 
 public class Comprador extends Pessoa implements Compare<Comprador> {
 
-    private double saldo;
     private CarrinhoCompras carrinho;
 
     public Comprador(String nome, String email, String senha, double saldo) {
         super(nome, email, senha);
-        this.saldo = saldo;
+        super.setSaldo(saldo);
         this.carrinho = new CarrinhoCompras();
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public double getSaldo() {
-        return saldo;
     }
 
     public CarrinhoCompras getCarrinho() {
@@ -46,7 +37,7 @@ public class Comprador extends Pessoa implements Compare<Comprador> {
         if(saldo==0){
             throw new SaldoException();
         }
-        this.saldo += saldo;
+        super.setSaldo(super.getSaldo() + saldo);
     }
     
     public List<Produto> getProdutos(){

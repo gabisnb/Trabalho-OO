@@ -86,7 +86,7 @@ public class CarrinhoCompras {
 
                 all.get(index).setQuantidade(produto.getQuantidade() - carrinho.get(id) );
                 persistence.save(all);
-                allV.get(indexV).adicionaSaldo(produto.getPreco() * carrinho.get(id));
+                allV.get(indexV).adicionarSaldo(produto.getPreco() * carrinho.get(id));
                 vendedorPers.save(allV);
             }
             else{
