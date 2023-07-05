@@ -7,7 +7,6 @@ import dcc025.trabalho.persistence.ProdutoPersistence;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 import javax.swing.*;
 
 public class TelaVendedor extends Tela{
@@ -116,20 +115,24 @@ public class TelaVendedor extends Tela{
         ProdutoPersistence persistence = new ProdutoPersistence();
         java.util.List<Produto> allProducts = persistence.findAll();
         
-        int index = 0;
-        
-        for(Produto product : allProducts)
-            if(produto.compare(product))
-                index = allProducts.indexOf(product);
-        
-        allProducts.remove(index);
+        try{
+            int index = 0;
 
-        persistence.save(allProducts);
-        carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
+            for(Produto product : allProducts)
+                if(produto.compare(product))
+                    index = allProducts.indexOf(product);
+        
+            allProducts.remove(index);
+            persistence.save(allProducts);
+            carregaProdutosBanco(Vendedor.getProdutosByVendedorID(usuario.getId()));
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Selecione o produto que deseja remover!");
+        }
     }
     
     public void abrirAddProduto(){
-        AddProduto telaAddProd = new AddProduto(this, usuario.getId());
+        TelaAddProduto telaAddProd = new TelaAddProduto(this, usuario.getId());
         telaAddProd.desenha();
         tela.setVisible(false);
     }

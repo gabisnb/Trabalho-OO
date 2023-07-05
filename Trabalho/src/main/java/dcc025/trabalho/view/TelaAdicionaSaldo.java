@@ -1,8 +1,8 @@
 package dcc025.trabalho.view;
 
 import dcc025.trabalho.Usuario.Comprador;
+import dcc025.trabalho.exceptions.CPFException;
 import dcc025.trabalho.exceptions.SaldoException;
-import dcc025.trabalho.model.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -50,7 +50,7 @@ public class TelaAdicionaSaldo extends Tela{
         JPanel painel = configuraPainelMain("Adicionar Saldo");
         
         labels.add(new JLabel("Valor a ser adicionado: "));
-        labels.add(new JLabel("CPF: "));
+        labels.add(new JLabel("CPF(apenas os números): "));
         
         JPanel panel = desenhaTF(2, 20, tf);
                 
@@ -93,9 +93,10 @@ public class TelaAdicionaSaldo extends Tela{
             input = tf.get(1).getText();
             if(input.isEmpty())
                 throw new NullPointerException();
-            double verificacao = Double.parseDouble(input);
-            if(input.length()!=11)
-                throw new Exception();
+//            double verificacao = Double.parseDouble(input);
+            
+            if(input.length() != 11 || !cpfVerificacao(input))
+                throw new CPFException();
             
             this.usuario.adicionarSaldo(saldo);
             this.tComprador.carrega();
@@ -111,9 +112,41 @@ public class TelaAdicionaSaldo extends Tela{
         catch(SaldoException e1){
             JOptionPane.showMessageDialog(null, "Valor de saldo inválido!");
         }
-        catch(Exception e1){
-            JOptionPane.showMessageDialog(null, "CPF inválido, deve conter 11 digitos!");
+        catch(CPFException e1){
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
         }
     }
     
+    private boolean cpfVerificacao(String str) throws NumberFormatException{
+        char[] caracteres = str.toCharArray();
+        int[] digitosCpf = new int[11]; //Os últimos dois digitos são Digitos Verificadores
+        
+        for(int i = 0; i < caracteres.length; i++){
+            if(caracteres[i] != '0' && caracteres[i] != '1' && caracteres[i] != '2' && caracteres[i] != '3'
+            && caracteres[i] != '4' && caracteres[i] != '5' && caracteres[i] != '6' && caracteres[i] != '7'
+            && caracteres[i] != '8' && caracteres[i] != '9')
+                throw new NumberFormatException();
+            digitosCpf[i] = Character.getNumericValue(caracteres[i]);
+        }
+        
+        //Digitos Verificadores
+        int DV1, DV2;
+        
+        //resto da Divisao por 11 dos Digitos Verificadores
+        int restoDV1 = (digitosCpf[0]*10 + digitosCpf[1]*9 + digitosCpf[2]*8 + digitosCpf[3]*7 + digitosCpf[4]*6
+                 + digitosCpf[5]*5  + digitosCpf[6]*4 + digitosCpf[7]*3 + digitosCpf[8]*2) % 11;
+        if(restoDV1 == 0 || restoDV1 == 1)
+            DV1 = 0;
+        else
+            DV1 = 11 - restoDV1;
+        
+        int restoDV2 = (digitosCpf[1]*10 + digitosCpf[2]*9 + digitosCpf[3]*8 + digitosCpf[4]*7 + digitosCpf[5]*6
+                 + digitosCpf[6]*5  + digitosCpf[7]*4 + digitosCpf[8]*3 + DV1*2) % 11;
+        if(restoDV2 == 0 || restoDV2 == 1)
+            DV2 = 0;
+        else
+            DV2 = 11 - restoDV2;
+        
+        return (DV1 == digitosCpf[9] && DV2 == digitosCpf[10]);
+    }
 }

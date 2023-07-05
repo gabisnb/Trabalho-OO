@@ -1,26 +1,19 @@
 package dcc025.trabalho.view;
 
-import java.util.*;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.*;
-
-import dcc025.trabalho.Usuario.Vendedor;
 import dcc025.trabalho.controller.AdicionarProduto;
 import dcc025.trabalho.exceptions.InvalidProductException;
 import dcc025.trabalho.exceptions.NegativePriceException;
 import dcc025.trabalho.exceptions.NegativeQuantityException;
-import dcc025.trabalho.exceptions.ProductLimitException;
 import dcc025.trabalho.model.*;
-import dcc025.trabalho.model.ListaQuantidadeCor.Cor;
-import dcc025.trabalho.persistence.Persistence;
-import dcc025.trabalho.persistence.ProdutoPersistence;
+import dcc025.trabalho.model.Cor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
+import java.util.*;
+import javax.swing.*;
 
-public class AddProduto extends Tela{
+public class TelaAddProduto extends Tela{
     
     private SubTipoProduto subtipo = SubTipoProduto.N_A; 
     private TiposProdutos tipo = TiposProdutos.ELETRODOMESTICO;
@@ -39,7 +32,7 @@ public class AddProduto extends Tela{
     private ArrayList<JTextField> tf;
 
     
-    public AddProduto(TelaVendedor telaVendedor, String vender_id){
+    public TelaAddProduto(TelaVendedor telaVendedor, String vender_id){
         super.botoes = new ArrayList();
         super.labels = new ArrayList();
         tf = new ArrayList<>();
@@ -237,6 +230,9 @@ public class AddProduto extends Tela{
                         setTipoRoupa();
                         carregaCbRoupa();
                         break;
+                    default:
+                        tipo = TiposProdutos.N_A;
+                        carregaCbNA();
                 }
             }
         });
@@ -301,6 +297,13 @@ public class AddProduto extends Tela{
         cbSubTipo.addItem(SubTipoProduto.BLUSA);
         cbSubTipo.addItem(SubTipoProduto.CONJUNTO);
         cbSubTipo.addItem(SubTipoProduto.ACESSORIOS);
+    }
+    
+    public void carregaCbNA(){
+        cbSubTipo.removeAllItems();
+        
+        //Adiciona novos itens
+        cbSubTipo.addItem(SubTipoProduto.N_A);
     }
 
     private void setPreco(double preco){this.preco = preco;}

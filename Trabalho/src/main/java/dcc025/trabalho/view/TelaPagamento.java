@@ -3,8 +3,6 @@ package dcc025.trabalho.view;
 import dcc025.trabalho.Usuario.Comprador;
 import dcc025.trabalho.controller.*;
 import dcc025.trabalho.exceptions.CartaoInvalidException;
-import dcc025.trabalho.exceptions.NumberParcelasException;
-import dcc025.trabalho.exceptions.SaldoException;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -133,9 +131,17 @@ public class TelaPagamento extends Tela{
     }
     
     public void pagar(){
-        this.usuario.comprarCarrinho();
-        JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
-        telaAnterior.recarregaSaldo();
-        fechar();
+        try{
+            this.usuario.comprarCarrinho();
+            JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
+            telaAnterior.recarregaSaldo();
+            fechar();
+        }
+        catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Erro: problemas com banco de dados!");
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Produto esgotado!");
+        }
     }
 }

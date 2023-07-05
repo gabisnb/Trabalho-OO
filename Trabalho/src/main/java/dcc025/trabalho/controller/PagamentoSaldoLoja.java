@@ -1,11 +1,8 @@
 
+
 package dcc025.trabalho.controller;
 
 import dcc025.trabalho.controller.Pagamento;
-import dcc025.trabalho.Usuario.Comprador;
-import dcc025.trabalho.Usuario.CarrinhoCompras;
-import dcc025.trabalho.exceptions.SaldoException;
-
 public class PagamentoSaldoLoja extends Pagamento {
     private double preco;
 
