@@ -43,13 +43,9 @@ public class TelaVendedor extends Tela {
 	}
 
 	private void desenhaMenu() {
-		JPanel painel = configuraPainelMain("");
+		JPanel painel = configuraPainelMain("Vendedor");
 		painel.setBorder(new EmptyBorder(20, 0, 0, 0));
-		JLabel labelVendedor = new JLabel("VENDEDOR");
-		labelVendedor.setHorizontalAlignment(JLabel.CENTER);
-		labelVendedor.setFont(labelVendedor.getFont().deriveFont(Font.BOLD, 20f));
 
-		painel.add(labelVendedor, BorderLayout.NORTH);
 		labels.add(new JLabel("Nome: " + usuario.getNome()));
 		labels.add(new JLabel("Email: " + usuario.getEmail()));
 
@@ -66,6 +62,7 @@ public class TelaVendedor extends Tela {
 		botoes.add(new JButton("Remover Produto"));
 		botoes.get(1).setBackground(Color.decode("#002847"));
 		botoes.get(1).setForeground(Color.WHITE);
+
 		botoes.get(1).addActionListener((java.awt.event.ActionEvent e) -> {
 			removeProduto(jlistProdutos.getSelectedValue());
 		});
@@ -90,6 +87,14 @@ public class TelaVendedor extends Tela {
 		bpainel.add(botoes.get(2), BorderLayout.CENTER);
 		bpainel.add(Box.createHorizontalStrut(espacamentoHorizontal), BorderLayout.EAST);
 		painel.add(bpainel, BorderLayout.SOUTH);
+
+		tela.getContentPane().add(painel, BorderLayout.CENTER);
+		// Aumentar o tamanho da letra da palavra "Login"
+		JLabel lblVendedor = new JLabel("VENDEDOR");
+		Font fonte = lblVendedor.getFont();
+		lblVendedor.setFont(fonte.deriveFont(fonte.getSize() + 8f));
+		lblVendedor.setHorizontalAlignment(SwingConstants.CENTER);
+		painel.add(lblVendedor, BorderLayout.NORTH);
 
 		tela.getContentPane().add(painel, BorderLayout.CENTER);
 	}
