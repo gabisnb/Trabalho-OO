@@ -12,12 +12,11 @@ public class Vendedor extends Pessoa implements Compare<Vendedor>{
 
     private final int id;
     private double saldo_loja;
+    private static int n_vendedores;
 
     public Vendedor(String nome, String email, String senha) {
-
         super(nome, email, senha);
-        this.id = createID() + 1;
-
+        this.id = n_vendedores++;
     }
     public String getId(){ return Integer.toString(this.id); }
 
@@ -50,12 +49,12 @@ public class Vendedor extends Pessoa implements Compare<Vendedor>{
         return id[0];
     }
 
-    private int createID(){
+    public static void createID(){
         Persistence<Vendedor> all = new VendedorPersistence();
         List<Vendedor> allVender = all.findAll();
 
-        if (allVender.isEmpty()) return 0;
-        return allVender.get(allVender.size() - 1).id;
+        if (allVender.isEmpty()) n_vendedores = 0;
+        else n_vendedores = allVender.size();
     }
     
     @Override
