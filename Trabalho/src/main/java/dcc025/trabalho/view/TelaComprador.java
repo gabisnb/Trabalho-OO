@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.*;
+import javax.swing.border.EmptyBorder;
 
 public class TelaComprador extends Tela {
 
@@ -40,6 +41,7 @@ public class TelaComprador extends Tela {
 
 	private void desenhaMenu() {
 		JPanel painel = configuraPainelMain("Comprador");
+		painel.setBorder(new EmptyBorder(20, 0, 0, 0));
 
 		labels.add(new JLabel("Nome: " + usuario.getNome()));
 		labels.add(new JLabel("Email: " + usuario.getEmail()));
@@ -105,6 +107,15 @@ public class TelaComprador extends Tela {
 		bpainel.add(botaoAcessarLoja, BorderLayout.SOUTH);
 
 		painel.add(bpainel, BorderLayout.SOUTH);
+
+		tela.getContentPane().add(painel, BorderLayout.CENTER);
+
+		// Aumentar o tamanho da letra da palavra "Login"
+		JLabel lblComprador = new JLabel("COMPRADOR");
+		Font fonte = lblComprador.getFont();
+		lblComprador.setFont(fonte.deriveFont(fonte.getSize() + 8f));
+		lblComprador.setHorizontalAlignment(SwingConstants.CENTER);
+		painel.add(lblComprador, BorderLayout.NORTH);
 
 		tela.getContentPane().add(painel, BorderLayout.CENTER);
 	}

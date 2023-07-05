@@ -90,7 +90,7 @@ public class TelaLogin extends Tela {
         // Aumentar o tamanho da letra da palavra "Login"
         JLabel lblLogin = new JLabel("LOGIN");
         Font fonte = lblLogin.getFont();
-        lblLogin.setFont(fonte.deriveFont(fonte.getSize() + 8f)); // Aumenta o tamanho da fonte em 8 pontos
+        lblLogin.setFont(fonte.deriveFont(fonte.getSize() + 8f)); 
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
         painel.add(lblLogin, BorderLayout.NORTH);
 
