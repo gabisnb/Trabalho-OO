@@ -23,7 +23,6 @@ public class Main {
             list.add(new Vendedor("Rodrigo", "rodrigomarques@gmail.com", "2365"));
             list.add(new Vendedor("Julia", "juliaasilva@hotmail.com", "bea453"));
             list.add(new Vendedor("Bernardo", "becoelho@yahoo.com.br", "123@0"));
-            list.add(new Vendedor("adm", "adm", "adm"));
             persistence.save(list);
             ProdutoPersistence ppersistence = new ProdutoPersistence();
             if(ppersistence.findAll().isEmpty()){
@@ -48,7 +47,6 @@ public class Main {
             clist.add(new Comprador("Thiago", "thiagofernandes@hotmail.com", "45sist", 100.00));
             clist.add(new Comprador("Alessandra", "alebatista@yahoo.com.br", "abc650", 235.00));
             clist.add(new Comprador("Fernanda", "fernandatrib@gmail.com", "98h56", 0));
-            clist.add(new Comprador("adm", "adm", "adm", 10000.00));
             cpersistence.save(clist);
         }
         
