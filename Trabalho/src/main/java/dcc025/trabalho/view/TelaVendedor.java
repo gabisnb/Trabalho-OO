@@ -48,6 +48,7 @@ public class TelaVendedor extends Tela {
 
 		labels.add(new JLabel("Nome: " + usuario.getNome()));
 		labels.add(new JLabel("Email: " + usuario.getEmail()));
+		labels.add(new JLabel("Saldo da Loja: " + usuario.getSaldo()));
 
 		UIManager.put("Button.background", Color.decode("#002847"));
 		UIManager.put("Button.foreground", Color.WHITE);
