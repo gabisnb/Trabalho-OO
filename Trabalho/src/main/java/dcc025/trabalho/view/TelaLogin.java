@@ -38,6 +38,9 @@ public class TelaLogin extends Tela {
         labels.add(new JLabel("Nome: "));
         labels.add(new JLabel("Email: "));
         labels.add(new JLabel("Senha: "));
+        
+        UIManager.put("Button.background", Color.decode("#002847"));
+        UIManager.put("Button.foreground", Color.WHITE);
 
         JPanel painelAux = new JPanel();
         painelAux.setLayout(new GridBagLayout());
