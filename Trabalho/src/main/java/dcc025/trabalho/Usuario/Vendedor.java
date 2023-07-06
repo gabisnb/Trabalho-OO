@@ -36,7 +36,6 @@ public class Vendedor extends Pessoa implements Compare<Vendedor>{
         for(Produto produto : allProducts){
             if(separateProductId(produto.getProduct_id()).equals(vender_id)){
                 sameIdProducts.add(produto);
-                System.out.println(produto.getProduct_id() + ", " + vender_id);
             }
         }
         return sameIdProducts;
