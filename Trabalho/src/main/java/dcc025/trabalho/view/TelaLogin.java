@@ -90,7 +90,7 @@ public class TelaLogin extends Tela {
         // Aumentar o tamanho da letra da palavra "Login"
         JLabel lblLogin = new JLabel("LOGIN");
         Font fonte = lblLogin.getFont();
-        lblLogin.setFont(fonte.deriveFont(fonte.getSize() + 8f)); 
+        lblLogin.setFont(fonte.deriveFont(fonte.getSize() + 8f));
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
         painel.add(lblLogin, BorderLayout.NORTH);
 
@@ -101,16 +101,25 @@ public class TelaLogin extends Tela {
         TelaVendedor telaVendedor = new TelaVendedor(this, vendedor);
         telaVendedor.desenha();
         tela.setVisible(false);
+        limparCampos();
     }
 
     public void entrarComprador(Comprador comprador) {
         TelaComprador telaComprador = new TelaComprador(this, comprador);
         telaComprador.desenha();
         tela.setVisible(false);
+        limparCampos();
     }
 
     public int getSelectedUsuario() {
         return cbEscolha.getSelectedIndex();
+    }
+
+    public void limparCampos() {
+        for (JTextField textField : tf) {
+            textField.setText("");
+        }
+        cbEscolha.setSelectedIndex(0);
     }
 
     public String[] getInfo() {
