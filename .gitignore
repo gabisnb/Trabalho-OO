@@ -1,2 +1,6 @@
 /Trabalho/target/
 /Trabalho/bin/target/
+/workspace.xml
+/shelf/
+.project
+*.class
